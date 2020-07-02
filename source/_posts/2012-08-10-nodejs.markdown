@@ -1,0 +1,43 @@
+---
+layout: post
+title: "NodeJS"
+date: 2012-08-10 13:34
+comments: true
+tags: 
+- NodeJS
+---
+[Node.js](http://nodejs.org/)使以Javascript語言為基礎的框架，讓我覺得很神奇的是它可以拿來做網站，以往在寫網頁時是使用需要使用php、Apache、MySQL；而Node.js可以直接建立網站，真的蠻酷的！
+
+安裝完Node.js，在桌面上建立一個<code>hello.js</code>的檔案，程式碼內容如下
+{% codeblock hello.js lang:javascript %}
+var http = require('http');
+
+http.createServer(function(req, res) {
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+	res.end('Hello World');
+}}.listen(8000);
+{% endcodeblock %}
+
+接著在終端機切換到該檔案的路徑下輸入
+{% codeblock %}
+$ node hello.js
+{% endcodeblock %}
+
+開啟瀏覽器網址輸入http://127.0.0.1:8000，即可看到一個Hello World，就這麼簡單，但讓我覺得很厲害的地方是終端機使用，看到有人將終端機的操作透過Node.js即時的反應呈現在網路上！
+
+目前我也發現<code>Express</code>這個套件，這套件讓開發http server變得容易許多，修改<code>hello.js</code>(使用Express)。
+{% codeblock hello.js lang:javascript %}
+var app = require('express').createServer();
+app.get('/', function(req, res) {
+	res.send('Hello World');
+});
+app.listen(8000);
+{% endcodeblock %}
+上面的程式碼可看到<code>app</code>還可以定義HTTP的路由，此例為<code>app.get</code>。
+
+## 參考資料
+[Node.js](http://nodejs.org/)
+
+[Node.js 中文電子書](http://book.nodejs.tw/)
+
+[Express.js 中文入門指引手冊](http://www.csser.com/board/4f77e6f996ca600f78000936)

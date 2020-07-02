@@ -1,0 +1,155 @@
+---
+layout: post
+title: "Web View"
+date: 2012-04-24 15:23
+comments: true
+tags: 
+- iPhone
+---
+建立一個簡單Web瀏覽器，此範例需要使用到<code>TextField</code>、<code>Web View</code>、<code>Toolbar</code>、<code>Bar Button Item</code>、<code>Activity Indicator View</code>；元件的用途方別如下：
+
+<ol>
+<li><code>TextField</code>:輸入網址。</li>
+<li><code>Web View</code>:show網頁使用。</li>
+<li><code>Toolbar</code>、<code>Bar Button Item</code>:工具列，可返回上頁、下頁、重整。</li>
+<li><code>Activity Indicator View</code>:讓使用者得知網頁還在進行loading。</li>
+</ol>
+
+<!-- more -->
+
+預期完成後的結果如下圖：
+
+{% img /images/iPhone/webViews1.jpeg %}
+
+**Step 1.**建立<code>SingleView</code>，專案名稱為<code>Web View</code>
+
+**Step 2.**編輯MainStoryboard.storyboard
+
+將元件依序拖曳近來，並且安排好擺設的位置
+
+{% img /images/iPhone/webViews2.jpeg %}
+
+需注意的是<code>Activity Indicator View</code>的屬性設定，要將<code>Animating</code>、<code>Hidden</code>打勾，預設才會隱藏，動畫也才會執行。
+
+{% img /images/iPhone/webViews3.jpeg %}
+
+**Step 3.**編輯ViewController.h
+
+<ol>
+<li>加入<code>UIWebViewDelegate</code>協定。</li>
+<li>定義元件的變數。</li>
+<li>定義<code>Bar Button Item</code>的<code>IBAction</code>事件。</li>
+</ol>
+
+{% codeblock lang:objc %}
+@interface ViewController : UIViewController<UIWebViewDelegate>
+{
+    UIWebView *webView_;
+    UITextField *urlTextField_;
+    UIActivityIndicatorView *activityView_;
+}
+
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UITextField *urlTextField;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
+
+-(IBAction)goforward:(id)sender; //往下頁
+-(IBAction)goback:(id)sender;    //往上頁
+-(IBAction)goaddress:(id)sender; //往目前的網址
+-(IBAction)hitReturn:(id)sender; //點選鍵盤的return的觸發事件
+
+@end
+{% endcodeblock %}
+
+**Step 4-1.**編輯ViewController.m
+
+完成<code>synthesize</code>的部份。
+{% codeblock lang:objc %}
+@synthesize webView = webView_, urlTextField = urlTextField_, activityView = activityView_;
+{% endcodeblock %}
+
+完成之後依序寫入<code>往下頁</code>、<code>往上頁</code>的事件，直接使用WebView元件提供的方法<code>goForward</code>、<code>goBack</code>來達到往下頁、往上頁的目的。
+{% codeblock lang:objc %}
+-(IBAction)goforward:(id)sender
+{
+    [self.webView goForward];
+}
+-(IBAction)goback:(id)sender
+{
+    [self.webView goBack];
+}
+{% endcodeblock %}
+
+**Step 4-2.**編輯ViewController.m
+
+<code>goaddress</code>事件中，先取得<code>TextField</code>的值，放入<code>NSString</code>的<code>urlString</code>變數中，在將此值，給予<code>NSURL</code>的<code>url</code>變數；得知url為何時，再使用<code>NSURLRequest</code>來取得<code>url</code>所得到的網頁結果；而這個結果由<code>Web View</code>來呈現。
+
+<code>[urlTextField_ resignFirstResponder];</code>是將<code>TextField</code>的鍵盤回到原本的狀態(原本狀態為隱藏)。
+
+{% codeblock lang:objc %}
+-(IBAction)goaddress:(id)sender
+{
+    NSString *urlString;
+    urlString = [self.urlTextField text];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [self.webView loadRequest:urlRequest];
+    
+    [urlTextField_ resignFirstResponder];
+}
+{% endcodeblock %}
+
+**Step 4-3.**編輯ViewController.m
+
+透過<code>webViewDidStartLoad</code>、<code>webViewDidFinishLoad</code>這兩個方法，來設定<code>Activity Indicator View</code>是否為隱藏，並開始動畫的效果。
+
+{% codeblock lang:objc %}
+-(void) webViewDidStartLoad:(UIWebView *)webView
+{
+    activityView_.hidden = NO;
+    [activityView_ startAnimating];
+}
+
+-(void) webViewDidFinishLoad:(UIWebView *)webView
+{
+    activityView_.hidden = YES;
+    [activityView_ stopAnimating];
+}
+{% endcodeblock %}
+
+<code>hitReturn:</code>為鍵盤上的return被按下時要執行的事件，其內容都跟上面一樣！
+
+{% codeblock lang:objc %}
+-(IBAction)hitReturn:(id)sender
+{
+    NSString *urlString = [self.urlTextField text];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [self.webView loadRequest:urlRequest];
+    
+    [urlTextField_ resignFirstResponder];
+}
+{% endcodeblock %}
+
+**Step 5.**建立關連
+
+最後就是建立<code>IBAction</code>、<code>IBOutlet</code>的關聯，如下圖：
+
+{% img /images/iPhone/webViews4.jpeg %}
+
+如果想要一近畫面時就啟動預設的網頁畫面，在<code>viewDidLoad</code>加入下列的程式碼，其運作過程都一樣。
+{% codeblock lang:objc %}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    webView_.delegate = self;
+    
+    NSString *urlString = @"http://www.google.com";
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [self.webView loadRequest:urlRequest];
+}
+{% endcodeblock %}

@@ -1,0 +1,101 @@
+---
+layout: post
+title: "Map View"
+date: 2012-05-08 11:13
+comments: true
+tags: 
+- iPhone
+---
+<code>Map View</code>很常在尋找定位或是路線導覽中看到，接著簡單示範Map View的操作。
+該範例使用<code>Segmented Contrl</code>來切換<code>Map View</code>的樣式，並且定位出目前的所在位址(如下第三張圖)。
+
+{%  img /images/iPhone/mapViews1.jpeg %}
+{%  img /images/iPhone/mapViews2.jpeg %}
+{%  img /images/iPhone/mapViews4.jpeg %}
+
+<!-- more -->
+
+**Step 1.**建立<code>Single View</code>專案，專案名稱為Map View
+
+**Step 2.**編輯MainStoryboard.storyboard
+
+加入：
+<ol>
+<li>Toolbar</li>
+<li>Segmented Control</li>
+<li>Bar Button Item</li>
+<li>Flexible Space Bar Button Item</li>
+<li>Map View</li>
+</ol>
+{% img /images/iPhone/mapViews5.jpeg %}
+
+**Step 3.**加入<code>MapKit</code>的framework
+
+在檔案瀏覽的地方點選專案，接著畫面中間選擇<code>TARGETS</code>在往右邊上方找到<code>Build Phases</code>，下方可看到<code>Link Binary With Libraries</code>，點選下方的<cde>＋</code>加號，將<code>MapKit.framework</code>加進來。加入成功以後在你的專案資料夾內即可看到一個<code>MapKit.framework</code>
+
+{% img /images/iPhone/mapViews6.jpeg %}
+
+**Step 4.**編輯ViewController.h
+
+<ol>
+<li>引入<code>MapKit/MapKit.h</code></li>
+<li>定義變數，如同程式碼所述</li>
+<li>定義兩個<code>IBAction</code>，該用途如程式碼的註解</li>
+</ol>
+
+{% codeblock lang:objc %}
+#import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+
+@interface ViewController : UIViewController
+{
+    MKMapView *mapView_;
+    UISegmentedControl *segmented_;
+}
+@property (strong, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segmented;
+
+-(IBAction)showLocation:(id)sender; //顯示定位
+-(IBAction)changeMapType:(id)sender; //改變地圖的type
+@end
+{% endcodeblock %}
+
+**Step 5.**編輯ViewController.m
+
+一樣要先補上<code>synthesize</code>，接著是撰寫<code>showLocation:</code>，該方法很簡單，只要定義<code>mapView</code>的<code>showsUserLocation</code>為</code>YES</code>即可顯示目前該使用者的位址。
+
+{% codeblock lang:objc %}
+@synthesize mapView = mapView_, segmented = segmented_;
+
+-(IBAction)showLocation:(id)sender
+{
+    self.mapView.showsUserLocation = YES;
+}
+{% endcodeblock %}
+
+在改變地圖的模式，使用<code>Segmented Control</code>，操作的方式如同[Segmented Control](http://lighter.github.com/blog/2012/05/01/segmented-controller/)，唯一不同的是在<code>case</code>內執行的東西；在<code>case</code>內去改變<code>mapView</code>的<code>mapType</code>，地圖模式一共有三種模式可以更換，因此您可以依自己的需求去做變換。
+
+{% codeblock lang:objc %}
+-(IBAction)changeMapType:(id)sender
+{
+    NSInteger segmentedNum;
+    segmentedNum = self.segmented.selectedSegmentIndex;
+    switch (segmentedNum) {
+        case 0:
+            self.mapView.mapType = MKMapTypeStandard;
+            break;
+        case 1:
+            self.mapView.mapType = MKMapTypeSatellite;
+            break;
+        case 2:
+            self.mapView.mapType = MKMapTypeHybrid;
+            break;
+        default:
+            break;
+    }
+}
+{% endcodeblock %}
+
+**Step 6.**建立關連
+
+{% img /images/iPhone/mapViews7.jpeg %}
