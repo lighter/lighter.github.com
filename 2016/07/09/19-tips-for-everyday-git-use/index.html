@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="zh-TW"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>每天使用Git的19小技巧 | I can't remember</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 4.2.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">每天使用Git的19小技巧</h1><a id="logo" href="/.">I can't remember</a><p class="description">do anything you want to</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 歸檔</i></a><a href="/reading/"><i class="fa fa-archive"> 閱讀清單</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">每天使用Git的19小技巧</h1><div class="post-meta">2016-07-09<span> | </span><span class="category"><a href="/categories/programming/">programming</a></span></div><div class="post-content"><p>原文出處：<a href="http://www.alexkras.com/19-git-tips-for-everyday-use/" target="_blank" rel="noopener">http://www.alexkras.com/19-git-tips-for-everyday-use/</a></p>
+<p>我用Git已經4年了，想與大家分享一些實用的技巧。希望能幫助到你。</p>
+<p>如果你是一個Git新手，我推薦你可先看看這篇文章<a href="http://www.alexkras.com/getting-started-with-git/" target="_blank" rel="noopener">Git Cheat Sheet</a>。這篇文章撰寫的對象是有3個月以上Git經驗的人。</p>
+<h1 id="指令清單"><a href="#指令清單" class="headerlink" title="指令清單"></a>指令清單</h1><ol>
+<li>善用 log 參數，<code>git log --online --graph</code></li>
+<li>檔案的修改差異，<code>git log -p filename</code></li>
+<li>特定檔案特定行數的變化，<code>git log -L 1,1:some-file.txt</code></li>
+<li>顯示尚未合併到父(parent)分支，<code>git log --no-merge master..</code></li>
+<li>取得特定檔案在特定分支的內容，<code>git show some-branch:some-file.js</code></li>
+<li>使用rebase的注意事項，<code>git pull --rebase</code></li>
+<li>記住本地分支合併後的結構，<code>git merge --no-ff</code></li>
+<li>修正你的commit，<code>git commit --amend</code></li>
+<li>三種Stage，之間如何切換，<code>git reset --hard HEAD and git status -s</code></li>
+<li>復原 commit ，softly，<code>git revert -n</code></li>
+<li>使用第三方軟體比對整個專案的差異，<code>git difftool -d</code></li>
+<li>忽略空白，<code>git diff -w</code></li>
+<li>加入檔案局部的修改，<code>git add -p</code></li>
+<li>老舊的分支，<code>git branch -a</code></li>
+<li>將檔案加入stash(儲藏)，<code>git stash -p</code></li>
+<li>好的commit訊息</li>
+<li>Git 自動完成</li>
+<li>將常用的指令建立一個新的別名</li>
+<li>找出造成你程式壞掉的commit</li>
+</ol>
+<h1 id="1-善用-log-參數"><a href="#1-善用-log-參數" class="headerlink" title="1. 善用 log 參數"></a>1. 善用 log 參數</h1><p>範例： <code>git log --online --graph</code></p>
+<p>查看log時，推薦你幾個我最常使用的參數：</p>
+<ul>
+<li><code>--author=&quot;Alex Kras</code> - 顯示特定作者(author)的commit</li>
+<li><code>--name-only</code> - 顯示 commit 中修改的檔案</li>
+<li><code>--oneline</code> - 僅用一行顯示每次的 commit</li>
+<li><code>--graph</code> - 顯示 commit 的樹狀結構</li>
+<li><code>--reverse</code> - 重最舊的 commit 顯示</li>
+<li><code>--after</code> - 指定顯示日期之後的 commit</li>
+<li><code>--before</code> - 指定顯示日期之前的 commit</li>
+</ul>
+<p>例如，每週五主管需要我提交每週的報告。所以我會執行: <code>git log --author=&quot;Alex Kras&quot; --after=&quot;1 week ago&quot; --oneline</code>，然後修飾一下並提交給主管。</p>
+<p>Git log有很多參數供你使用。<code>man git-log</code>可以看到很多參數的功能。</p>
+<p>如果你不喜歡原本的輸出格式，<code>--pretty</code>參數提供你客製化的輸出格式。</p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-log-oneline.png" alt=""></p>
+<h1 id="2-顯示檔案的差異"><a href="#2-顯示檔案的差異" class="headerlink" title="2. 顯示檔案的差異"></a>2. 顯示檔案的差異</h1><p>範例：<code>git log -p filename</code></p>
+<p><code>git log -p</code> 或 <code>git log -p filename</code> 不僅能看到 commit 訊息、作者、日期，還有實際檔案的差異內容。</p>
+<p>你可以使用”反斜線(slash)”搜尋你要的關鍵字，例如<code>/your-search-here</code>。(使用<code>n</code>往下尋找下一個，<code>N</code>往上尋找上一個)。</p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-log-search.png" alt=""></p>
+<h1 id="3-特定檔案特定行數的變化"><a href="#3-特定檔案特定行數的變化" class="headerlink" title="3. 特定檔案特定行數的變化"></a>3. 特定檔案特定行數的變化</h1><p>範例：<code>git log -L 1,1:some-file.txt</code></p>
+<p><code>git blame filename</code>可以顯示檔案每行修改的人</p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-blame.png" alt=""></p>
+<p><code>git blame</code>是個很棒的指令，但是有時提供你的資訊並不足夠。</p>
+<p>另一個替代方案是使用<code>git log</code>搭配<code>-L</code>旗標(flag)。這個旗標可以讓你指定行數。如同<code>git log -p</code>顯示異動的內容。</p>
+<p><code>git log -L 1,1:some-file.txt</code></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-log-lines.png" alt=""></p>
+<h1 id="4-顯示尚未合併到父-parent-分支"><a href="#4-顯示尚未合併到父-parent-分支" class="headerlink" title="4. 顯示尚未合併到父(parent)分支"></a>4. 顯示尚未合併到父(parent)分支</h1><p>範例：<code>git log --no-merges master..</code></p>
+<p>與多人共同開發時，你在某個分支開發了很久的時間，當你將父(parent)分支(例如, master)合併進你的分支時。這時你會發現很難看出你開發的分支與master的差異。</p>
+<p><code>git log --no-merges master..</code>指令可以解決這問題。<code>--no-merges</code>旗標為不顯示merge的訊息，<strong>master..</strong>參數為顯示尚未合併到master的commit(在maste之後必須加上<code>..</code>)。</p>
+<p><code>git show --no-merges master..</code> 和 <code>git log -p --no-merges maser..</code>不同的是第一個指令可以看到檔案的異動。</p>
+<h1 id="5-取得特定檔案在特定分支的內容"><a href="#5-取得特定檔案在特定分支的內容" class="headerlink" title="5. 取得特定檔案在特定分支的內容"></a>5. 取得特定檔案在特定分支的內容</h1><p>範例：<code>git show some-branch:some-file.js</code></p>
+<p>這是個很方便的功能，無需切換分支，就可以查看檔案在其他分支的內容。</p>
+<p><code>git show some-branch-name:some-file-name.js</code>，會在終端機顯示該檔案在該分支的內容。</p>
+<p>你也可以將檔案內容導出到指定的檔案上。</p>
+<p><code>git show some-branch-name:some-file-name.js &gt; deleteme.js</code></p>
+<p>如果你只想比對該檔案在不同分支的差異，可以使用下面這行指令：</p>
+<p><code>git diff some-branch some-filename.js</code></p>
+<h1 id="6-使用rebase的注意事項"><a href="#6-使用rebase的注意事項" class="headerlink" title="6. 使用rebase的注意事項"></a>6. 使用rebase的注意事項</h1><p>範例：<code>git pull --rebase</code></p>
+<p>上面提到很多log顯示merge commit的方法，但上述的問題，有些可以用<code>git rebase</code>來解決。</p>
+<p>我認為rebase是一個進階的功能，甚至可以獨立出一篇文專專門描述rebase。</p>
+<p>Git book提及rebase</p>
+<blockquote>
+<p>   rebase並不是沒有缺點的。請不要對於已經存在於遠端的commit做rebase的動作。如果你不遵守這個規則，你會被朋友討厭，甚至被家人嘲笑。</p>
+</blockquote>
+<p><a href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing#The-Perils-of-Rebasing" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Branching-Rebasing#The-Perils-of-Rebasing</a></p>
+<p>但並不要對於rebase感到害怕，你只需要小心的使用它。</p>
+<p>而最好的方法就是使用rebase的互動模式(interactive rebasing)，<code>git rebase -i some commit hash</code>。它會開啟一個編輯器，並提供指令的解說。</p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-rebase-i.png" alt=""></p>
+<h2 id="git-pull-rebase是個很有用的指令。"><a href="#git-pull-rebase是個很有用的指令。" class="headerlink" title="git pull --rebase是個很有用的指令。"></a><code>git pull --rebase</code>是個很有用的指令。</h2><p>舉例來說，當你在本地端的master分支開發時，你commit了一個小改變。同時其他人將他本週的修改推上了遠地master分支。當你試著推上你的commit時，git會要求你先做<code>git pull</code>的動作。當你下了<code>git pull</code>時，git會幫你產生一個</p>
+<blockquote>
+<p>Merge remtoe-tracking branch ‘origin/master’</p>
+</blockquote>
+<p>的 commit。</p>
+<p>雖然這沒什麼大不了的，但是這讓log看起來有點混亂了。</p>
+<p>這個例子可以使用<code>git pull --rebase</code>。</p>
+<p>這會先強制git抓取(pull)遠地的修改，然後再重新接上(re-apply[rebase])你尚未推到遠地端的commit，並且推上你的commit。這樣一來git自動產生的<code>Merge remote-tracking</code>的log就不會出現了。</p>
+<h1 id="7-記住本地分支合併後的結構"><a href="#7-記住本地分支合併後的結構" class="headerlink" title="7. 記住本地分支合併後的結構"></a>7. 記住本地分支合併後的結構</h1><p>範例：<code>git merge --no-ff</code></p>
+<p>每當有一個bug或是專案出現時，我很喜歡另外開啟一個新的分支。這樣的好處是讓我清楚地瞭解每個commit的任務是什麼。如果你在github上發過pull request，<code>git log --oneline --graph</code>可以顯示出你的分支合併記錄。</p>
+<p>如果你在本地的做分支合併，你會發現git樹狀結構是一條直線。</p>
+<p>如果你想要強調分支的歷史紀錄，你可以加入<code>--no-ff</code>標籤，這可以凸顯你的分支歷史樹狀結構。</p>
+<p><code>git merge --no-ff some-branch-name</code></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-merge-no-ff.png" alt=""></p>
+<h1 id="8-修正你的commit"><a href="#8-修正你的commit" class="headerlink" title="8. 修正你的commit"></a>8. 修正你的commit</h1><p>範例：<code>git commit --amend</code></p>
+<p>如果你已經commit了，但是你發現commit的文字描述有錯誤時，這時你可以使用這個指令來重新編輯妳的commit</p>
+<p><strong>注意！如果你尚未把commit push到遠端</strong>，你可以遵照以下的步驟：</p>
+<ol>
+<li>修正你的錯字。</li>
+<li><code>git add some-fixed-file.js</code> 加入修正的檔案。</li>
+<li>執行<code>git commit --amend</code>，你將可以修正最後一次的commit。</li>
+<li>修正完畢時推上遠端的分支。</li>
+</ol>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-commit-amend.gif" alt=""></p>
+<p>如果進行開發的分支，只屬於你擁有的，你當同步到遠端分支時，一樣可以進行修改commit訊息；當你修正完commit訊息時，執行<code>git push -f</code>(-f 是強制(force)的意思)，他會覆寫歷史紀錄。但是如果該分支有別人同時進行開發，切勿這麼做！</p>
+<h1 id="9-三種Stage，之間如何切換-Three-stages-in-git-and-how-to-move-between-them"><a href="#9-三種Stage，之間如何切換-Three-stages-in-git-and-how-to-move-between-them" class="headerlink" title="9. 三種Stage，之間如何切換(Three stages in git, and how to move between them)"></a>9. 三種Stage，之間如何切換(Three stages in git, and how to move between them)</h1><p>範例：<code>git reset --hard HEAD</code>, <code>git status -s</code></p>
+<p>檔案在git有三種 stage</p>
+<ol>
+<li>撤回檔案(Not staged for commit)</li>
+<li>暫存檔案(Staged for commit)</li>
+<li>提交修改的檔案(commited)</li>
+</ol>
+<p><code>git status</code>可以看到更多詳盡的檔案狀態資訊。<code>git add filename.js</code>指令會將檔案加入為暫存檔案(staged file)，或者使用<code>git add .</code>將所有檔案加入為暫存檔案(staged file)。</p>
+<p>執行<code>git status -s</code>可以看到檔案目前的狀態</p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-stages.png" alt=""></p>
+<p><code>git status</code>並不會顯示提交修改檔案紀錄，你可以使用<code>git log</code>查看已經提交修改的歷史紀錄。</p>
+<p>下面提供一些方法，供你檔案 stage 的狀態。</p>
+<h2 id="reset-檔案"><a href="#reset-檔案" class="headerlink" title="reset 檔案"></a>reset 檔案</h2><p>reset有三種方式。reset允許你任意還原到你指定的歷史紀錄。</p>
+<ol>
+<li><code>git reset --hard some-commit-hash</code> - 還原到你指定的commit hash。<strong>你所有的改變將都會還原，不會保留</strong>。</li>
+<li><code>git reset some-commit-hash</code> - 還原到你指定的commit hash。<strong>所有改變都會保留，並且不會加入暫存檔案(unstaged files)</strong>。而你可以在使用<code>git add .</code>和<code>git commit</code>後還原回去。</li>
+<li><code>git reset --soft some-commit-hash</code> - 還原到你指定的commit hash。<strong>所有改變都會保留，並且加入暫存檔案(staged files)</strong>。你只需要使用<code>git commit</code>即可還原。</li>
+</ol>
+<p>這樣一來你就可以切換檔案到任一不同的版本。</p>
+<p>以下是我最常使用的情形：</p>
+<ol>
+<li>我想要清除所有的修改 - <code>git reset --hard HEAD</code>。</li>
+<li>我想要修改某個已經提交的紀錄 - <code>git reset some-start-point-hash</code>。</li>
+<li>我想要合併3個commit為1個commit - <code>git reset --soft some-start-point-hash</code>。</li>
+</ol>
+<h2 id="Check-out-檔案"><a href="#Check-out-檔案" class="headerlink" title="Check out 檔案"></a>Check out 檔案</h2><p>如果你想要還原檔案可以使用下面的指令</p>
+<p><code>git checkout forget-my-changes.js</code></p>
+<p>這很像<code>git reset --hard</code>但是只有還原你指定的檔案。</p>
+<p>你也可以切換檔案到不同的commit版本，甚至不同分支的commit</p>
+<p><code>git checkout some-branch-name file-name.js</code><br><code>git checkout some-commit-hash file-name.js</code></p>
+<p>執行完checkout後，檔案會進入到暫存檔案(staged files)。<code>git reset HEAD file-name.js</code>將檔案丟入撤回檔案(unstaged files)。再次執行<code>git checkout file-name.js</code>就會回到檔案原本的版本。</p>
+<p><code>git reset --hard HEAD file-name.js</code>指令是無用的。stage的切換可能令你有點搞混，但我希望透過這個章節能讓你清楚stage的切換。</p>
+<h1 id="10-復原-commit-，softly"><a href="#10-復原-commit-，softly" class="headerlink" title="10. 復原 commit ，softly"></a>10. 復原 commit ，softly</h1><p>範例：<code>git revert -n</code></p>
+<p>如果你想要復原先前提交的commit，可以使用revert來達到這個目的。</p>
+<p>通常<code>git revert</code>會自動幫你建立一個新的commit，提醒你有做了一個revert的動作。<code>-n</code>這個參數，是告訴git復原並且不要自動完成commit；你可以試著自己親手操作看看。</p>
+<h1 id="11-使用第三方軟體比對整個專案的差異"><a href="#11-使用第三方軟體比對整個專案的差異" class="headerlink" title="11. 使用第三方軟體比對整個專案的差異"></a>11. 使用第三方軟體比對整個專案的差異</h1><p>範例：<code>git difftool -d</code></p>
+<p>我非常喜歡的差異比對軟體是<a href="http://www.alexkras.com/how-to-run-meld-on-mac-os-x-yosemite-without-homebrew-macports-or-think/" target="_blank" rel="noopener">Meld</a>。</p>
+<p>Meld可以與git diff, merge使用。執行下面的指令來修改你預設diff和merge開啟的工具：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global diff.tool meld</span><br><span class="line">git config --global merge.tool meld</span><br></pre></td></tr></table></figure>
+
+<p>之後執行<code>git difftool some-file.js</code>使用Meld來看檔案的差異。</p>
+<p><strong>除此之外Meld也支援資料夾的差異比對。</strong></p>
+<p><code>git difftool</code>加上<code>-d</code>參數，會比對整個資料夾的差異。</p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-difftool-d.png" alt=""></p>
+<h1 id="12-忽略空白"><a href="#12-忽略空白" class="headerlink" title="12. 忽略空白"></a>12. 忽略空白</h1><p>範例：<code>git diff -w</code>或<code>git blame -w</code></p>
+<p>如果你對程式碼作縮排或是整個排版整理，<code>git blame</code>會顯示所有你的異動。</p>
+<p>git很聰明，他知道你異動了什麼，只需要加上一個參數<code>-w</code>就可以將空白的異動忽略不顯示。</p>
+<h1 id="13-加入檔案局部的修改"><a href="#13-加入檔案局部的修改" class="headerlink" title="13. 加入檔案局部的修改"></a>13. 加入檔案局部的修改</h1><p>範例：<code>git add -p</code></p>
+<p>有些人使用git的時候很喜歡<code>-p</code>這個參數，因為他有些很便利的功能。</p>
+<p><code>git add -p</code>可讓你選擇檔案中哪些異動範圍是你想要加入暫存檔案(staged file)，並且準備commit的。</p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-add-p.png" alt=""></p>
+<h1 id="14-老舊的分支"><a href="#14-老舊的分支" class="headerlink" title="14. 老舊的分支"></a>14. 老舊的分支</h1><p>範例：<code>git branch -a</code></p>
+<p>通常遠端的分支很多，有些分支也已經合併到master了。如果你像我一樣有些潔癖，這可能會讓你有點惱怒。</p>
+<p>加上<code>-a</code>參數，可以看到所有的方知包含遠地，加上<code>--merged</code>參數，僅會列出完整merge到master的分支。</p>
+<p>當你在<code>git fetch</code>時，可以加上<code>-p</code>參數，抓取遠地資訊的同時，也一併清理舊有的資料。</p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-add-p.png" alt=""></p>
+<p><code>git for-each-ref --sort=committerdate --format=&#39;%(refname:short) * %(authorname) * %(committerdate:relative)&#39; refs/remotes/ | column -t -s &#39;*&#39;</code>指令會列出所有遠端的分支，以及每個分支的最後一個commit。</p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/fancy-branch-view.png" alt=""></p>
+<p>不幸的是，僅想要列出已合併的分支並不是一件簡單的事情。如果你只想看到合併的分支commit，可能需要寫一個script去比對找出合併的分支。</p>
+<h1 id="15-將檔案加入stash-儲藏"><a href="#15-將檔案加入stash-儲藏" class="headerlink" title="15. 將檔案加入stash(儲藏)"></a>15. 將檔案加入stash(儲藏)</h1><p>範例：<code>git stash --keep-index</code>或<code>git statsh -p</code></p>
+<p><code>git stash</code>就是將你修改過的檔案存放到一個堆疊(stack)，下次當你想要使用時，執行<code>git stash pop</code>就可以重新使用堆疊裡面修改的程式碼。<code>git stash list</code>可以看到所有你儲存的修改。使用<code>man git-stash</code>看一下還有哪些參數可以使用吧。</p>
+<p>通常執行<code>git stash</code>會一次將所有檔案放到stash(儲藏)。有時你只想將特定的檔案放入stash(儲藏)，而其他的檔案繼續在你的工作區。</p>
+<p>是否還記得前面使用過的<code>-p</code>這個參數?如同上述，在<code>git stash</code>後加上<code>-p</code>這個參數，會出現一個互動式的介面，針對一個修改區塊一個修改的區塊問你是否要加入stash(儲藏)。</p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-stash-p.png" alt=""></p>
+<p>當你只想將某些檔案加入stash，還有一個小技巧是：</p>
+<ol>
+<li>先使用<code>git add</code>將你不想放入stash的檔案加入到staged file，例如<code>git add file1.js, file2.js</code>。</li>
+<li>接著執行<code>git stash --keep-index</code>。他會將你在unstaged file的檔案加入到stash。</li>
+<li>最後執行<code>git reset</code>，將staged file的檔案放回到unstaged file。</li>
+</ol>
+<h1 id="16-好的commit訊息"><a href="#16-好的commit訊息" class="headerlink" title="16. 好的commit訊息"></a>16. 好的commit訊息</h1><p>不久之前，我看一篇文章，是有關於良好的commit訊息，文章在此<a href="http://chris.beams.io/posts/git-commit/" target="_blank" rel="noopener">How to Write a Git Commit Message</a>。</p>
+<p>有一個我非常堅持的原則是，<strong>每一個commit都應該是一個完整的句子</strong></p>
+<p><strong>When applied,this commit will:</strong>YOUR COMMIT MESSAGE</p>
+<p>例如：</p>
+<ul>
+<li>When applied this commit will <strong>Update README file</strong></li>
+<li>When applied this commit will **Add validation for GET /user/:id API call</li>
+<li>When applied this commit will Revert commit 12345</li>
+</ul>
+<h1 id="17-Git-自動補齊"><a href="#17-Git-自動補齊" class="headerlink" title="17. Git 自動補齊"></a>17. Git 自動補齊</h1><p>在有些作業系統預設(如：Ubuntu)有支援git自動補齊。如果你的作業系統沒有支援(如：Mac)，你可以參考下列的指南來啟動自動補齊：</p>
+<p><a href="https://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks#Auto-Completion" target="_blank" rel="noopener">https://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks#Auto-Completion</a></p>
+<h1 id="18-將常用的指令建立一個新的別名"><a href="#18-將常用的指令建立一個新的別名" class="headerlink" title="18. 將常用的指令建立一個新的別名"></a>18. 將常用的指令建立一個新的別名</h1><p>太長的指令不易閱讀，你可以對這個長的指令創建一個短的別名指令。</p>
+<p>學習git最好的方式就是使用command line，而學習command line最好的方式就是自己親自動手下去做。</p>
+<p>使用一段時間後，你會發現哪些指令是你最常使用的，而你可以針對這些指令建立一個短的別名。</p>
+<p>例如：</p>
+<p><code>git config --global alisa.l &quot;log --oneline --graph&quot;</code></p>
+<p>上述指令是你建立一個別名為<code>l</code>的指令，當你執行<code>git l</code>，如同執行<code>git log --online --graph</code>。</p>
+<p>而你一樣可以在別名的指令後加上其他的參數，例如<code>git l --author=&quot;Alex&quot;</code>。</p>
+<p>另一個做法是Bash的別名</p>
+<p>在.bashrc檔案加上下面這行</p>
+<p><code>alias gil=&quot;git log --oneline --graph&quot;</code>，這時你可以直接下<code>gil</code>指令，效果如同<code>git l</code>。</p>
+<h1 id="19-找出造成你程式壞掉的commit"><a href="#19-找出造成你程式壞掉的commit" class="headerlink" title="19. 找出造成你程式壞掉的commit"></a>19. 找出造成你程式壞掉的commit</h1><p>範例：<code>git bisect</code></p>
+<p><code>git bisect</code>使用2分法，幫助你在許多commit中快速找到哪一個commit造成你程式無法正常執行。</p>
+<p>當你結束一個長假，回到公司pull專案的最新的版本，尚未pull時確認過程式可以正常運作，<br>但是pull之後就壞了。</p>
+<p>在你放假期間，專案中已經有好多commit了，你很難找出到底是在哪一次的commit造成的錯誤。</p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/pulling-out-hair.jpg" alt=""></p>
+<p>這時你可能嘗試找出是哪一隻程式出錯，然後使用<code>git blame</code>找出哪一行程式出錯，以及修改的人。</p>
+<p>如果簡單的錯誤還可以，但如果這個錯誤很難找出問題原因，這時你可以試著從commit的歷史紀錄找出造成功能無法正常運作的commit。</p>
+<p><code>git bisect</code>可以幫助你快速找到出問題的commit。</p>
+<h2 id="git-bisect做了什麼"><a href="#git-bisect做了什麼" class="headerlink" title="git bisect做了什麼?"></a><code>git bisect</code>做了什麼?</h2><p>首先你要告訴<code>git bisect</code>哪一次的commit是正常的，以及哪一次的commit是壞掉的。這時會切換到好與壞的commit中間點，接著你需要確認這個中間點commit是否為正常的。</p>
+<p>如果這個中間點commit是正常的。你需要使用<code>git bisect good</code>告訴git這是正常的。接著會繼續往左邊的commit尋找新的中間點commit。</p>
+<p>一直重複這個動作，<code>git bisect</code>會縮小範圍，找出出問題的commit。</p>
+<p>下面是實際執行<code>git bisect</code>的流程：</p>
+<ol>
+<li><code>git bisect start</code> - 告訴git開始執行2分法。</li>
+<li><code>git bisect good some-commit-hash</code> - 告訴git哪一個commit是正常的(例如在你休假前最後一個commit)。</li>
+<li><code>git bisect bad some-commit-hash</code> - 告訴git哪一個commit是壞掉的(例如目前master分支最新的commit)。<code>git bisect bad HEAD</code>(HEAD表示為最新的commit)。</li>
+<li>此時會切換到好與壞的commit中間點，你必須確認這個中間點commit是否是正常的。</li>
+<li>如果是壞掉的再次執行<code>git bisect bad</code>告訴git這個commit是壞掉的。</li>
+<li>接著會在切換到一個新的commit，再次確認後，確定這個commit是正常的，使用<code>git bisect good</code>告訴git這個commit是正常的。</li>
+<li>當你找到開始出問題的commit，<code>git bisect</code>就已經完成任務了。</li>
+<li>執行<code>git bisect reset</code>回到你一開始執行<code>git bisect</code>的commit(例如你是在master分支最新的commit執行的)</li>
+<li><code>git bisect log</code> - 顯示<code>git bisect</code>最後一次成功的紀錄。</li>
+</ol>
+<p>你也可以結合<code>git bisect</code>寫一個自動化的script。你可以參考<a href="http://git-scm.com/docs/git-bisect#_bisect_run" target="_blank" rel="noopener">http://git-scm.com/docs/git-bisect#_bisect_run</a>。</p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-bisect.gif" alt=""></p>
+</div><div class="tags"><a href="/tags/git/"><i class="fa fa-tag"></i>git</a><a href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/"><i class="fa fa-tag"></i>翻譯練習</a></div><div class="post-nav"><a class="pre" href="/2016/07/09/read-book-list/">閱讀清單紀錄</a><a class="next" href="/2016/06/18/docker-phpstorm-xdebug/">How to use xdebug with docker and phpstorm</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://lighter.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/core-data/" style="font-size: 15px;">core data</a> <a href="/tags/iPhone/" style="font-size: 15px;">iPhone</a> <a href="/tags/NodeJS/" style="font-size: 15px;">NodeJS</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/Sublime-Text-3/" style="font-size: 15px;">Sublime Text 3</a> <a href="/tags/koding/" style="font-size: 15px;">koding</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/oracle/" style="font-size: 15px;">oracle</a> <a href="/tags/laravel/" style="font-size: 15px;">laravel</a> <a href="/tags/vagrant/" style="font-size: 15px;">vagrant</a> <a href="/tags/xcode/" style="font-size: 15px;">xcode</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/nvm/" style="font-size: 15px;">nvm</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/phpstore/" style="font-size: 15px;">phpstore</a> <a href="/tags/xdebug/" style="font-size: 15px;">xdebug</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/" style="font-size: 15px;">翻譯練習</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/phpdbg/" style="font-size: 15px;">phpdbg</a> <a href="/tags/dependency-injection/" style="font-size: 15px;">dependency injection</a> <a href="/tags/%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5/" style="font-size: 15px;">依賴注入</a> <a href="/tags/Octopress/" style="font-size: 15px;">Octopress</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/07/22/docker-mysql-crontab-backup/">docker mysql crontab backup</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/dependency-injection/">[翻譯]揭秘依賴注入(Dependency injection)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/23/php-debug-phpdbg/">php debug phpdbg</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/read-book-list/">閱讀清單紀錄</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/19-tips-for-everyday-git-use/">每天使用Git的19小技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/18/docker-phpstorm-xdebug/">How to use xdebug with docker and phpstorm</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/">網頁開發者如何使用Docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/25/install-nvm-on-mac/">Install nvm on mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/12/ie-scroll-bar-hidden-not-work/">IE scroll bar hidden not work</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/04/bi-ji-swift-part-7/">[筆記]swift Part 7</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">I can't remember.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="複製成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

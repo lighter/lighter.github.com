@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="zh-TW"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>網頁開發者如何使用Docker | I can't remember</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 4.2.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">網頁開發者如何使用Docker</h1><a id="logo" href="/.">I can't remember</a><p class="description">do anything you want to</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 歸檔</i></a><a href="/reading/"><i class="fa fa-archive"> 閱讀清單</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">網頁開發者如何使用Docker</h1><div class="post-meta">2016-05-11</div><div class="post-content"><p>這是篇我覺得蠻清楚，而且又解說的蠻清楚的文章，因此嘗試翻成中文當作我的筆記！如果有哪裡不好歡迎指教，謝謝。有些像是<code>Container</code>, <code>Volume</code>, <code>Image</code>我就不特別翻成<code>容器</code>, <code>數據</code>, <code>映像檔</code>了，因為我始終覺得怪怪的。</p>
+<h1 id="原文的出處"><a href="#原文的出處" class="headerlink" title="原文的出處"></a>原文的出處</h1><p><a href="http://blog.osteel.me/posts/2015/12/18/from-vagrant-to-docker-how-to-use-docker-for-local-web-development.html" target="_blank" rel="noopener">http://blog.osteel.me/posts/2015/12/18/from-vagrant-to-docker-how-to-use-docker-for-local-web-development.html</a></p>
+<h1 id="正文開始"><a href="#正文開始" class="headerlink" title="正文開始"></a>正文開始</h1><p>[更新2017/01/14]這篇文章已經過時了。如果你是Docker新手，可以繼續看下去，因為大多數的內容仍然是有效的，將讓你熟悉Docker如何運作。請先看過這篇文章<a href="http://tech.osteel.me/posts/2017/01/15/how-to-use-docker-for-local-web-development-an-update.html" target="_blank" rel="noopener">How to use Docker for local web development: an update</a>來更新 Docker 和 Docker compose 到最新版本。</p>
+<p>其他安裝Docker的方式可以參考 - <a href="http://tech.osteel.me/posts/2017/01/15/how-to-use-docker-for-local-web-development-an-update.html" target="_blank" rel="noopener">learn about them in the new post as well.</a></p>
+<p><img src="http://tech.osteel.me/images/2015/12/18/docker-tutorial1.jpg" alt=""></p>
+<p>你有時常注意科技新知，Docker這一個名詞對你來說應該不陌生。</p>
+<p>如果沒有，你可以參考一下<a href="http://www.wikiwand.com/zh-tw/Docker_(%E8%BB%9F%E9%AB%94" target="_blank" rel="noopener">維基百科</a>的簡述</p>
+<blockquote>
+<p>Docker是一個開放原始碼軟體專案，讓應用程式布署在軟體容器下的工作可以自動化進行，藉此在Linux作業系統上，提供一個額外的軟體抽象層，以及作業系統層虛擬化的自動管理機制。</p>
+</blockquote>
+<p>酷！但我還是不太明白！請繼續說下去</p>
+<a id="more"></a>
+
+<blockquote>
+<p>Docker利用Linux核心（kernel）中的資源分離機制，例如cgroups，以及Linux核心命名空間（name space），來建立獨立的軟體容器（containers）。這可以在單一Linux實體下運作，避免啟動一個虛擬機器造成的額外負擔。</p>
+</blockquote>
+<p>OK，有點概念了。</p>
+<p>目前在我的Mac，我使用的Vagrant來建立我每一個專案(如果你不知道什麼是Vagrant，可以先看一下<a href="http://blog.osteel.me/posts/2015/01/25/how-to-use-vagrant-for-local-web-development.html" target="_blank" rel="noopener">這篇文章</a>，尤其是<a href="http://blog.osteel.me/posts/2015/01/25/how-to-use-vagrant-for-local-web-development.html#vagrant" target="_blank" rel="noopener">這一部份</a>)。</p>
+<p>不論何時，任何專案，我只要使用<code>vagrant up</code>指令，短時間內，我就可以得到一個獨立的虛擬機器(virtual machine, VM)，非常的便利。</p>
+<p>但仍然要一點時間等待虛擬機器設定完成和啟動，而且每個專案的執行時間都不長，相對的也佔了不少硬碟資源。</p>
+<p>你可以採取Laravel的初步作法<a href="https://laravel.com/docs/master/homestead" target="_blank" rel="noopener">Homestead</a>，將每個專案都運行在同一台虛擬機器上，因此開發環境就無法個別獨立開來。</p>
+<p>那麼跟Docker有什麼關係呢？</p>
+<p>Docker其實就是將環境個別獨立，並且是運行在同一台虛擬機器(使用<a href="https://github.com/boot2docker/boot2docker" target="_blank" rel="noopener">Boot2Docker</a>)上。</p>
+<p>那麼…我可以將我的Vagrant通通轉移到Docker，並且只使用一台虛擬機器囉?</p>
+<p>當然囉！</p>
+<p>下面我們會一步一步來操作。</p>
+<h2 id="大綱"><a href="#大綱" class="headerlink" title="大綱"></a>大綱</h2><ul>
+<li>安裝</li>
+<li>設定<ul>
+<li>Nginx</li>
+<li>PHP</li>
+<li>Data<ul>
+<li>Volumes 和 data containers</li>
+<li>MySQL</li>
+</ul>
+</li>
+<li>phpMyAdmin</li>
+</ul>
+</li>
+<li>掌管多個專案</li>
+<li>故障排除</li>
+<li>結論</li>
+<li>參考</li>
+</ul>
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>如同之前所提的，我使用的是Mac，所以下面的教程環境使已Mac為主。雖然我們是在Mac的環境，但是安裝完成後與Windows不會有太大的差異。如果你是使用Mac或Windows，可以參考<a href="https://www.docker.com/docker-toolbox" target="_blank" rel="noopener">這裡</a>，依據你的作業系統下載Docker Toolbox(如果你是Linux可以直接參考<a href="https://docs.docker.com/linux/" target="_blank" rel="noopener">這裡</a>，無須下載Docker Toolbox)。</p>
+<p>Docker Toolbox會幫你安裝好所有需要的資源。</p>
+<p>如果你不熟悉Docker的操作的話，可以參考<a href="https://docs.docker.com/engine/getstarted/" target="_blank" rel="noopener">Docker 入門指南</a>到Tag, push, and pull your image 章節; 文章內的寫得很清楚，也會幫助你熟悉在終端機上的操作。</p>
+<p>有些部分我是參考那的。</p>
+<p>同時，這是一個跳舞的Tryion:</p>
+<p><img src="http://tech.osteel.me/images/2015/12/18/docker-tutorial3.gif" alt=""></p>
+<p>筆記：你可能會發現到一個錯誤的訊息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Network timed out while trying to connect to https:&#x2F;&#x2F;index.docker.io&#x2F;</span><br><span class="line">v1&#x2F;repositories&#x2F;library&#x2F;hello-world&#x2F;images. You may want to check your</span><br><span class="line">internet connection or if you are behind a proxy.</span><br></pre></td></tr></table></figure>
+
+<p>針對這個錯誤訊息，你只需要再執行一次<code>docker-machine restart default</code>指令。</p>
+<p>完成之後，你應該有一個虛擬機器在<a href="https://www.virtualbox.org/" target="_blank" rel="noopener">VituralBox</a>並且知道如何尋找(find)，運行(run)，建置(build)，推(push)，pull(拉) images。</p>
+<p>到目前還不是很了解。如何知道開啟的網頁要對應到哪台機器，資料(database)在哪?</p>
+<h2 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h2><p>接下來的所有設定我都會放到<a href="https://github.com/osteel/docker-tutorial" target="_blank" rel="noopener">GitHub</a>上，你可以隨時參考(甚至你可以直接使用)。</p>
+<p>此外，或許對於虛擬機器(VM)和Docker，你會感到有點困惑。其實差異不大。</p>
+<p>平常我都是使用<a href="https://lemp.io/" target="_blank" rel="noopener">LEMP stack</a>，而且我使用的是PHP7，所以我們需要有Linux/PHP7/Nginx/MySQL(我們將會在另外一篇文章看到如何建立一個混合的框架)。</p>
+<p>我們可以使用<a href="https://docs.docker.com/compose/" target="_blank" rel="noopener">Docker Compose</a>來達到Linux/PHP7/Nginx/MySQL各自獨立在Container運行。</p>
+<p>很多教程在一開始會教你如何使用Dokcer的指令設定一個Container，或者如何串連多個Container，但實際運作上通常有一個或兩個Container以上，如果使用Docker指令一台一台的去串連，這是件很痛苦的事。</p>
+<p>透過YAML設定檔，可以讓你自己設定各自Container如何連接。我們將會將各個服務放到各自的Contrainer：</p>
+<ul>
+<li>Nginx 一個Container</li>
+<li>PHP-FPM 一個Container</li>
+<li>MySQL 一個Container</li>
+<li>phpMyAdmin 一個Container</li>
+<li>一個Container 使MySQL資料庫的資料</li>
+<li>一個Container 放我們的程式碼</li>
+</ul>
+<p>在其他教程，通常都會使用他們自己的images，如果沒有特別說明原因，對於剛接觸Docker的人或許有些困惑或疑問。</p>
+<p>下面我將會使用官方的images和Dockerfiles來實作。</p>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>一開始，為了確保可以正確的運行，先從最簡單的設定做起。</p>
+<p>建立一個資料夾做為你的專案目錄(這裡我命名為docker-tutorial)，然後在docker-tutorial內建立一個<code>docker-compose.yml</code>檔案。加入下面的設定到<code>docker-compose.yml</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nginx:</span><br><span class="line">	image: nginx:latest</span><br><span class="line">	ports:</span><br><span class="line">		- 80:80</span><br></pre></td></tr></table></figure>
+
+<p>接著執行下面的指令(記得切換到你的專案目錄下)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>等待Nginx image下載完成後就會自動執行，完成後執行下面的指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker-machine ip default</span><br></pre></td></tr></table></figure>
+
+<p>你會得到一個IP，在瀏覽器開啟這個IP，你就可以看到下面的畫面</p>
+<p><img src="/images/docker/images/pic_1.png" alt=""></p>
+<p>到這裡，我們做了什麼?</p>
+<p>我們告訴Docker Compose我們想要一個名為<code>nginx</code>的Container，並且使用官方Nginx最新的image，port指定為80。</p>
+<p>接著要求Docker Compose依據<code>docker-compose.yml</code>的設定建置和啟動Container。<code>-d</code>是將Container丟到背景執行。</p>
+<p>最後取得IP，Docker是運行在<code>default</code>這台虛擬機上(如果你想確認你的Docker是運行在哪台機器上，你可以使用<code>docker-machine ls</code>來取得)。</p>
+<p>因為使用port 80，我們可以直接使用瀏覽器開啟IP位置來開啟網頁。</p>
+<p>最後一件事情，執行<code>docker ps</code>指令，你可以看到如下圖：</p>
+<p><img src="/images/docker/images/pic_2.png" alt=""></p>
+<p>上圖你可以看到一個Container使用了哪一個image正在運行。而這個Container名為<code>dockertutorial_nginx_1</code>。Docker compose是使用了資料夾加上image名稱和一個數字來命名。</p>
+<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><p>在安裝PHP之前，先建立一個<code>index.php</code>檔案(與<code>docker-compose.yml</code>同一層資料夾)。</p>
+<p>將下面的設定取代原本的<code>docker-compose.yml</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">nginx:</span><br><span class="line">	build: .&#x2F;nginx&#x2F;</span><br><span class="line">	ports:</span><br><span class="line">		- 80:80</span><br><span class="line">	links:</span><br><span class="line">		- php</span><br><span class="line">	volumes:</span><br><span class="line">		- .:&#x2F;var&#x2F;www&#x2F;html</span><br><span class="line"></span><br><span class="line">php:</span><br><span class="line">	image: php:7.0-fpm</span><br><span class="line">	expose:</span><br><span class="line">		- 9000</span><br><span class="line">	volumes:</span><br><span class="line">		- .:&#x2F;var&#x2F;www&#x2F;html</span><br></pre></td></tr></table></figure>
+
+<p>我們增加一個名為<code>php</code>的Container，並指定使用<code>7.0-fpm</code>的版本。並指定expose為9000。</p>
+<p><code>expose</code>和<code>ports</code>有什麼不同?<code>expose</code>是用來指定Container之間連接的接口，<code>ports</code>則是外部連接機器的接口。</p>
+<p><code>volumes</code>，將目前的目錄<code>.</code>掛載到<code>/var/www/html</code>下，也就是我們專案的目錄會同步到Container的<code>/var/www/html</code>。</p>
+<p><code>nginx</code> Container設定<code>volumes</code>如同<code>php</code>(Nginx的Container必須知道哪個服務目錄的路徑)。<code>links</code>，是告訴<code>nginx</code> Container要連結到<code>php</code>(如果還是不了解，下面很快會告訴你)。</p>
+<p>我們將<code>image</code>取代成<code>build</code>，並指向<code>nginx/</code>目錄，這裡是告訴Docker Compose不要使用已存在的image，而是使用<code>nginx/</code>下的<br><code>Dockerfile</code>去建立一個新的image。</p>
+<blockquote>
+<p>筆記：如果你有看過新手指南，你應該對於Dockerfile有點了解。你可以透過Dockerfile來告訴Docker你要安裝的image和你要執行的指令等等。</p>
+</blockquote>
+<p>建立一個名為<code>Dockerfile</code>的檔案在<code>nginx/</code>目錄下，下面為Dockerfile的內容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FROM nginx:latest</span><br><span class="line">COPY .&#x2F;default.conf &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;default.conf</span><br></pre></td></tr></table></figure>
+
+<p>第一行，指定使用的image為nginx。第二行將<code>default.conf</code>複製取代到<code>/etc/nginx/conf.d/default.conf</code>。</p>
+<p>建立<code>default.conf</code>檔案在<code>nginx/</code>資料夾下，下面是<code>default.conf</code>的內容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80 default_server;</span><br><span class="line">    root &#x2F;var&#x2F;www&#x2F;html;</span><br><span class="line">    index index.html index.php;</span><br><span class="line"></span><br><span class="line">    charset utf-8;</span><br><span class="line"></span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        try_files $uri $uri&#x2F; &#x2F;index.php?$query_string;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location &#x3D; &#x2F;favicon.ico &#123; access_log off; log_not_found off; &#125;</span><br><span class="line">    location &#x3D; &#x2F;robots.txt  &#123; access_log off; log_not_found off; &#125;</span><br><span class="line"></span><br><span class="line">    access_log off;</span><br><span class="line">    error_log  &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log error;</span><br><span class="line"></span><br><span class="line">    sendfile off;</span><br><span class="line"></span><br><span class="line">    client_max_body_size 100m;</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        fastcgi_split_path_info ^(.+\.php)(&#x2F;.+)$;</span><br><span class="line">        fastcgi_pass php:9000;</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">        fastcgi_intercept_errors off;</span><br><span class="line">        fastcgi_buffer_size 16k;</span><br><span class="line">        fastcgi_buffers 4 16k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ &#x2F;\.ht &#123;</span><br><span class="line">        deny all;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這是Nginx的基本設定。</p>
+<p>可以特別看一下這行設定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastcgi_pass php:9000;</span><br></pre></td></tr></table></figure>
+
+<p>要求Nginx透過9000 port連接到<code>php</code> Container，而要求<code>nginx</code>連接的設定<code>links</code>已經在<code>docker-compose.yml</code>檔案中。</p>
+<p>接著還需要建立<code>index.php</code>檔案，檔案內容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">        &lt;title&gt;Hello World!&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;&#x2F;head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;img src&#x3D;&quot;http:&#x2F;&#x2F;tech.osteel.me&#x2F;images&#x2F;2015&#x2F;12&#x2F;18&#x2F;docker-tutorial2.gif&quot; alt&#x3D;&quot;Hello World!&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>這裡只有簡單的HTML代碼，用來確認PHP檔案可以執行。</p>
+<p>下圖是目前的目錄結構：</p>
+<p><img src="/images/docker/images/pic_3.png" alt=""></p>
+<p>再次執行<code>docker-compose up -d</code>。Docker Compose 會依據設定的，再次建立(build)和啟動(start) Container (這次會下載PHP image)：</p>
+<p><img src="/images/docker/images/pic_4.png" alt=""></p>
+<p>如果你已經忘記IP，可以執行<code>docker-machine ip default</code>取得IP</p>
+<p>現在執行<code>docker ps</code>，可以看到目前有哪些Container正在運行：</p>
+<p><img src="/images/docker/images/pic_5.png" alt=""></p>
+<p>現在可以試著重啟網頁，可以看到<code>index.php</code>的title，”Hello Universel!”。</p>
+<p>接著加入database了！</p>
+<h2 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h2><h3 id="Volumes-和-data-containers"><a href="#Volumes-和-data-containers" class="headerlink" title="Volumes 和 data containers"></a>Volumes 和 data containers</h3><p>在設定MySQL之前，先來看看<code>volumes</code>。<code>nginx</code>和<code>php</code> container都有一樣的設定，這樣的設定方式很常見。</p>
+<p>另外一種方式，將資料的來源獨立出來給其他container使用。</p>
+<p>改變<code>docker-compose.yml</code>設定，設定如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">nginx:</span><br><span class="line">    build: .&#x2F;nginx&#x2F;</span><br><span class="line">    ports:</span><br><span class="line">        - 80:80</span><br><span class="line">    links:</span><br><span class="line">        - php</span><br><span class="line">    volumes_from:</span><br><span class="line">        - app</span><br><span class="line"></span><br><span class="line">php:</span><br><span class="line">    image: php:7.0-fpm</span><br><span class="line">    expose:</span><br><span class="line">        - 9000</span><br><span class="line">    volumes_from:</span><br><span class="line">        - app</span><br><span class="line"></span><br><span class="line">app:</span><br><span class="line">    image: php:7.0-fpm</span><br><span class="line">    volumes:</span><br><span class="line">        - .:&#x2F;var&#x2F;www&#x2F;html</span><br><span class="line">    command: &quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+<p>首先新增一個名為<code>app</code>的Container，<code>volumes</code>的設定與原本的<code>nginx</code>和<code>php</code>一樣。將應用程式的code給獨立成一個Container。當Docker Compose 建立起這個<code>app</code> Container，會立即停止，因為這個Container沒有做任何動作，為了不讓它停止特別指定了<code>command: &quot;true&quot;</code>。這可以讓我們只存取Container，也不會無謂的浪費資源。</p>
+<p>除此之外，你也可以發現我們使用了與<code>php</code>一樣的image，同樣的image不會重複下載，而是使用了相同的image，避免不必要的浪費。</p>
+<p>在<code>nginx</code>和<code>php</code>的設定中，原本的<code>volumes</code>改為<code>volumes_from</code>，而且指定為<code>app</code> Container。其下之意就是告訴Docker Compose要掛載的<code>volumes</code>是來自<code>app</code> Container。</p>
+<p>再次執行<code>docker-compose up -d</code>。執行完成時執行<code>docker ps</code>可以看到目前有哪些container正在運行，如下圖：</p>
+<p><img src="/images/docker/images/pic_6.png" alt=""></p>
+<p>如果對於data Container和volumes有興趣，我推薦你這邊<a href="http://container-solutions.com/understanding-volumes-docker/" target="_blank" rel="noopener">文章(作者Adrian Mouat)</a>(在文章最後的引用也可以找到這篇文章)。</p>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><p>緊接著來看到MySQL。</p>
+<p>開啟<code>docker-compose.yml</code>，加上下面的設定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql:</span><br><span class="line">	image: mysql:latest</span><br><span class="line">	volumes_from:</span><br><span class="line">		- data</span><br><span class="line">	environment:</span><br><span class="line">		MYSQL_ROOT_PASSWORD: secret</span><br><span class="line">		MYSQL_DATABASE: project</span><br><span class="line">		MYSQL_USER: project</span><br><span class="line">		MYSQL_PASSWORD: project</span><br><span class="line"></span><br><span class="line">data:</span><br><span class="line">	image: mysql:latest</span><br><span class="line">	volumes:</span><br><span class="line">		- &#x2F;var&#x2F;lib&#x2F;mysql</span><br><span class="line">	command: &quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+<p>更新<code>php</code>的<code>links</code>，改成<code>mysql</code>，然後使用Dockerfile建置image：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">php:</span><br><span class="line">	build: .&#x2F;php&#x2F;</span><br><span class="line">	expose:</span><br><span class="line">		- 9000</span><br><span class="line">	links:</span><br><span class="line">		- mysql</span><br><span class="line">	volumes_from:</span><br><span class="line">		- app</span><br></pre></td></tr></table></figure>
+
+<p>你已經知道<code>links</code>了，所以接著看到新的Dockerfile：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FROM php:7.0-fpm</span><br><span class="line">RUN docker-php-ext-install pdo_mysql</span><br></pre></td></tr></table></figure>
+
+<p>這只是基本的安裝pdo_mysql套件，透過這個套件我們可以連接database(如何安裝PHP套件，你可以參考這篇文章 <a href="https://hub.docker.com/_/php/" target="_blank" rel="noopener">image’s doc</a>)。將這個檔案放置到新的<code>php/</code>目錄下。</p>
+<p>往下看到MySQL的設定，你可以先看看這篇文章<a href="https://hub.docker.com/_/mysql/" target="_blank" rel="noopener">official MySQL image</a>。<code>environmet</code>是我們目前沒看過的設定，它允許我們定義環境變數供Container使用。這邊我們特別定義了MySQL的root密碼和名稱(<code>project</code>)，以及一位使用者的密碼和database名稱(所有可用的變數都列在<a href="https://hub.docker.com/_/mysql/" target="_blank" rel="noopener">image’s documentation</a>)。</p>
+<p>如同前面所提到的，<code>data</code> Container的目的要管理MySQL Container存放在<code>/var/lib/mysql</code>的資料(並且重複使用MySQL image以節省硬碟空間)。或許你會發現，我們並沒有宣告本機要掛載到<code>/var/lib/mysql</code>(也就是冒號前本機路徑)，目錄位於何處，我們交由Docker Compose來控制，只需知道資料內容是存在的。</p>
+<p>如果<code>MYSQL_DATABASE</code>已經存在了，<code>MYSQL_ROOT_PASSWORD</code>的設定會被忽略，保持既有的設定。</p>
+<p>為了測試是否正能夠連到database，<code>index.php</code>需要做些調整：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">        &lt;title&gt;Hello World!&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;&#x2F;head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;img src&#x3D;&quot;http:&#x2F;&#x2F;tech.osteel.me&#x2F;images&#x2F;2015&#x2F;12&#x2F;18&#x2F;docker-tutorial2.gif&quot; alt&#x3D;&quot;Hello World!&quot; &#x2F;&gt;</span><br><span class="line">        &lt;?php</span><br><span class="line">        $database   &#x3D; $user &#x3D; $password &#x3D; &quot;project&quot;;</span><br><span class="line">        $host       &#x3D; &quot;mysql&quot;;</span><br><span class="line">        $connection &#x3D; new PDO(&quot;mysql:host&#x3D;&#123;$host&#125;;dbname&#x3D;&#123;$database&#125;;charset&#x3D;utf8&quot;, $user, $password);</span><br><span class="line">        $query      &#x3D; $connection-&gt;query(&quot;SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_TYPE&#x3D;&#39;BASE TABLE&#39;&quot;);</span><br><span class="line">        $tables     &#x3D; $query-&gt;fetchAll(PDO::FETCH_COLUMN);</span><br><span class="line"></span><br><span class="line">        if (empty($tables)) &#123;</span><br><span class="line">            echo &quot;&lt;p&gt;There are no tables in database \&quot;&#123;$database&#125;\&quot;.&lt;&#x2F;p&gt;&quot;;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            echo &quot;&lt;p&gt;Database \&quot;&#123;$database&#125;\&quot; has the following tables:&lt;&#x2F;p&gt;&quot;;</span><br><span class="line">            echo &quot;&lt;ul&gt;&quot;;</span><br><span class="line">            foreach ($tables as $table) &#123;</span><br><span class="line">                echo &quot;&lt;li&gt;&#123;$table&#125;&lt;&#x2F;li&gt;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            echo &quot;&lt;&#x2F;ul&gt;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        ?&gt;</span><br><span class="line">    &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>這段code會連接到database，並列出目前所有的table。</p>
+<p>完成後再次執行<code>docker-compse up -d</code>(可能需要等待一段時間，因為需要下載MySQL image)，完成後執行<code>docker ps -a</code>。你應該可以看到5個Container，其中兩個是退出(Exited)的：</p>
+<p><img src="/images/docker/images/pic_7.png" alt=""></p>
+<p>現在開啟網頁是顯示*”There are no tables in database ‘project’”*。</p>
+<p>下一步是建立phpMyAdmin，他是一個圖形化的介面供你管理MySQL。現在我先在MySQL的Container來操作MySQL command line。</p>
+<p>從上圖的結果，找到MySQL Container的ID(在我的環境是<code>5207587d116b</code>)並且複製他；執行下面的指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker exec -it 5207587d116b &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
+
+<p>接著你可以在這個Container執行指令(你也可以用Container的name來取代ID執行)。</p>
+<p><code>docker exec</code>允許你的指令在Container中執行，<code>-t</code>讓Docker分配一個假的終端機(pseudo-tty)並綁定到Contanier的標準輸入(參考<a href="https://www.gitbook.com/book/yeasy/docker_practice/details" target="_blank" rel="noopener">Docker —— 从入门到实践</a>)，<code>-i</code>允許與終端機互動。<code>/bin/bash</code>是建立一個在Container的<code>bash</code>介面。</p>
+<p>你也可以在其他Container使用這段指令。</p>
+<p>然後使用<code>mysql -uroot -psecret</code>進入MySQL CLI。執行<code>show database;</code>列出所有的database，如下圖：</p>
+<p><img src="/images/docker/images/pic_8.png" alt=""></p>
+<p>切換database到<code>project</code>，並且建立一個table：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mysql&gt; use project</span><br><span class="line">$ mysql&gt; CREATE TABLE users (id int);</span><br></pre></td></tr></table></figure>
+
+<p>重新整理網頁，就可以看到<code>users</code>會顯示在網頁上。</p>
+<p>你可以使用<code>\q</code>離開MySQL CLI，<code>ctrl + d</code>離開container終端機。</p>
+<p>MySQL的data存在本機的位置在哪呢?</p>
+<p>看到<code>docker-compose.yml</code>的<code>data</code> container設定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data:</span><br><span class="line">	image: mysql:latest</span><br><span class="line">	volumes:</span><br><span class="line">		- &#x2F;var&#x2F;lib&#x2F;mysql</span><br><span class="line">	command: &quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Docker Compose會將本機掛載到<code>/var/lib/mysql</code>的目錄下，但本機位置是?</p>
+<p>再次執行<code>docker ps -a</code>，複製MySQL Container狀態為退出(Exited)的ID(在我的環境是<code>7970b851b07a</code>)，然後執行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker inspect 7970b851b07a</span><br></pre></td></tr></table></figure>
+
+<p>接著你可以找到JSON格式的資料。找到<code>Mounts</code>的部分：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">...,</span><br><span class="line">&quot;Mounts&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;Name&quot;: &quot;0cd0f26f7a41e40437019d9e5514b237e492dc72a6459da88d36621a9af2599f&quot;,</span><br><span class="line">        &quot;Source&quot;: &quot;&#x2F;mnt&#x2F;sda1&#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;0cd0f26f7a41e40437019d9e5514b237e492dc72a6459da88d36621a9af2599f&#x2F;_data&quot;,</span><br><span class="line">        &quot;Destination&quot;: &quot;&#x2F;var&#x2F;lib&#x2F;mysql&quot;,</span><br><span class="line">        &quot;Driver&quot;: &quot;local&quot;,</span><br><span class="line">        &quot;Mode&quot;: &quot;&quot;,</span><br><span class="line">        &quot;RW&quot;: true</span><br><span class="line">    &#125;</span><br><span class="line">],</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p><code>&quot;Source&quot;</code>是資料存在於Container的路徑。</p>
+<p>我懂了。</p>
+<p>但如果我們移除這個Container，會發生什麼事情呢?</p>
+<p>問得很好！</p>
+<p>事實他們仍然存在於硬碟裡。</p>
+<p>有2個解決方法，1. 我們要確保移除Container時volume一同被移除，我們可以使用<code>-v</code>的參數：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker rm -v containerid</span><br></pre></td></tr></table></figure>
+
+<p>如果不使用<code>-v</code>，可以改用下面的指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume rm $(docker volume ls -qf dangling&#x3D;true)</span><br></pre></td></tr></table></figure>
+<p>使用<code>docker volume ls</code>指令加上<code>q</code>及<code>f</code>參數刪除打上<code>none</code>標籤的volume(<code>dangling=true</code>)。</p>
+<p>在<a href="https://docs.docker.com/engine/reference/commandline/cli/" target="_blank" rel="noopener">Docker command line documentation</a>可以得到更多資訊。</p>
+<h2 id="phpMyAdmin"><a href="#phpMyAdmin" class="headerlink" title="phpMyAdmin"></a>phpMyAdmin</h2><p>為了方便管理MySQL，接下來就要在Docker上安裝phpMyAdmin！</p>
+<p>開起<code>docker-compose.yml</code>，加上下列的設定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">phpmyadmin:</span><br><span class="line">	image: phpmyadmin&#x2F;phpmyadmin</span><br><span class="line">	ports:</span><br><span class="line">		- 8080:80</span><br><span class="line">	links:</span><br><span class="line">		- mysql</span><br><span class="line">	environment:</span><br><span class="line">		PMA_HOST: mysql</span><br></pre></td></tr></table></figure>
+
+<p>如同之前的操作，指定好官方的<a href="https://hub.docker.com/r/phpmyadmin/phpmyadmin/" target="_blank" rel="noopener">phpMyAdmin image</a>。我們發佈的port 80對應到虛擬機的8080，以及連結<code>mysql</code> Container。最後設定<code>PMA_HOST</code>環境變數。</p>
+<p>儲存並再次執行<code>docker-compose up -d</code>。等待phpMyAdmin image下載，當一切就緒後，開啟網頁，這次在網址後加上<code>:8080</code>，就可以看到phpMyAdmin登入畫面：</p>
+<p><img src="/images/docker/images/pic_9.png" alt=""></p>
+<p>帳號密碼輸入分別輸入<code>root</code>和<code>secret</code>，即可成功登入(如同<code>mysql</code> Container的設定，<code>project</code> / <code>project</code>一樣也可以，而且可以存取<code>project</code>的database)。</p>
+<p>很容易，對吧?</p>
+<p>休息一下！回想消化一下！不要忘了繼續看下去！因為它可以幫助你更清楚。</p>
+<p>設定檔放在<a href="https://github.com/osteel/docker-tutorial" target="_blank" rel="noopener">GitHub repository</a>，歡迎自行取用。</p>
+<h2 id="管理多個專案"><a href="#管理多個專案" class="headerlink" title="管理多個專案"></a>管理多個專案</h2><p>Docker有一個很大優勢，當你有多個Container使用相同的image時，使用的硬碟空間只會增加一點點，通常只有幾MB。</p>
+<p>除非你想要用PostgreSQL取代成MySQL，不然只會繼續使用本機已存在的image。</p>
+<p>如何在同一台虛擬機管理不同的專案呢?</p>
+<p>但Docker只有一個私有IP，你可以使用port來區分專案，無需每個專案都執行在port 80上。</p>
+<p>在上述的過程中你可以發現我們一直輪流使用<code>docker</code>和<code>docker-compose</code>指令，這或許讓你有點混淆。<code>docker-compose</code>就如同執行<code>docker</code>的指令；<code>docker</code>可針對個別Container做操作，<code>docker-compose</code>可以同時操作<code>docker-compose.yml</code>設定內的Container。</p>
+<p>例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+
+<p>這指令會顯示目前在Docker上所有的Container包含沒有在運行的Container。</p>
+<p>而</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose ps</span><br></pre></td></tr></table></figure>
+
+<p>他與上面的目的是一樣的，但是僅會列出<code>docker-compose.yml</code>設定內的Container(<code>-a</code>參數是非必要的，而且顯示順序與設定檔不同)。</p>
+<p>當你有很多Container需要管理時，他就可以派上用場了，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose stop</span><br></pre></td></tr></table></figure>
+
+<p>這將會停止目前所有在<code>docker-compose.yml</code>內的Container。所有的Container停止後，同時也會釋出port 80。</p>
+<p>要再次啟動可以使用先前提到的<code>docker-compose up -d</code>指令。</p>
+<p>要刪除目前已經停止運作的Container，你可以執行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose rm</span><br></pre></td></tr></table></figure>
+
+<p>這個指令相對於<code>docker rm</code>，如果你想要同時刪除對應的volume，你可以加入<code>-v</code>參數(你也可以刪除打上none標籤的volume，如同前面所說的)。</p>
+<p>在<code>docker</code>和<code>docker-compose</code>指令下有更多細節的說明。</p>
+<h2 id="故障排除"><a href="#故障排除" class="headerlink" title="故障排除"></a>故障排除</h2><p>到目都可以正常運作了！Docker compose有可能會不建置一個image或者啟動Container，而且通常顯示的訊息不是有很大的幫助。</p>
+<p>當有錯誤發生時，試著執行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose logs</span><br></pre></td></tr></table></figure>
+
+<p>他會顯示目前<code>docker-compose.yml</code>設定檔的logs。你也可以執行<code>docker-compose ps</code>檢查目前所有Container的<code>State</code>欄位狀態，如果有一個exit後的代碼數字不是<code>0</code>，代表那個Container有些問題。</p>
+<p>這時你可以針對這個Container顯示logs：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs containerid</span><br></pre></td></tr></table></figure>
+
+<p>Container的name也一樣可行。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>Docker是一個很了不起的技術(雖然剛起步，但相信我，它是非常有前途的)。</p>
+<p>這裡我們使用Docker Toolbox和Boot2Docker，一切看似容易，因為它已經自動幫我做好了很多事情。而我們也可以安裝Docker在Vagrant box上。</p>
+<p>但這麼做意義不大。Docker成長速度之快，資源也很豐富。</p>
+<p>目前我仍是個初學者，如果你發現發現到任何錯誤，非常歡迎讓我知道，並且修正它。</p>
+<p><img src="http://blog.osteel.me/images/2015/12/18/docker-tutorial14.gif" alt=""></p>
+<h2 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h2><ul>
+<li><a href="https://discoveringdocker.com/" target="_blank" rel="noopener">Discovering Docker (e-book)</a></li>
+<li><a href="https://www.jverdeyen.be/docker/how-php-symfony-coreos-docker/" target="_blank" rel="noopener">How I develop in PHP with CoreOS and Docker</a></li>
+<li><a href="http://www.newmediacampaigns.com/blog/docker-for-php-developers" target="_blank" rel="noopener">Docker for PHP Developers</a></li>
+<li><a href="http://container-solutions.com/understanding-volumes-docker/" target="_blank" rel="noopener">Understanding Volumes in Docker</a></li>
+<li><a href="https://docs.docker.com/engine/userguide/dockervolumes/" target="_blank" rel="noopener">Manage data in containers</a></li>
+<li><a href="https://blog.docker.com/2015/04/tips-for-deploying-nginx-official-image-with-docker/" target="_blank" rel="noopener">Tips for Deploying NGINX (Official Image) with Docker</a></li>
+<li><a href="https://docs.docker.com/engine/reference/commandline/cli/" target="_blank" rel="noopener">Use the Docker command line</a></li>
+<li><a href="https://docs.docker.com/compose/reference/" target="_blank" rel="noopener">Compose CLI reference</a></li>
+<li><a href="https://docs.docker.com/engine/reference/builder/" target="_blank" rel="noopener">Dockerfile reference</a></li>
+</ul>
+</div><div class="tags"><a href="/tags/docker/"><i class="fa fa-tag"></i>docker</a><a href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/"><i class="fa fa-tag"></i>翻譯練習</a></div><div class="post-nav"><a class="pre" href="/2016/06/18/docker-phpstorm-xdebug/">How to use xdebug with docker and phpstorm</a><a class="next" href="/2015/03/25/install-nvm-on-mac/">Install nvm on mac</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://lighter.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/core-data/" style="font-size: 15px;">core data</a> <a href="/tags/iPhone/" style="font-size: 15px;">iPhone</a> <a href="/tags/NodeJS/" style="font-size: 15px;">NodeJS</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/Sublime-Text-3/" style="font-size: 15px;">Sublime Text 3</a> <a href="/tags/koding/" style="font-size: 15px;">koding</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/oracle/" style="font-size: 15px;">oracle</a> <a href="/tags/laravel/" style="font-size: 15px;">laravel</a> <a href="/tags/vagrant/" style="font-size: 15px;">vagrant</a> <a href="/tags/xcode/" style="font-size: 15px;">xcode</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/nvm/" style="font-size: 15px;">nvm</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/phpstore/" style="font-size: 15px;">phpstore</a> <a href="/tags/xdebug/" style="font-size: 15px;">xdebug</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/" style="font-size: 15px;">翻譯練習</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/phpdbg/" style="font-size: 15px;">phpdbg</a> <a href="/tags/dependency-injection/" style="font-size: 15px;">dependency injection</a> <a href="/tags/%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5/" style="font-size: 15px;">依賴注入</a> <a href="/tags/Octopress/" style="font-size: 15px;">Octopress</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/07/22/docker-mysql-crontab-backup/">docker mysql crontab backup</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/dependency-injection/">[翻譯]揭秘依賴注入(Dependency injection)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/23/php-debug-phpdbg/">php debug phpdbg</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/read-book-list/">閱讀清單紀錄</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/19-tips-for-everyday-git-use/">每天使用Git的19小技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/18/docker-phpstorm-xdebug/">How to use xdebug with docker and phpstorm</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/">網頁開發者如何使用Docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/25/install-nvm-on-mac/">Install nvm on mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/12/ie-scroll-bar-hidden-not-work/">IE scroll bar hidden not work</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/04/bi-ji-swift-part-7/">[筆記]swift Part 7</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">I can't remember.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="複製成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
