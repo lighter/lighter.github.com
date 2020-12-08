@@ -81,8 +81,8 @@ menu:
   - page: archive
     directory: archives/
     icon: fa-archive
-  - page: reading
-    directory: reading/
+  - page: learning
+    directory: learning/
     icon: fa-archive
   - page: about
     directory: about/
