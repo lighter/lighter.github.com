@@ -100,4 +100,5 @@ date: 2019-08-07 17:06:40
 
 | 開始時間 	| 結束時間 	| 名稱 	| 平台 | 狀態 	|
 |:--------:|:----------:|:------:|:------:|:----:|
-|2020/11/15|2021/01/16|Ultimate AWS Certified Solutions Architect Associate 2020|Udemyy|done|
+|2021/02/11||入門投資科學|Hahow|reading|
+|2020/11/15|2021/01/16|Ultimate AWS Certified Solutions Architect Associate 2020|Udemy|done|
