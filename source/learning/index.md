@@ -126,7 +126,8 @@ date: 2019-08-07 17:06:40
 
 | 開始時間 	| 結束時間 	| 名稱 	| 平台 | 狀態 	|
 |:--------:|:----------:|:------:|:------:|:----:|
-|2022/01/13||EFT全球投資教戰守則|MacroMicro|reading|
+|2022/02/08||Docker Mastery: with Kubernetes +Swarm from a Docker Captain|reading|
+|2022/01/13|2022/01/28|EFT全球投資教戰守則|MacroMicro|done|
 |2021/04/24||Spring Framework 5: Beginner to Guru|Udemy|reading|
 |2021/03/06|2021/03/28|3D英文筆記術|Hahow|done|
 |2021/02/11|2021/02/22|入門投資科學|Hahow|done|
