@@ -1,24 +1,395 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>I can't remember | do anything you want to</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">I can't remember</h1><a id="logo" href="/.">I can't remember</a><p class="description">do anything you want to</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 歸檔</i></a><a href="/learning/"><i class="fa fa-archive"> learning</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"><a href="/2014/06/04/laravel-part-5/">laravel part 5</a></h1><div class="post-meta">2014-06-04</div><div class="post-content"><h2 id="建立新的Controller"><a href="#建立新的Controller" class="headerlink" title="建立新的Controller"></a>建立新的Controller</h2><p>這部分主要是介紹樣板使用，主要是可以避免相同的code一再重複，只是要換掉中間的內容！首先我想要建立一個<code>帳號</code>的新增修改刪除的頁面，所以我先建立一個<code>Controller</code>；一樣使用<code>artisan</code>，開啟終端機輸入下列指令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan controller:make AccountController</span><br></pre></td></tr></table></figure>
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta property="og:type" content="website">
+<meta property="og:title" content="I can&#39;t remember">
+<meta property="og:url" content="https://lighter.github.io/page/3/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="lighter">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>I can&#39;t remember</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
-<img src="/images/laravel_sample/laravel-14.jpg" class=""></div><p class="readmore"><a href="/2014/06/04/laravel-part-5/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2014/06/02/laravel-part-4/">laravel part 4</a></h1><div class="post-meta">2014-06-02</div><div class="post-content"><p>這篇會展是簡單的登入檢查、登入的<code>Session</code>建立、登出，這三個；主要是會使用到一些簡單的<code>route</code>、<code>laravel</code>的驗證、<code>Session</code>的建立。廢話不多說，往下看吧。</p>
-<p>首先建立一個簡單的<code>view</code>用來查看目前登入狀態，建立的路徑是<code>app/views/show/index.blade.php</code>，我刻意多開了一個<code>show</code>資料夾。</p></div><p class="readmore"><a href="/2014/06/02/laravel-part-4/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2014/05/31/laravel-part-3/">laravel part 3</a></h1><div class="post-meta">2014-05-31</div><div class="post-content"><p>接著就是建立資料方面的事情啦！登入總要有先有資料對吧！</p>
-<h2 id="Step-1-Mysql設定"><a href="#Step-1-Mysql設定" class="headerlink" title="Step 1. Mysql設定"></a>Step 1. Mysql設定</h2><p>開啓<code>phpmyadmin</code>，建立一個新的Database，這邊取名為<code>laravel_sample</code>，如下圖</p></div><p class="readmore"><a href="/2014/05/31/laravel-part-3/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2014/05/30/laravel-part-2/">laravel part 2</a></h1><div class="post-meta">2014-05-30</div><div class="post-content"><p>第二部分就是套用<a href="http://getbootstrap.com/" target="_blank" rel="noopener">bootstrap</a>和<a href="http://jquery.com/" target="_blank" rel="noopener">jquery</a>，我將檔案放到專案根目錄下的<code>public</code>資料夾內。或者你想引用CDN的也可以，這樣你就不用下載任何東西。</p></div><p class="readmore"><a href="/2014/05/30/laravel-part-2/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2014/05/29/laravel-part-1/">laravel part 1</a></h1><div class="post-meta">2014-05-29</div><div class="post-content"><h2 id="安裝-Laravel"><a href="#安裝-Laravel" class="headerlink" title="安裝 Laravel"></a>安裝 Laravel</h2><p>要在自己的電腦上先安裝<a href="https://getcomposer.org/" target="_blank" rel="noopener">composer</a>。</p></div><p class="readmore"><a href="/2014/05/29/laravel-part-1/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2014/04/29/php-oracle-oci-bind-by-name/">php oracle oci_bind_by_name</a></h1><div class="post-meta">2014-04-29</div><div class="post-content"><p>原本使用<code>Codeigniter</code>的<code>bind</code>很簡單！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$bind &#x3D; array(&#39;:ID&#39; &#x3D;&gt; &#39;ABCDE12345&#39;);</span><br><span class="line">$sql &#x3D; &quot;SELECT * FROM &#123;$this-&gt;db-&gt;dbprefix(&#39;TABLE&#39;)&#125; WHERE ID &#x3D; :ID&quot;;</span><br><span class="line">$this-&gt;db-&gt;query($sql, $bind);</span><br></pre></td></tr></table></figure></div><p class="readmore"><a href="/2014/04/29/php-oracle-oci-bind-by-name/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2014/04/29/mongodb-note/">mongodb note</a></h1><div class="post-meta">2014-04-29</div><div class="post-content"><p>記錄一下第一次使用MongoDB發生的蠢問題…</p></div><p class="readmore"><a href="/2014/04/29/mongodb-note/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2014/04/20/koding-note/">Koding Note</a></h1><div class="post-meta">2014-04-20</div><div class="post-content"><p>之前就知道Koding這平台，也申請帳號了一陣子，但一直沒有特別去使用。最近因為想說來玩玩看吧，而且又是免費的，空間也很夠用！以下是自己記錄一下使用上遇到的一些問題，大概記錄一下。</p>
-<p>列出已經預先幫你安裝的東西，從下圖就可以看到已經幫我們安裝的<code>phpmyadmin</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; help programs</span><br></pre></td></tr></table></figure>
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
 
-<img src="/images/koding/koding-2014-04-20_09-50-47.jpg" class="">
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4">
+        
+          <header id="header">
+  <a href="/">
+  
+    <div id="title">
+      <h1>I can&#39;t remember</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fas fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">首頁</a></li><!--
+   --><!--
+     --><li><a href="/about/">關於</a></li><!--
+   --><!--
+     --><li><a href="/archives/">文章</a></li><!--
+   --><!--
+     --><li><a href="/learning/">學習中</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
 
-<p>可以看到你的phpmyadmin url及基本的mysql指令，你可以使用它提供的指令去修改密碼</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; help phpmyadmin</span><br></pre></td></tr></table></figure>
+        
+        <section id="about">
+  
+  
+    <p>
+      出沒地
+      
+      
+      
+        
+          <a class="icon" target="_blank" rel="noopener" href="http://github.com/lighter" aria-label="github">
+            <i class="fab fa-github"></i><!--
+      ---></a><!--
+    ---><!--
+    --->.
+        
+      
+    </p>
+  
+</section>
 
-<img src="/images/koding/koding-2014-04-20_10-00-13.jpg" class="">
+<section id="writing">
+  <span class="h1"><a href="/archives/">文章</a></span>
+  
+  <span class="h2">標題</span>
+  <span class="widget tagcloud">
+    <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/NodeJS/" style="font-size: 13.33px;">NodeJS</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Sublime-Text-3/" style="font-size: 10px;">Sublime Text 3</a> <a href="/tags/core-data/" style="font-size: 11.67px;">core data</a> <a href="/tags/dependency-injection/" style="font-size: 10px;">dependency injection</a> <a href="/tags/docker/" style="font-size: 11.67px;">docker</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iPhone/" style="font-size: 20px;">iPhone</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/koding/" style="font-size: 10px;">koding</a> <a href="/tags/laravel/" style="font-size: 16.67px;">laravel</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/oracle/" style="font-size: 10px;">oracle</a> <a href="/tags/php/" style="font-size: 18.33px;">php</a> <a href="/tags/phpdbg/" style="font-size: 10px;">phpdbg</a> <a href="/tags/phpstore/" style="font-size: 10px;">phpstore</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/xcode/" style="font-size: 15px;">xcode</a> <a href="/tags/xdebug/" style="font-size: 10px;">xdebug</a> <a href="/tags/%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">依賴注入</a> <a href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/" style="font-size: 11.67px;">翻譯練習</a>
+  </span>
+  <span class="h2">最近新增</span>
+  
+  <ul class="post-list">
+    
+    
+      
+    
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2014-06-04T14:12:39.000Z" itemprop="datePublished">2014-06-04</time>
+        
+      
+    </div>
 
-<p>修改mysql密碼</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root password YOUR_NEW_PASSWORD</span><br></pre></td></tr></table></figure>
 
-<p>修改mysql root的帳號</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; mysql -u root -p</span><br><span class="line">&gt; Enter password:</span><br><span class="line">mysql&gt; use mysql;</span><br><span class="line">mysql&gt; update user set user&#x3D;&#39;admin&#39; where user&#x3D;&#39;root&#39;;</span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure></div><p class="readmore"><a href="/2014/04/20/koding-note/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2013/10/03/sublime-text-3-plugin/">Sublime Text 3 plugin</a></h1><div class="post-meta">2013-10-03</div><div class="post-content"><p>整理一下我常用的Sublime Text 3的plugin。</p>
-<p>套件安裝管理工具可以參考這個網址</p>
-<p><a href="https://sublime.wbond.net/installation" target="_blank" rel="noopener">https://sublime.wbond.net/installation</a></p></div><p class="readmore"><a href="/2013/10/03/sublime-text-3-plugin/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2013/09/16/xue-xi-ios-app-1/">學習iOS App 1</a></h1><div class="post-meta">2013-09-16</div><div class="post-content"><p>這篇並不是要寫學習iOS的文章，而是要推廣一下我翻譯的文章，幾個月前看到<a href="http://www.raywenderlich.com/" target="_blank" rel="noopener">Raywenderlich</a>，裡面有些是翻譯過的文章，那我是否可以也來參加這個翻譯呢？於是我就寫信去問了，很高興的是他們也很歡迎我加入，於是就開始利用空閒時間來翻譯，由於在下小弟我英文不是很好…而且有時英文要翻譯成中文真的蠻困難的，翻譯的過程中也曾想是否應該念過一次在用我理解的方式翻譯，還是要照字面上翻譯呢？這蠻苦惱的！由於自己英文不是很好，所以花了一點時間翻譯，然後檢查幾次，終於翻譯好一篇了！</p></div><p class="readmore"><a href="/2013/09/16/xue-xi-ios-app-1/">閱讀全文</a></p></div><nav class="page-navigator"><a class="extend prev" rel="prev" href="/page/2/">上一頁</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">下一頁</a></nav></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://lighter.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/core-data/" style="font-size: 15px;">core data</a> <a href="/tags/Octopress/" style="font-size: 15px;">Octopress</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a> <a href="/tags/iPhone/" style="font-size: 15px;">iPhone</a> <a href="/tags/NodeJS/" style="font-size: 15px;">NodeJS</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Sublime-Text-3/" style="font-size: 15px;">Sublime Text 3</a> <a href="/tags/koding/" style="font-size: 15px;">koding</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/oracle/" style="font-size: 15px;">oracle</a> <a href="/tags/laravel/" style="font-size: 15px;">laravel</a> <a href="/tags/vagrant/" style="font-size: 15px;">vagrant</a> <a href="/tags/xcode/" style="font-size: 15px;">xcode</a> <a href="/tags/nvm/" style="font-size: 15px;">nvm</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/" style="font-size: 15px;">翻譯練習</a> <a href="/tags/phpstore/" style="font-size: 15px;">phpstore</a> <a href="/tags/xdebug/" style="font-size: 15px;">xdebug</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/phpdbg/" style="font-size: 15px;">phpdbg</a> <a href="/tags/dependency-injection/" style="font-size: 15px;">dependency injection</a> <a href="/tags/%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5/" style="font-size: 15px;">依賴注入</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/07/22/docker-mysql-crontab-backup/">docker mysql crontab backup</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/dependency-injection/">[翻譯]揭秘依賴注入(Dependency injection)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/23/php-debug-phpdbg/">php debug phpdbg</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/read-book-list/">閱讀清單紀錄</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/19-tips-for-everyday-git-use/">每天使用Git的19小技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/18/docker-phpstorm-xdebug/">How to use xdebug with docker and phpstorm</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/">網頁開發者如何使用Docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/25/install-nvm-on-mac/">Install nvm on mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/12/ie-scroll-bar-hidden-not-work/">IE scroll bar hidden not work</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/04/bi-ji-swift-part-7/">[筆記]swift Part 7</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">I can't remember.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="複製成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+        <span>
+    
+        <a class="" href="/2014/06/04/laravel-part-5/">laravel part 5</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2014-06-02T01:16:15.000Z" itemprop="datePublished">2014-06-02</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2014/06/02/laravel-part-4/">laravel part 4</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2014-05-31T09:18:37.000Z" itemprop="datePublished">2014-05-31</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2014/05/31/laravel-part-3/">laravel part 3</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2014-05-30T15:16:00.000Z" itemprop="datePublished">2014-05-30</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2014/05/30/laravel-part-2/">laravel part 2</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2014-05-29T05:16:00.000Z" itemprop="datePublished">2014-05-29</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2014/05/29/laravel-part-1/">laravel part 1</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2014-04-29T15:35:00.000Z" itemprop="datePublished">2014-04-29</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2014/04/29/php-oracle-oci-bind-by-name/">php oracle oci_bind_by_name</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2014-04-29T15:00:00.000Z" itemprop="datePublished">2014-04-29</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2014/04/29/mongodb-note/">mongodb note</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2014-04-20T01:40:00.000Z" itemprop="datePublished">2014-04-20</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2014/04/20/koding-note/">Koding Note</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2013-10-03T06:22:00.000Z" itemprop="datePublished">2013-10-03</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2013/10/03/sublime-text-3-plugin/">Sublime Text 3 plugin</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2013-09-16T11:47:00.000Z" itemprop="datePublished">2013-09-16</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2013/09/16/xue-xi-ios-app-1/">學習iOS App 1</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+  
+    
+    <div class="pagination">
+        
+            <a href="/page/2/"><i class="fas fa-angle-left"></i></a>
+        
+        <span class="page-number">第 3 頁，共 6 頁</span>
+        
+            <a href="/page/4/"><i class="fas fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+
+  
+</section>
+
+
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2022
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

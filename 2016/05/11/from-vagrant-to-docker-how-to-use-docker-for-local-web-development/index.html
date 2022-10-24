@@ -1,4 +1,182 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>網頁開發者如何使用Docker | I can't remember</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">網頁開發者如何使用Docker</h1><a id="logo" href="/.">I can't remember</a><p class="description">do anything you want to</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 歸檔</i></a><a href="/learning/"><i class="fa fa-archive"> learning</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">網頁開發者如何使用Docker</h1><div class="post-meta">2016-05-11</div><div class="post-content"><p>這是篇我覺得蠻清楚，而且又解說的蠻清楚的文章，因此嘗試翻成中文當作我的筆記！如果有哪裡不好歡迎指教，謝謝。有些像是<code>Container</code>, <code>Volume</code>, <code>Image</code>我就不特別翻成<code>容器</code>, <code>數據</code>, <code>映像檔</code>了，因為我始終覺得怪怪的。</p>
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="這是篇我覺得蠻清楚，而且又解說的蠻清楚的文章，因此嘗試翻成中文當作我的筆記！如果有哪裡不好歡迎指教，謝謝。有些像是Container, Volume, Image我就不特別翻成容器, 數據, 映像檔了，因為我始終覺得怪怪的。 原文的出處http:&#x2F;&#x2F;blog.osteel.me&#x2F;posts&#x2F;2015&#x2F;12&#x2F;18&#x2F;from-vagrant-to-docker-how-to-use-docker-fo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="網頁開發者如何使用Docker">
+<meta property="og:url" content="https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:description" content="這是篇我覺得蠻清楚，而且又解說的蠻清楚的文章，因此嘗試翻成中文當作我的筆記！如果有哪裡不好歡迎指教，謝謝。有些像是Container, Volume, Image我就不特別翻成容器, 數據, 映像檔了，因為我始終覺得怪怪的。 原文的出處http:&#x2F;&#x2F;blog.osteel.me&#x2F;posts&#x2F;2015&#x2F;12&#x2F;18&#x2F;from-vagrant-to-docker-how-to-use-docker-fo">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://tech.osteel.me/images/2015/12/18/docker-tutorial1.jpg">
+<meta property="og:image" content="http://tech.osteel.me/images/2015/12/18/docker-tutorial3.gif">
+<meta property="og:image" content="https://lighter.github.io/images/docker/images/pic_1.png">
+<meta property="og:image" content="https://lighter.github.io/images/docker/images/pic_2.png">
+<meta property="og:image" content="https://lighter.github.io/images/docker/images/pic_3.png">
+<meta property="og:image" content="https://lighter.github.io/images/docker/images/pic_4.png">
+<meta property="og:image" content="https://lighter.github.io/images/docker/images/pic_5.png">
+<meta property="og:image" content="https://lighter.github.io/images/docker/images/pic_6.png">
+<meta property="og:image" content="https://lighter.github.io/images/docker/images/pic_7.png">
+<meta property="og:image" content="https://lighter.github.io/images/docker/images/pic_8.png">
+<meta property="og:image" content="https://lighter.github.io/images/docker/images/pic_9.png">
+<meta property="og:image" content="http://blog.osteel.me/images/2015/12/18/docker-tutorial14.gif">
+<meta property="article:published_time" content="2016-05-11T14:44:32.000Z">
+<meta property="article:modified_time" content="2020-07-02T11:03:37.795Z">
+<meta property="article:author" content="lighter">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="翻譯練習">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://tech.osteel.me/images/2015/12/18/docker-tutorial1.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>網頁開發者如何使用Docker</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2016/06/18/docker-phpstorm-xdebug/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2015/03/25/install-nvm-on-mac/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="回到頁首" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&text=網頁開發者如何使用Docker"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&title=網頁開發者如何使用Docker"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&is_video=false&description=網頁開發者如何使用Docker"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=網頁開發者如何使用Docker&body=Check out this article: https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&title=網頁開發者如何使用Docker"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&title=網頁開發者如何使用Docker"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&title=網頁開發者如何使用Docker"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&title=網頁開發者如何使用Docker"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&name=網頁開發者如何使用Docker&description=&lt;p&gt;這是篇我覺得蠻清楚，而且又解說的蠻清楚的文章，因此嘗試翻成中文當作我的筆記！如果有哪裡不好歡迎指教，謝謝。有些像是&lt;code&gt;Container&lt;/code&gt;, &lt;code&gt;Volume&lt;/code&gt;, &lt;code&gt;Image&lt;/code&gt;我就不特別翻成&lt;code&gt;容器&lt;/code&gt;, &lt;code&gt;數據&lt;/code&gt;, &lt;code&gt;映像檔&lt;/code&gt;了，因為我始終覺得怪怪的。&lt;/p&gt;
+&lt;h1 id=&#34;原文的出處&#34;&gt;&lt;a href=&#34;#原文的出處&#34; class=&#34;headerlink&#34; title=&#34;原文的出處&#34;&gt;&lt;/a&gt;原文的出處&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;http://blog.osteel.me/posts/2015/12/18/from-vagrant-to-docker-how-to-use-docker-for-local-web-development.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://blog.osteel.me/posts/2015/12/18/from-vagrant-to-docker-how-to-use-docker-for-local-web-development.html&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;正文開始&#34;&gt;&lt;a href=&#34;#正文開始&#34; class=&#34;headerlink&#34; title=&#34;正文開始&#34;&gt;&lt;/a&gt;正文開始&lt;/h1&gt;&lt;p&gt;[更新2017/01/14]這篇文章已經過時了。如果你是Docker新手，可以繼續看下去，因為大多數的內容仍然是有效的，將讓你熟悉Docker如何運作。請先看過這篇文章&lt;a href=&#34;http://tech.osteel.me/posts/2017/01/15/how-to-use-docker-for-local-web-development-an-update.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;How to use Docker for local web development: an update&lt;/a&gt;來更新 Docker 和 Docker compose 到最新版本。&lt;/p&gt;
+&lt;p&gt;其他安裝Docker的方式可以參考 - &lt;a href=&#34;http://tech.osteel.me/posts/2017/01/15/how-to-use-docker-for-local-web-development-an-update.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;learn about them in the new post as well.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://tech.osteel.me/images/2015/12/18/docker-tutorial1.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;你有時常注意科技新知，Docker這一個名詞對你來說應該不陌生。&lt;/p&gt;
+&lt;p&gt;如果沒有，你可以參考一下&lt;a href=&#34;http://www.wikiwand.com/zh-tw/Docker_(%E8%BB%9F%E9%AB%94&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;維基百科&lt;/a&gt;的簡述&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Docker是一個開放原始碼軟體專案，讓應用程式布署在軟體容器下的工作可以自動化進行，藉此在Linux作業系統上，提供一個額外的軟體抽象層，以及作業系統層虛擬化的自動管理機制。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;酷！但我還是不太明白！請繼續說下去&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&t=網頁開發者如何使用Docker"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E6%96%87%E7%9A%84%E5%87%BA%E8%99%95"><span class="toc-number">1.</span> <span class="toc-text">原文的出處</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E6%96%87%E9%96%8B%E5%A7%8B"><span class="toc-number">2.</span> <span class="toc-text">正文開始</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E7%B6%B1"><span class="toc-number">2.1.</span> <span class="toc-text">大綱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D"><span class="toc-number">2.2.</span> <span class="toc-text">安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A"><span class="toc-number">2.3.</span> <span class="toc-text">設定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx"><span class="toc-number">2.4.</span> <span class="toc-text">Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP"><span class="toc-number">2.5.</span> <span class="toc-text">PHP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Data"><span class="toc-number">2.6.</span> <span class="toc-text">Data</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Volumes-%E5%92%8C-data-containers"><span class="toc-number">2.6.1.</span> <span class="toc-text">Volumes 和 data containers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL"><span class="toc-number">2.7.</span> <span class="toc-text">MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#phpMyAdmin"><span class="toc-number">2.8.</span> <span class="toc-text">phpMyAdmin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E5%A4%9A%E5%80%8B%E5%B0%88%E6%A1%88"><span class="toc-number">2.9.</span> <span class="toc-text">管理多個專案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%85%E9%9A%9C%E6%8E%92%E9%99%A4"><span class="toc-number">2.10.</span> <span class="toc-text">故障排除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B5%90%E8%AB%96"><span class="toc-number">2.11.</span> <span class="toc-text">結論</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%BA%90"><span class="toc-number">2.12.</span> <span class="toc-text">參考資源</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        網頁開發者如何使用Docker
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">lighter</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2016-05-11T14:44:32.000Z" itemprop="datePublished">2016-05-11</time>
+        
+        (Updated: <time datetime="2020-07-02T11:03:37.795Z" itemprop="dateModified">2020-07-02</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/docker/" rel="tag">docker</a>, <a class="tag-link-link" href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/" rel="tag">翻譯練習</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>這是篇我覺得蠻清楚，而且又解說的蠻清楚的文章，因此嘗試翻成中文當作我的筆記！如果有哪裡不好歡迎指教，謝謝。有些像是<code>Container</code>, <code>Volume</code>, <code>Image</code>我就不特別翻成<code>容器</code>, <code>數據</code>, <code>映像檔</code>了，因為我始終覺得怪怪的。</p>
 <h1 id="原文的出處"><a href="#原文的出處" class="headerlink" title="原文的出處"></a>原文的出處</h1><p><a href="http://blog.osteel.me/posts/2015/12/18/from-vagrant-to-docker-how-to-use-docker-for-local-web-development.html" target="_blank" rel="noopener">http://blog.osteel.me/posts/2015/12/18/from-vagrant-to-docker-how-to-use-docker-for-local-web-development.html</a></p>
 <h1 id="正文開始"><a href="#正文開始" class="headerlink" title="正文開始"></a>正文開始</h1><p>[更新2017/01/14]這篇文章已經過時了。如果你是Docker新手，可以繼續看下去，因為大多數的內容仍然是有效的，將讓你熟悉Docker如何運作。請先看過這篇文章<a href="http://tech.osteel.me/posts/2017/01/15/how-to-use-docker-for-local-web-development-an-update.html" target="_blank" rel="noopener">How to use Docker for local web development: an update</a>來更新 Docker 和 Docker compose 到最新版本。</p>
 <p>其他安裝Docker的方式可以參考 - <a href="http://tech.osteel.me/posts/2017/01/15/how-to-use-docker-for-local-web-development-an-update.html" target="_blank" rel="noopener">learn about them in the new post as well.</a></p>
@@ -255,4 +433,179 @@
 <li><a href="https://docs.docker.com/compose/reference/" target="_blank" rel="noopener">Compose CLI reference</a></li>
 <li><a href="https://docs.docker.com/engine/reference/builder/" target="_blank" rel="noopener">Dockerfile reference</a></li>
 </ul>
-</div><div class="tags"><a href="/tags/docker/"><i class="fa fa-tag"></i>docker</a><a href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/"><i class="fa fa-tag"></i>翻譯練習</a></div><div class="post-nav"><a class="pre" href="/2016/06/18/docker-phpstorm-xdebug/">How to use xdebug with docker and phpstorm</a><a class="next" href="/2015/03/25/install-nvm-on-mac/">Install nvm on mac</a></div><script src="https://utteranc.es/client.js" repo="lighter/lighter.github.com" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://lighter.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/core-data/" style="font-size: 15px;">core data</a> <a href="/tags/Octopress/" style="font-size: 15px;">Octopress</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a> <a href="/tags/iPhone/" style="font-size: 15px;">iPhone</a> <a href="/tags/NodeJS/" style="font-size: 15px;">NodeJS</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Sublime-Text-3/" style="font-size: 15px;">Sublime Text 3</a> <a href="/tags/koding/" style="font-size: 15px;">koding</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/oracle/" style="font-size: 15px;">oracle</a> <a href="/tags/laravel/" style="font-size: 15px;">laravel</a> <a href="/tags/vagrant/" style="font-size: 15px;">vagrant</a> <a href="/tags/xcode/" style="font-size: 15px;">xcode</a> <a href="/tags/nvm/" style="font-size: 15px;">nvm</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/" style="font-size: 15px;">翻譯練習</a> <a href="/tags/phpstore/" style="font-size: 15px;">phpstore</a> <a href="/tags/xdebug/" style="font-size: 15px;">xdebug</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/phpdbg/" style="font-size: 15px;">phpdbg</a> <a href="/tags/dependency-injection/" style="font-size: 15px;">dependency injection</a> <a href="/tags/%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5/" style="font-size: 15px;">依賴注入</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/07/22/docker-mysql-crontab-backup/">docker mysql crontab backup</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/dependency-injection/">[翻譯]揭秘依賴注入(Dependency injection)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/23/php-debug-phpdbg/">php debug phpdbg</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/read-book-list/">閱讀清單紀錄</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/19-tips-for-everyday-git-use/">每天使用Git的19小技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/18/docker-phpstorm-xdebug/">How to use xdebug with docker and phpstorm</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/">網頁開發者如何使用Docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/25/install-nvm-on-mac/">Install nvm on mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/12/ie-scroll-bar-hidden-not-work/">IE scroll bar hidden not work</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/04/bi-ji-swift-part-7/">[筆記]swift Part 7</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">I can't remember.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="複製成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>請開啟 JavaScript 功能來使用留言系統</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/learning/">學習中</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E6%96%87%E7%9A%84%E5%87%BA%E8%99%95"><span class="toc-number">1.</span> <span class="toc-text">原文的出處</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E6%96%87%E9%96%8B%E5%A7%8B"><span class="toc-number">2.</span> <span class="toc-text">正文開始</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E7%B6%B1"><span class="toc-number">2.1.</span> <span class="toc-text">大綱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D"><span class="toc-number">2.2.</span> <span class="toc-text">安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%AD%E5%AE%9A"><span class="toc-number">2.3.</span> <span class="toc-text">設定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx"><span class="toc-number">2.4.</span> <span class="toc-text">Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP"><span class="toc-number">2.5.</span> <span class="toc-text">PHP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Data"><span class="toc-number">2.6.</span> <span class="toc-text">Data</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Volumes-%E5%92%8C-data-containers"><span class="toc-number">2.6.1.</span> <span class="toc-text">Volumes 和 data containers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL"><span class="toc-number">2.7.</span> <span class="toc-text">MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#phpMyAdmin"><span class="toc-number">2.8.</span> <span class="toc-text">phpMyAdmin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E5%A4%9A%E5%80%8B%E5%B0%88%E6%A1%88"><span class="toc-number">2.9.</span> <span class="toc-text">管理多個專案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%85%E9%9A%9C%E6%8E%92%E9%99%A4"><span class="toc-number">2.10.</span> <span class="toc-text">故障排除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B5%90%E8%AB%96"><span class="toc-number">2.11.</span> <span class="toc-text">結論</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%BA%90"><span class="toc-number">2.12.</span> <span class="toc-text">參考資源</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&text=網頁開發者如何使用Docker"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&title=網頁開發者如何使用Docker"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&is_video=false&description=網頁開發者如何使用Docker"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=網頁開發者如何使用Docker&body=Check out this article: https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&title=網頁開發者如何使用Docker"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&title=網頁開發者如何使用Docker"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&title=網頁開發者如何使用Docker"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&title=網頁開發者如何使用Docker"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&name=網頁開發者如何使用Docker&description=&lt;p&gt;這是篇我覺得蠻清楚，而且又解說的蠻清楚的文章，因此嘗試翻成中文當作我的筆記！如果有哪裡不好歡迎指教，謝謝。有些像是&lt;code&gt;Container&lt;/code&gt;, &lt;code&gt;Volume&lt;/code&gt;, &lt;code&gt;Image&lt;/code&gt;我就不特別翻成&lt;code&gt;容器&lt;/code&gt;, &lt;code&gt;數據&lt;/code&gt;, &lt;code&gt;映像檔&lt;/code&gt;了，因為我始終覺得怪怪的。&lt;/p&gt;
+&lt;h1 id=&#34;原文的出處&#34;&gt;&lt;a href=&#34;#原文的出處&#34; class=&#34;headerlink&#34; title=&#34;原文的出處&#34;&gt;&lt;/a&gt;原文的出處&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;http://blog.osteel.me/posts/2015/12/18/from-vagrant-to-docker-how-to-use-docker-for-local-web-development.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://blog.osteel.me/posts/2015/12/18/from-vagrant-to-docker-how-to-use-docker-for-local-web-development.html&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;正文開始&#34;&gt;&lt;a href=&#34;#正文開始&#34; class=&#34;headerlink&#34; title=&#34;正文開始&#34;&gt;&lt;/a&gt;正文開始&lt;/h1&gt;&lt;p&gt;[更新2017/01/14]這篇文章已經過時了。如果你是Docker新手，可以繼續看下去，因為大多數的內容仍然是有效的，將讓你熟悉Docker如何運作。請先看過這篇文章&lt;a href=&#34;http://tech.osteel.me/posts/2017/01/15/how-to-use-docker-for-local-web-development-an-update.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;How to use Docker for local web development: an update&lt;/a&gt;來更新 Docker 和 Docker compose 到最新版本。&lt;/p&gt;
+&lt;p&gt;其他安裝Docker的方式可以參考 - &lt;a href=&#34;http://tech.osteel.me/posts/2017/01/15/how-to-use-docker-for-local-web-development-an-update.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;learn about them in the new post as well.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://tech.osteel.me/images/2015/12/18/docker-tutorial1.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;你有時常注意科技新知，Docker這一個名詞對你來說應該不陌生。&lt;/p&gt;
+&lt;p&gt;如果沒有，你可以參考一下&lt;a href=&#34;http://www.wikiwand.com/zh-tw/Docker_(%E8%BB%9F%E9%AB%94&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;維基百科&lt;/a&gt;的簡述&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Docker是一個開放原始碼軟體專案，讓應用程式布署在軟體容器下的工作可以自動化進行，藉此在Linux作業系統上，提供一個額外的軟體抽象層，以及作業系統層虛擬化的自動管理機制。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;酷！但我還是不太明白！請繼續說下去&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/&t=網頁開發者如何使用Docker"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <!-- <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2022
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'lighter/lighter.github.com';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'utteranc';
+      var utterances_theme = 'github-light';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

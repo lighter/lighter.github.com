@@ -1,21 +1,393 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>I can't remember | do anything you want to</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">I can't remember</h1><a id="logo" href="/.">I can't remember</a><p class="description">do anything you want to</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 歸檔</i></a><a href="/learning/"><i class="fa fa-archive"> learning</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"><a href="/2017/07/22/docker-mysql-crontab-backup/">docker mysql crontab backup</a></h1><div class="post-meta">2017-07-22</div><div class="post-content"><p>在既有的 mysql 中加入 crontab 的方式去定期備份 data。</p>
-<h2 id="Step-1-init-database"><a href="#Step-1-init-database" class="headerlink" title="Step 1. init database"></a>Step 1. init database</h2><p>希望一開始就幫我們把資料加入，因此 mount 一個 docker-entrypoint-initdb.d 到 container 內的。可參考[<a href="https://hub.docker.com/_/mysql/" target="_blank" rel="noopener">Mysql Docker Hub</a>]</p></div><p class="readmore"><a href="/2017/07/22/docker-mysql-crontab-backup/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2017/06/21/dependency-injection/">[翻譯]揭秘依賴注入(Dependency injection)</a></h1><div class="post-meta">2017-06-21</div><div class="post-content"><p>Ref. <a href="http://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html" target="_blank" rel="noopener">http://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html</a></p></div><p class="readmore"><a href="/2017/06/21/dependency-injection/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2016/07/23/php-debug-phpdbg/">php debug phpdbg</a></h1><div class="post-meta">2016-07-23</div><div class="post-content"><p>簡單記錄一下<code>phpdbg</code>的使用方式。</p>
-<p>建立一個簡單sample code</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">function test()</span><br><span class="line">&#123;</span><br><span class="line">  $a &#x3D; 0;</span><br><span class="line"></span><br><span class="line">  while ($a &lt; 10)</span><br><span class="line">  &#123;</span><br><span class="line">    $a++;</span><br><span class="line">    echo $a;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test();</span><br></pre></td></tr></table></figure></div><p class="readmore"><a href="/2016/07/23/php-debug-phpdbg/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2016/07/09/read-book-list/">閱讀清單紀錄</a></h1><div class="post-meta">2016-07-09</div><div class="post-content"><p>其實一直有閱讀課外讀物的習慣，曾經嘗試著寫寫閱讀心得，但是最後都懶了。這裡想說就列個清單，開始記錄一下自己的閱讀時間好了，過去的…就算了吧。</p>
-<table>
-<thead>
-<tr>
-<th align="center">開始時間</th></div><p class="readmore"><a href="/2016/07/09/read-book-list/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2016/07/09/19-tips-for-everyday-git-use/">每天使用Git的19小技巧</a></h1><div class="post-meta">2016-07-09</div><div class="post-content"><p>原文出處：<a href="http://www.alexkras.com/19-git-tips-for-everyday-use/" target="_blank" rel="noopener">http://www.alexkras.com/19-git-tips-for-everyday-use/</a></p></div><p class="readmore"><a href="/2016/07/09/19-tips-for-everyday-git-use/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2016/06/18/docker-phpstorm-xdebug/">How to use xdebug with docker and phpstorm</a></h1><div class="post-meta">2016-06-18</div><div class="post-content"><p>延續這篇文章”<a href="http://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/">網頁開發者如何使用Docker</a>“建立完環境之後，在開發上為了trace執行的過程，因此想要加上xdebug。</p></div><p class="readmore"><a href="/2016/06/18/docker-phpstorm-xdebug/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/">網頁開發者如何使用Docker</a></h1><div class="post-meta">2016-05-11</div><div class="post-content"><p>這是篇我覺得蠻清楚，而且又解說的蠻清楚的文章，因此嘗試翻成中文當作我的筆記！如果有哪裡不好歡迎指教，謝謝。有些像是<code>Container</code>, <code>Volume</code>, <code>Image</code>我就不特別翻成<code>容器</code>, <code>數據</code>, <code>映像檔</code>了，因為我始終覺得怪怪的。</p>
-<h1 id="原文的出處"><a href="#原文的出處" class="headerlink" title="原文的出處"></a>原文的出處</h1><p><a href="http://blog.osteel.me/posts/2015/12/18/from-vagrant-to-docker-how-to-use-docker-for-local-web-development.html" target="_blank" rel="noopener">http://blog.osteel.me/posts/2015/12/18/from-vagrant-to-docker-how-to-use-docker-for-local-web-development.html</a></p>
-<h1 id="正文開始"><a href="#正文開始" class="headerlink" title="正文開始"></a>正文開始</h1><p>[更新2017/01/14]這篇文章已經過時了。如果你是Docker新手，可以繼續看下去，因為大多數的內容仍然是有效的，將讓你熟悉Docker如何運作。請先看過這篇文章<a href="http://tech.osteel.me/posts/2017/01/15/how-to-use-docker-for-local-web-development-an-update.html" target="_blank" rel="noopener">How to use Docker for local web development: an update</a>來更新 Docker 和 Docker compose 到最新版本。</p>
-<p>其他安裝Docker的方式可以參考 - <a href="http://tech.osteel.me/posts/2017/01/15/how-to-use-docker-for-local-web-development-an-update.html" target="_blank" rel="noopener">learn about them in the new post as well.</a></p>
-<p><img src="http://tech.osteel.me/images/2015/12/18/docker-tutorial1.jpg" alt=""></p>
-<p>你有時常注意科技新知，Docker這一個名詞對你來說應該不陌生。</p>
-<p>如果沒有，你可以參考一下<a href="http://www.wikiwand.com/zh-tw/Docker_(%E8%BB%9F%E9%AB%94" target="_blank" rel="noopener">維基百科</a>的簡述</p>
-<blockquote>
-<p>Docker是一個開放原始碼軟體專案，讓應用程式布署在軟體容器下的工作可以自動化進行，藉此在Linux作業系統上，提供一個額外的軟體抽象層，以及作業系統層虛擬化的自動管理機制。</p>
-</blockquote>
-<p>酷！但我還是不太明白！請繼續說下去</p></div><p class="readmore"><a href="/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2015/03/25/install-nvm-on-mac/">Install nvm on mac</a></h1><div class="post-meta">2015-03-25</div><div class="post-content"><p><code>nvm</code>可以讓你安裝多個<code>node</code>版本，並且切換現在使用的版本，其實這跟<code>ruby</code>的<code>rvm</code>很像。</p>
-<p>首先更新<code>brew</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew update</span><br><span class="line">$ brew upgrade</span><br></pre></td></tr></table></figure></div><p class="readmore"><a href="/2015/03/25/install-nvm-on-mac/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2015/01/12/ie-scroll-bar-hidden-not-work/">IE scroll bar hidden not work</a></h1><div class="post-meta">2015-01-12</div><div class="post-content"><p>情境是這樣的，今天我不想要顯示scroll bar所以用css的<code>overflow-y</code>隱藏掉，在Chrome測試時寫一個<code>mousewheel</code> event是正常的，但是在ie似乎原本的寫法不行，上網google了一下，最後使用這個解法，註冊一個<code>wheelDelta</code> event，阿然後一樣…在<code>mousewheel</code>事件內來算<code>scrollTop</code>，很簡單，但紀錄一下…</p></div><p class="readmore"><a href="/2015/01/12/ie-scroll-bar-hidden-not-work/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2014/08/04/bi-ji-swift-part-7/">[筆記]swift Part 7</a></h1><div class="post-meta">2014-08-04</div><div class="post-content"><h2 id="Subscripts-下標語法"><a href="#Subscripts-下標語法" class="headerlink" title="Subscripts 下標語法"></a>Subscripts 下標語法</h2><p>練習範例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">struct testStruct &#123;</span><br><span class="line">    let multiplier: Int</span><br><span class="line">    subscript(index:Int) -&gt; Int &#123;</span><br><span class="line">        return multiplier * index</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let stuct &#x3D; testStruct(multiplier: 20)</span><br><span class="line">stuct[3]</span><br></pre></td></tr></table></figure></div><p class="readmore"><a href="/2014/08/04/bi-ji-swift-part-7/">閱讀全文</a></p></div><nav class="page-navigator"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">下一頁</a></nav></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://lighter.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/core-data/" style="font-size: 15px;">core data</a> <a href="/tags/Octopress/" style="font-size: 15px;">Octopress</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a> <a href="/tags/iPhone/" style="font-size: 15px;">iPhone</a> <a href="/tags/NodeJS/" style="font-size: 15px;">NodeJS</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Sublime-Text-3/" style="font-size: 15px;">Sublime Text 3</a> <a href="/tags/koding/" style="font-size: 15px;">koding</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/oracle/" style="font-size: 15px;">oracle</a> <a href="/tags/laravel/" style="font-size: 15px;">laravel</a> <a href="/tags/vagrant/" style="font-size: 15px;">vagrant</a> <a href="/tags/xcode/" style="font-size: 15px;">xcode</a> <a href="/tags/nvm/" style="font-size: 15px;">nvm</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/" style="font-size: 15px;">翻譯練習</a> <a href="/tags/phpstore/" style="font-size: 15px;">phpstore</a> <a href="/tags/xdebug/" style="font-size: 15px;">xdebug</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/phpdbg/" style="font-size: 15px;">phpdbg</a> <a href="/tags/dependency-injection/" style="font-size: 15px;">dependency injection</a> <a href="/tags/%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5/" style="font-size: 15px;">依賴注入</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/07/22/docker-mysql-crontab-backup/">docker mysql crontab backup</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/dependency-injection/">[翻譯]揭秘依賴注入(Dependency injection)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/23/php-debug-phpdbg/">php debug phpdbg</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/read-book-list/">閱讀清單紀錄</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/19-tips-for-everyday-git-use/">每天使用Git的19小技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/18/docker-phpstorm-xdebug/">How to use xdebug with docker and phpstorm</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/">網頁開發者如何使用Docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/25/install-nvm-on-mac/">Install nvm on mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/12/ie-scroll-bar-hidden-not-work/">IE scroll bar hidden not work</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/04/bi-ji-swift-part-7/">[筆記]swift Part 7</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">I can't remember.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="複製成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta property="og:type" content="website">
+<meta property="og:title" content="I can&#39;t remember">
+<meta property="og:url" content="https://lighter.github.io/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="lighter">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>I can&#39;t remember</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4">
+        
+          <header id="header">
+  <a href="/">
+  
+    <div id="title">
+      <h1>I can&#39;t remember</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fas fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">首頁</a></li><!--
+   --><!--
+     --><li><a href="/about/">關於</a></li><!--
+   --><!--
+     --><li><a href="/archives/">文章</a></li><!--
+   --><!--
+     --><li><a href="/learning/">學習中</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+        
+        <section id="about">
+  
+  
+    <p>
+      出沒地
+      
+      
+      
+        
+          <a class="icon" target="_blank" rel="noopener" href="http://github.com/lighter" aria-label="github">
+            <i class="fab fa-github"></i><!--
+      ---></a><!--
+    ---><!--
+    --->.
+        
+      
+    </p>
+  
+</section>
+
+<section id="writing">
+  <span class="h1"><a href="/archives/">文章</a></span>
+  
+  <span class="h2">標題</span>
+  <span class="widget tagcloud">
+    <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/NodeJS/" style="font-size: 13.33px;">NodeJS</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Sublime-Text-3/" style="font-size: 10px;">Sublime Text 3</a> <a href="/tags/core-data/" style="font-size: 11.67px;">core data</a> <a href="/tags/dependency-injection/" style="font-size: 10px;">dependency injection</a> <a href="/tags/docker/" style="font-size: 11.67px;">docker</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iPhone/" style="font-size: 20px;">iPhone</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/koding/" style="font-size: 10px;">koding</a> <a href="/tags/laravel/" style="font-size: 16.67px;">laravel</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/oracle/" style="font-size: 10px;">oracle</a> <a href="/tags/php/" style="font-size: 18.33px;">php</a> <a href="/tags/phpdbg/" style="font-size: 10px;">phpdbg</a> <a href="/tags/phpstore/" style="font-size: 10px;">phpstore</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/xcode/" style="font-size: 15px;">xcode</a> <a href="/tags/xdebug/" style="font-size: 10px;">xdebug</a> <a href="/tags/%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">依賴注入</a> <a href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/" style="font-size: 11.67px;">翻譯練習</a>
+  </span>
+  <span class="h2">最近新增</span>
+  
+  <ul class="post-list">
+    
+    
+      
+    
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2017-07-22T09:18:07.000Z" itemprop="datePublished">2017-07-22</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2017/07/22/docker-mysql-crontab-backup/">docker mysql crontab backup</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2017-06-21T03:09:28.000Z" itemprop="datePublished">2017-06-21</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2017/06/21/dependency-injection/">[翻譯]揭秘依賴注入(Dependency injection)</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2016-07-23T15:19:43.000Z" itemprop="datePublished">2016-07-23</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2016/07/23/php-debug-phpdbg/">php debug phpdbg</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2016-07-09T13:01:18.000Z" itemprop="datePublished">2016-07-09</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2016/07/09/read-book-list/">閱讀清單紀錄</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2016-07-08T16:22:13.000Z" itemprop="datePublished">2016-07-09</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2016/07/09/19-tips-for-everyday-git-use/">每天使用Git的19小技巧</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2016-06-18T02:55:10.000Z" itemprop="datePublished">2016-06-18</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2016/06/18/docker-phpstorm-xdebug/">How to use xdebug with docker and phpstorm</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2016-05-11T14:44:32.000Z" itemprop="datePublished">2016-05-11</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/">網頁開發者如何使用Docker</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2015-03-24T21:47:08.000Z" itemprop="datePublished">2015-03-25</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2015/03/25/install-nvm-on-mac/">Install nvm on mac</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2015-01-12T15:07:39.000Z" itemprop="datePublished">2015-01-12</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2015/01/12/ie-scroll-bar-hidden-not-work/">IE scroll bar hidden not work</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2014-08-04T15:49:38.000Z" itemprop="datePublished">2014-08-04</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2014/08/04/bi-ji-swift-part-7/">[筆記]swift Part 7</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+  
+    
+    <div class="pagination">
+        
+        <span class="page-number">第 1 頁，共 6 頁</span>
+        
+            <a href="/page/2/"><i class="fas fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+
+  
+</section>
+
+
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2022
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -1,20 +1,272 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>I can't remember | do anything you want to</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">I can't remember</h1><a id="logo" href="/.">I can't remember</a><p class="description">do anything you want to</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 歸檔</i></a><a href="/learning/"><i class="fa fa-archive"> learning</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"><a href="/2012/04/24/web-view/">Web View</a></h1><div class="post-meta">2012-04-24</div><div class="post-content"><p>建立一個簡單Web瀏覽器，此範例需要使用到<code>TextField</code>、<code>Web View</code>、<code>Toolbar</code>、<code>Bar Button Item</code>、<code>Activity Indicator View</code>；元件的用途方別如下：</p>
-<ol>
-<li><code>TextField</code>:輸入網址。</li>
-<li><code>Web View</code>:show網頁使用。</li>
-<li><code>Toolbar</code>、<code>Bar Button Item</code>:工具列，可返回上頁、下頁、重整。</li>
-<li><code>Activity Indicator View</code>:讓使用者得知網頁還在進行loading。</li>
-</ol></div><p class="readmore"><a href="/2012/04/24/web-view/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2012/04/24/slider-view/">Slider View</a></h1><div class="post-meta">2012-04-24</div><div class="post-content"><p>Slider在iPhone比較常見是用來調整螢幕的明暗度，或是在某些圖片編輯app內用來調整RGB的比例，我們使用一個簡單的範例來操控Slider。</p>
-<img src="/images/iPhone/sliderViews1.jpeg" class="left">簡單的範例最後要達到的結果如左圖，拖拉Slider可以觀察到數值隨著Slider的變化跟著改變。
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta property="og:type" content="website">
+<meta property="og:title" content="I can&#39;t remember">
+<meta property="og:url" content="https://lighter.github.io/page/6/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="lighter">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>I can&#39;t remember</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
-<p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p></div><p class="readmore"><a href="/2012/04/24/slider-view/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2012/04/24/action-sheet/">Action Sheet</a></h1><div class="post-meta">2012-04-24</div><div class="post-content"><p>UIActionSheet是一個由下往上出現的視窗，通常彈出一些按鈕選項讓使用者選擇要執行的方式為何！使用一個簡單的範例來介紹它的使用方法。</p>
-<p>在iPhone畫面中加入一個Round Rect Button，當Button按下時，ActionSheet則會彈出。</p>
-<img src="/images/iPhone/actionSheets1.jpeg" class="center">
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
 
-<p><strong>Step 1.</strong>建立一個<code>SingleView</code>的專案，專案名稱為Action Sheet</p>
-<p><strong>Step 2.</strong>開啟MainStoryboard.storyboard，加入一個<code>Round Rect Button</code>的元件，並且設定該元件的Title為Show Action Sheet</p></div><p class="readmore"><a href="/2012/04/24/action-sheet/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2012/04/02/octopress-install/">octopress install with github</a></h1><div class="post-meta">2012-04-02</div><div class="post-content"><p>來記錄一下如何架設Octopress</p>
-<p>我使用的是Mac OS X 10.7.3</p>
-<p><strong>Step 1.</strong>建立github page<br>在<a href="https://github.com/" target="_blank" rel="noopener">github</a>網站建立一個Repositories，project名稱為xxxxx.github.com</p>
-<p><strong>Step 2.</strong>Octopress Setup</p>
-<p>可參考<a href="http://octopress.org/docs/setup/" target="_blank" rel="noopener">Octopress Setup</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ rvm install 1.9.2 &amp;&amp; rvm use 1.9.2</span><br><span class="line">$ git clone git:&#x2F;&#x2F;github.com&#x2F;imathis&#x2F;octopress.git octopress</span><br><span class="line">$ cd octopress    # If you use RVM, You&#39;ll be asked if you trust the .rvmrc file (say yes).</span><br><span class="line">$ ruby --version  # Should report Ruby 1.9.2</span><br><span class="line">$ gem install bundler</span><br><span class="line">$ bundle install</span><br><span class="line">$ rake install</span><br></pre></td></tr></table></figure></div><p class="readmore"><a href="/2012/04/02/octopress-install/">閱讀全文</a></p></div><nav class="page-navigator"><a class="extend prev" rel="prev" href="/page/5/">上一頁</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span></nav></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://lighter.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/core-data/" style="font-size: 15px;">core data</a> <a href="/tags/Octopress/" style="font-size: 15px;">Octopress</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a> <a href="/tags/iPhone/" style="font-size: 15px;">iPhone</a> <a href="/tags/NodeJS/" style="font-size: 15px;">NodeJS</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Sublime-Text-3/" style="font-size: 15px;">Sublime Text 3</a> <a href="/tags/koding/" style="font-size: 15px;">koding</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/oracle/" style="font-size: 15px;">oracle</a> <a href="/tags/laravel/" style="font-size: 15px;">laravel</a> <a href="/tags/vagrant/" style="font-size: 15px;">vagrant</a> <a href="/tags/xcode/" style="font-size: 15px;">xcode</a> <a href="/tags/nvm/" style="font-size: 15px;">nvm</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/" style="font-size: 15px;">翻譯練習</a> <a href="/tags/phpstore/" style="font-size: 15px;">phpstore</a> <a href="/tags/xdebug/" style="font-size: 15px;">xdebug</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/phpdbg/" style="font-size: 15px;">phpdbg</a> <a href="/tags/dependency-injection/" style="font-size: 15px;">dependency injection</a> <a href="/tags/%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5/" style="font-size: 15px;">依賴注入</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/07/22/docker-mysql-crontab-backup/">docker mysql crontab backup</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/dependency-injection/">[翻譯]揭秘依賴注入(Dependency injection)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/23/php-debug-phpdbg/">php debug phpdbg</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/read-book-list/">閱讀清單紀錄</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/19-tips-for-everyday-git-use/">每天使用Git的19小技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/18/docker-phpstorm-xdebug/">How to use xdebug with docker and phpstorm</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/">網頁開發者如何使用Docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/25/install-nvm-on-mac/">Install nvm on mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/12/ie-scroll-bar-hidden-not-work/">IE scroll bar hidden not work</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/04/bi-ji-swift-part-7/">[筆記]swift Part 7</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">I can't remember.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="複製成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4">
+        
+          <header id="header">
+  <a href="/">
+  
+    <div id="title">
+      <h1>I can&#39;t remember</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fas fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">首頁</a></li><!--
+   --><!--
+     --><li><a href="/about/">關於</a></li><!--
+   --><!--
+     --><li><a href="/archives/">文章</a></li><!--
+   --><!--
+     --><li><a href="/learning/">學習中</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+        
+        <section id="about">
+  
+  
+    <p>
+      出沒地
+      
+      
+      
+        
+          <a class="icon" target="_blank" rel="noopener" href="http://github.com/lighter" aria-label="github">
+            <i class="fab fa-github"></i><!--
+      ---></a><!--
+    ---><!--
+    --->.
+        
+      
+    </p>
+  
+</section>
+
+<section id="writing">
+  <span class="h1"><a href="/archives/">文章</a></span>
+  
+  <span class="h2">標題</span>
+  <span class="widget tagcloud">
+    <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/NodeJS/" style="font-size: 13.33px;">NodeJS</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Sublime-Text-3/" style="font-size: 10px;">Sublime Text 3</a> <a href="/tags/core-data/" style="font-size: 11.67px;">core data</a> <a href="/tags/dependency-injection/" style="font-size: 10px;">dependency injection</a> <a href="/tags/docker/" style="font-size: 11.67px;">docker</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iPhone/" style="font-size: 20px;">iPhone</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/koding/" style="font-size: 10px;">koding</a> <a href="/tags/laravel/" style="font-size: 16.67px;">laravel</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/oracle/" style="font-size: 10px;">oracle</a> <a href="/tags/php/" style="font-size: 18.33px;">php</a> <a href="/tags/phpdbg/" style="font-size: 10px;">phpdbg</a> <a href="/tags/phpstore/" style="font-size: 10px;">phpstore</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/xcode/" style="font-size: 15px;">xcode</a> <a href="/tags/xdebug/" style="font-size: 10px;">xdebug</a> <a href="/tags/%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">依賴注入</a> <a href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/" style="font-size: 11.67px;">翻譯練習</a>
+  </span>
+  <span class="h2">最近新增</span>
+  
+  <ul class="post-list">
+    
+    
+      
+    
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2012-04-24T07:23:00.000Z" itemprop="datePublished">2012-04-24</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2012/04/24/web-view/">Web View</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2012-04-24T06:30:00.000Z" itemprop="datePublished">2012-04-24</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2012/04/24/slider-view/">Slider View</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2012-04-24T02:29:00.000Z" itemprop="datePublished">2012-04-24</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2012/04/24/action-sheet/">Action Sheet</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2012-04-02T13:41:00.000Z" itemprop="datePublished">2012-04-02</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2012/04/02/octopress-install/">octopress install with github</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+  
+    
+    <div class="pagination">
+        
+            <a href="/page/5/"><i class="fas fa-angle-left"></i></a>
+        
+        <span class="page-number">第 6 頁，共 6 頁</span>
+        
+    </div>
+
+
+  
+</section>
+
+
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2022
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

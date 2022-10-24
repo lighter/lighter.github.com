@@ -1,39 +1,395 @@
-<!DOCTYPE html><html lang="zh-TW"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>I can't remember | do anything you want to</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">I can't remember</h1><a id="logo" href="/.">I can't remember</a><p class="description">do anything you want to</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首頁</i></a><a href="/archives/"><i class="fa fa-archive"> 歸檔</i></a><a href="/learning/"><i class="fa fa-archive"> learning</i></a><a href="/about/"><i class="fa fa-user"> 關於</i></a><a href="/atom.xml"><i class="fa fa-rss"> 訂閱</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"><a href="/2012/08/24/simple-chat-with-socket-dot-io/">Simple chat with Socket.io</a></h1><div class="post-meta">2012-08-24</div><div class="post-content"><p>如果已我所學不多的情況下要製作一個簡單的聊天室，我大概能想到的方法就是將這些對話內容存入MySql，然後背後透過Ajax一直去撈取資料庫的內容然後一直更新畫面上的對話內容，這樣想想就覺得好麻煩…</p>
-<p>最近看到Socket.io這簡直真是好用，下面是一個簡單的聊天室程式碼。</p>
-<h2 id="Server端"><a href="#Server端" class="headerlink" title="Server端"></a>Server端</h2><figure class="highlight javascript"><figcaption><span>Server.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>),</span><br><span class="line">    fs = <span class="built_in">require</span>(<span class="string">'fs'</span>),</span><br><span class="line">    server,</span><br><span class="line">    io;</span><br><span class="line"></span><br><span class="line">server = http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  fs.readFile(__dirname + <span class="string">'/index.html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>)</span>&#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/html'</span>&#125;);</span><br><span class="line">    res.end(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br><span class="line">io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>).listen(server);</span><br><span class="line"></span><br><span class="line"><span class="comment">//連線時會執行的內容</span></span><br><span class="line">io.sockets.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">socket</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//當client端emit 'send_chat'時執行</span></span><br><span class="line">  socket.on(<span class="string">'send_chat'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    io.sockets.emit(<span class="string">'update_chat_content'</span>, data);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div><p class="readmore"><a href="/2012/08/24/simple-chat-with-socket-dot-io/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2012/08/23/socket-dot-io/">Socket.io</a></h1><div class="post-meta">2012-08-23</div><div class="post-content"><p><a href="http://socket.io/" target="_blank" rel="noopener">Socket.io</a>的目的是提供即時通訊的套件，在官方網站上可以看到一些簡單的範例程式碼，但是我還是記錄一下簡單的操作。首先必須安裝Socket.io。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install socket.io</span><br></pre></td></tr></table></figure></div><p class="readmore"><a href="/2012/08/23/socket-dot-io/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2012/08/10/nodejs/">NodeJS</a></h1><div class="post-meta">2012-08-10</div><div class="post-content"><p><a href="http://nodejs.org/" target="_blank" rel="noopener">Node.js</a>使以Javascript語言為基礎的框架，讓我覺得很神奇的是它可以拿來做網站，以往在寫網頁時是使用需要使用php、Apache、MySQL；而Node.js可以直接建立網站，真的蠻酷的！</p></div><p class="readmore"><a href="/2012/08/10/nodejs/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2012/07/21/jiang-xcodede-cheng-shi-fa-bu-dao-ioszhuang-zhi/">將XCODE的程式發佈到iOS裝置</a></h1><div class="post-meta">2012-07-21</div><div class="post-content"><p>以下是我使用的作業環境</p>
-<ul>
-<li>Mac Lion 10.7.4</li>
-<li>XCODE 4.3.3</li>
-<li>iOS5.1 裝置為 iPhone 4</li>
-</ul></div><p class="readmore"><a href="/2012/07/21/jiang-xcodede-cheng-shi-fa-bu-dao-ioszhuang-zhi/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2012/06/02/core-data-part2/">Core Data-Part2</a></h1><div class="post-meta">2012-06-02</div><div class="post-content"><p>上一篇中，僅對於基本的Core Data的流程有個初步的概念，但是光看<code>NSLog</code>訊息還是有點生疏，而且依照我目前的程度，是很少去修改到<code>AppDelegate</code>的部份，所以接著嘗試試著修改<code>Master Detail Application</code>看看。</p>
-<p>最後的結果是希望可以在<code>Table View</code>中看到我新增的姓名，點選該姓名可以看到該姓名的電話。</p>
-<img src="/images/iPhone/coredata2-1.png" class="" title="216px 390px">
-<img src="/images/iPhone/coredata2-2.png" class="" title="216px 390px">
-<img src="/images/iPhone/coredata2-3.png" class="" title="216px 390px"></div><p class="readmore"><a href="/2012/06/02/core-data-part2/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2012/05/08/map-view/">Map View</a></h1><div class="post-meta">2012-05-08</div><div class="post-content"><p><code>Map View</code>很常在尋找定位或是路線導覽中看到，接著簡單示範Map View的操作。<br>該範例使用<code>Segmented Contrl</code>來切換<code>Map View</code>的樣式，並且定位出目前的所在位址(如下第三張圖)。</p>
-<img src="/images/iPhone/mapViews1.jpeg" class="">
-<img src="/images/iPhone/mapViews2.jpeg" class="">
-<img src="/images/iPhone/mapViews4.jpeg" class=""></div><p class="readmore"><a href="/2012/05/08/map-view/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2012/05/08/core-data-part1/">Core Data-Part1</a></h1><div class="post-meta">2012-05-08</div><div class="post-content"><p><code>Core Data</code>主要分成三個部分</p>
-<ol>
-<li>Managed Object Context</li>
-<li>Persistent Store Coordinator</li>
-<li>Persistent Object Store</li>
-</ol>
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta property="og:type" content="website">
+<meta property="og:title" content="I can&#39;t remember">
+<meta property="og:url" content="https://lighter.github.io/page/5/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="lighter">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>I can&#39;t remember</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
 
-<p><code>Managed Object Context</code>這類別記載了我們的App在記憶體中所有的<code>Entity</code>，當你要求Core Data載入物件時，你必須先向<code>Managed Object Context</code>提出要求。</p>
-<p>…假如不存在記憶體中的話，它會向<code>Persistent Store Coordinator</code>發出請求，試著嘗試尋找它。</p>
-<p><code>Persistent Store Coordinator</code>的任務是追蹤<code>Persistent Object Store</code>，而<code>Persistent Object Store</code>實際知道如何讀寫資料。</p>
-<p><code>Managed Object Model</code>則是用來處理資料的，這些元件都知道要如何處理資料。</p>
-<p>整個流程大致上如下圖：</p>
-<img src="/images/iPhone/coredatas1.jpeg" class=""></div><p class="readmore"><a href="/2012/05/08/core-data-part1/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2012/05/01/segmented-controller/">Segmented Controller</a></h1><div class="post-meta">2012-05-01</div><div class="post-content"><p><code>Segmented Controller</code>最典型的應用就是在行事曆的日、月、週切換，呈現的資料會根據日月週來分別呈現，下面使用<code>Segmented Controller</code>來切換網頁呈現網站內容。</p>
-<p>以下使用3個<code>Segments</code>來做Google、Yahoo、Youtube的切換。</p>
-<img src="/images/iPhone/segmentedController1.jpeg" class="">
-<img src="/images/iPhone/segmentedController2.jpeg" class="">
-<img src="/images/iPhone/segmentedController3.jpeg" class=""></div><p class="readmore"><a href="/2012/05/01/segmented-controller/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2012/04/29/scroll-view/">Scroll View</a></h1><div class="post-meta">2012-04-29</div><div class="post-content"><p>當iPhone的畫面要塞進很多內容時，可以利用<code>Scroll View</code>來捲動畫面瀏覽頁面，例如當畫面需要呈現很多張圖片的時候，一個<code>View</code>只能呈現一張<code>UIImage</code>，因此可以利用<code>Scroll View</code>來呈現。</p>
-<p>最後的結果如下圖：(將圖片向右排列，手指將畫面往左拖曳，即可看到其他的圖片)。</p>
-<img src="/images/iPhone/scrollViews1.jpeg" class="">
-<img src="/images/iPhone/scrollViews2.jpeg" class="">
-<img src="/images/iPhone/scrollViews3.jpeg" class=""></div><p class="readmore"><a href="/2012/04/29/scroll-view/">閱讀全文</a></p></div><div class="post"><h1 class="post-title"><a href="/2012/04/26/image-view/">Image View</a></h1><div class="post-meta">2012-04-26</div><div class="post-content"><p>在iPhone上要呈現圖需透過Image View這個元件來呈現，接著以簡單的範例來呈現。</p>
-<p>該範例以簡單的Button事件來改變Image View呈現的圖片。</p>
-<img src="/images/iPhone/imageViews1.jpeg" class="">
-<img src="/images/iPhone/imageViews2.jpeg" class=""></div><p class="readmore"><a href="/2012/04/26/image-view/">閱讀全文</a></p></div><nav class="page-navigator"><a class="extend prev" rel="prev" href="/page/4/">上一頁</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">下一頁</a></nav></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://lighter.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 標籤</i></div><div class="tagcloud"><a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/core-data/" style="font-size: 15px;">core data</a> <a href="/tags/Octopress/" style="font-size: 15px;">Octopress</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a> <a href="/tags/iPhone/" style="font-size: 15px;">iPhone</a> <a href="/tags/NodeJS/" style="font-size: 15px;">NodeJS</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Sublime-Text-3/" style="font-size: 15px;">Sublime Text 3</a> <a href="/tags/koding/" style="font-size: 15px;">koding</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/oracle/" style="font-size: 15px;">oracle</a> <a href="/tags/laravel/" style="font-size: 15px;">laravel</a> <a href="/tags/vagrant/" style="font-size: 15px;">vagrant</a> <a href="/tags/xcode/" style="font-size: 15px;">xcode</a> <a href="/tags/nvm/" style="font-size: 15px;">nvm</a> <a href="/tags/jquery/" style="font-size: 15px;">jquery</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/" style="font-size: 15px;">翻譯練習</a> <a href="/tags/phpstore/" style="font-size: 15px;">phpstore</a> <a href="/tags/xdebug/" style="font-size: 15px;">xdebug</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/read/" style="font-size: 15px;">read</a> <a href="/tags/phpdbg/" style="font-size: 15px;">phpdbg</a> <a href="/tags/dependency-injection/" style="font-size: 15px;">dependency injection</a> <a href="/tags/%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5/" style="font-size: 15px;">依賴注入</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/07/22/docker-mysql-crontab-backup/">docker mysql crontab backup</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/dependency-injection/">[翻譯]揭秘依賴注入(Dependency injection)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/23/php-debug-phpdbg/">php debug phpdbg</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/read-book-list/">閱讀清單紀錄</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/19-tips-for-everyday-git-use/">每天使用Git的19小技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/18/docker-phpstorm-xdebug/">How to use xdebug with docker and phpstorm</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/">網頁開發者如何使用Docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/25/install-nvm-on-mac/">Install nvm on mac</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/12/ie-scroll-bar-hidden-not-work/">IE scroll bar hidden not work</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/04/bi-ji-swift-part-7/">[筆記]swift Part 7</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">I can't remember.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="複製成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4">
+        
+          <header id="header">
+  <a href="/">
+  
+    <div id="title">
+      <h1>I can&#39;t remember</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fas fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">首頁</a></li><!--
+   --><!--
+     --><li><a href="/about/">關於</a></li><!--
+   --><!--
+     --><li><a href="/archives/">文章</a></li><!--
+   --><!--
+     --><li><a href="/learning/">學習中</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+        
+        <section id="about">
+  
+  
+    <p>
+      出沒地
+      
+      
+      
+        
+          <a class="icon" target="_blank" rel="noopener" href="http://github.com/lighter" aria-label="github">
+            <i class="fab fa-github"></i><!--
+      ---></a><!--
+    ---><!--
+    --->.
+        
+      
+    </p>
+  
+</section>
+
+<section id="writing">
+  <span class="h1"><a href="/archives/">文章</a></span>
+  
+  <span class="h2">標題</span>
+  <span class="widget tagcloud">
+    <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/NodeJS/" style="font-size: 13.33px;">NodeJS</a> <a href="/tags/Octopress/" style="font-size: 10px;">Octopress</a> <a href="/tags/Sublime-Text-3/" style="font-size: 10px;">Sublime Text 3</a> <a href="/tags/core-data/" style="font-size: 11.67px;">core data</a> <a href="/tags/dependency-injection/" style="font-size: 10px;">dependency injection</a> <a href="/tags/docker/" style="font-size: 11.67px;">docker</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iPhone/" style="font-size: 20px;">iPhone</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/koding/" style="font-size: 10px;">koding</a> <a href="/tags/laravel/" style="font-size: 16.67px;">laravel</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nvm/" style="font-size: 10px;">nvm</a> <a href="/tags/oracle/" style="font-size: 10px;">oracle</a> <a href="/tags/php/" style="font-size: 18.33px;">php</a> <a href="/tags/phpdbg/" style="font-size: 10px;">phpdbg</a> <a href="/tags/phpstore/" style="font-size: 10px;">phpstore</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/swift/" style="font-size: 15px;">swift</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/xcode/" style="font-size: 15px;">xcode</a> <a href="/tags/xdebug/" style="font-size: 10px;">xdebug</a> <a href="/tags/%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">依賴注入</a> <a href="/tags/%E7%BF%BB%E8%AD%AF%E7%B7%B4%E7%BF%92/" style="font-size: 11.67px;">翻譯練習</a>
+  </span>
+  <span class="h2">最近新增</span>
+  
+  <ul class="post-list">
+    
+    
+      
+    
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2012-08-24T05:32:00.000Z" itemprop="datePublished">2012-08-24</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2012/08/24/simple-chat-with-socket-dot-io/">Simple chat with Socket.io</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2012-08-22T17:56:00.000Z" itemprop="datePublished">2012-08-23</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2012/08/23/socket-dot-io/">Socket.io</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2012-08-10T05:34:00.000Z" itemprop="datePublished">2012-08-10</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2012/08/10/nodejs/">NodeJS</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2012-07-21T07:52:00.000Z" itemprop="datePublished">2012-07-21</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2012/07/21/jiang-xcodede-cheng-shi-fa-bu-dao-ioszhuang-zhi/">將XCODE的程式發佈到iOS裝置</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2012-06-02T06:36:00.000Z" itemprop="datePublished">2012-06-02</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2012/06/02/core-data-part2/">Core Data-Part2</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2012-05-08T03:13:00.000Z" itemprop="datePublished">2012-05-08</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2012/05/08/map-view/">Map View</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2012-05-08T02:52:00.000Z" itemprop="datePublished">2012-05-08</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2012/05/08/core-data-part1/">Core Data-Part1</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2012-05-01T02:07:00.000Z" itemprop="datePublished">2012-05-01</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2012/05/01/segmented-controller/">Segmented Controller</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2012-04-29T09:27:00.000Z" itemprop="datePublished">2012-04-29</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2012/04/29/scroll-view/">Scroll View</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2012-04-25T22:09:00.000Z" itemprop="datePublished">2012-04-26</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2012/04/26/image-view/">Image View</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+  
+    
+    <div class="pagination">
+        
+            <a href="/page/4/"><i class="fas fa-angle-left"></i></a>
+        
+        <span class="page-number">第 5 頁，共 6 頁</span>
+        
+            <a href="/page/6/"><i class="fas fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+
+  
+</section>
+
+
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2022
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
