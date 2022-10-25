@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="首先需要在專案資料夾中初始化Git 1$ git init  接著在Dropbox中建立你要共享Git的資料夾，並且輸入以下的指令來初始化 1$ git init --bare  回到專案資料夾中，加入Dropbox這個遠端的repo 1$ git remote add origin ~&#x2F;Dropbox&#x2F;XXXX  接著將專案推倒Dropbox中 1$ git push ori">
+    <meta name="description" content="首先需要在專案資料夾中初始化Git 1$ git init  接著在Dropbox中建立你要共享Git的資料夾，並且輸入以下的指令來初始化 1$ git init --bare  回到專案資料夾中，加入Dropbox這個遠端的repo 1$ git remote add origin ~&#x2F;Dropbox&#x2F;XXXX  接著將專案推倒Dropbox中 1$ git push origin master">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Dropbox架設私有Git">
 <meta property="og:url" content="https://lighter.github.io/2013/08/07/shi-yong-dropboxjia-she-si-you-git/index.html">
 <meta property="og:site_name" content="I can&#39;t remember">
-<meta property="og:description" content="首先需要在專案資料夾中初始化Git 1$ git init  接著在Dropbox中建立你要共享Git的資料夾，並且輸入以下的指令來初始化 1$ git init --bare  回到專案資料夾中，加入Dropbox這個遠端的repo 1$ git remote add origin ~&#x2F;Dropbox&#x2F;XXXX  接著將專案推倒Dropbox中 1$ git push ori">
+<meta property="og:description" content="首先需要在專案資料夾中初始化Git 1$ git init  接著在Dropbox中建立你要共享Git的資料夾，並且輸入以下的指令來初始化 1$ git init --bare  回到專案資料夾中，加入Dropbox這個遠端的repo 1$ git remote add origin ~&#x2F;Dropbox&#x2F;XXXX  接著將專案推倒Dropbox中 1$ git push origin master">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2013-08-07T01:11:00.000Z">
-<meta property="article:modified_time" content="2020-07-02T11:03:37.789Z">
+<meta property="article:modified_time" content="2013-08-07T01:11:00.000Z">
 <meta property="article:author" content="lighter">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
@@ -132,7 +132,7 @@
       
         <time datetime="2013-08-07T01:11:00.000Z" itemprop="datePublished">2013-08-07</time>
         
-        (Updated: <time datetime="2020-07-02T11:03:37.789Z" itemprop="dateModified">2020-07-02</time>)
+        (Updated: <time datetime="2013-08-07T01:11:00.000Z" itemprop="dateModified">2013-08-07</time>)
         
       
     </div>
@@ -153,22 +153,22 @@
 
   <div class="content" itemprop="articleBody">
     <p>首先需要在專案資料夾中初始化Git</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
 
 <p>接著在Dropbox中建立你要共享Git的資料夾，並且輸入以下的指令來初始化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init --bare</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init --bare</span><br></pre></td></tr></table></figure>
 
 <p>回到專案資料夾中，加入Dropbox這個遠端的repo</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin ~&#x2F;Dropbox&#x2F;XXXX</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin ~/Dropbox/XXXX</span><br></pre></td></tr></table></figure>
 
 <p>接著將專案推倒Dropbox中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
 
 <p>在另外一台電腦則需要將Dropbox的Git專案clone下來</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone ~&#x2F;Dropbox&#x2F;XXXX</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone ~/Dropbox/XXXX</span><br></pre></td></tr></table></figure>
 
 <p>如果A已經變動了專案並且push到Dropbox了，B要將Dropbox變動的取出來可使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch origin master</span><br></pre></td></tr></table></figure>
 
 
 

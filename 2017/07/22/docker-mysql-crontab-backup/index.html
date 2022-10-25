@@ -14,7 +14,7 @@
 <meta property="og:description" content="在既有的 mysql 中加入 crontab 的方式去定期備份 data。 Step 1. init database希望一開始就幫我們把資料加入，因此 mount 一個 docker-entrypoint-initdb.d 到 container 內的。可參考[Mysql Docker Hub]  Initializing a fresh instance When a container is">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2017-07-22T09:18:07.000Z">
-<meta property="article:modified_time" content="2020-07-02T11:03:37.796Z">
+<meta property="article:modified_time" content="2017-07-22T09:18:07.000Z">
 <meta property="article:author" content="lighter">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
@@ -130,7 +130,7 @@
       
         <time datetime="2017-07-22T09:18:07.000Z" itemprop="datePublished">2017-07-22</time>
         
-        (Updated: <time datetime="2020-07-02T11:03:37.796Z" itemprop="dateModified">2020-07-02</time>)
+        (Updated: <time datetime="2017-07-22T09:18:07.000Z" itemprop="dateModified">2017-07-22</time>)
         
       
     </div>
@@ -151,30 +151,30 @@
 
   <div class="content" itemprop="articleBody">
     <p>在既有的 mysql 中加入 crontab 的方式去定期備份 data。</p>
-<h2 id="Step-1-init-database"><a href="#Step-1-init-database" class="headerlink" title="Step 1. init database"></a>Step 1. init database</h2><p>希望一開始就幫我們把資料加入，因此 mount 一個 docker-entrypoint-initdb.d 到 container 內的。可參考[<a href="https://hub.docker.com/_/mysql/" target="_blank" rel="noopener">Mysql Docker Hub</a>]</p>
+<h2 id="Step-1-init-database"><a href="#Step-1-init-database" class="headerlink" title="Step 1. init database"></a>Step 1. init database</h2><p>希望一開始就幫我們把資料加入，因此 mount 一個 docker-entrypoint-initdb.d 到 container 內的。可參考[<a target="_blank" rel="noopener" href="https://hub.docker.com/_/mysql/">Mysql Docker Hub</a>]</p>
 <blockquote>
 <p>Initializing a fresh instance</p>
-<p>When a container is started for the first time, a new database with the specified name will be created and initialized with the provided configuration variables. Furthermore, it will execute files with extensions .sh, .sql and .sql.gz that are found in /docker-entrypoint-initdb.d. Files will be executed in alphabetical order. You can easily populate your mysql services by mounting a SQL dump into that directory and provide custom images with contributed data. SQL files will be imported by default to the database specified by the MYSQL_DATABASE variable.</p>
+<p>When a container is started for the first time, a new database with the specified name will be created and initialized with the provided configuration variables. Furthermore, it will execute files with extensions .sh, .sql and .sql.gz that are found in &#x2F;docker-entrypoint-initdb.d. Files will be executed in alphabetical order. You can easily populate your mysql services by mounting a SQL dump into that directory and provide custom images with contributed data. SQL files will be imported by default to the database specified by the MYSQL_DATABASE variable.</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">version: &#39;2&#39;</span><br><span class="line">services:</span><br><span class="line">    mysql:</span><br><span class="line">        image: mysql:latest</span><br><span class="line">	volumes:</span><br><span class="line">		- .&#x2F;docker-entrypoint-initdb.d:&#x2F;docker-entrypoint-initdb.d</span><br><span class="line">	environment:</span><br><span class="line">		MYSQL_ROOT_PASSWORD: password</span><br><span class="line">		MYSQL_DATABASE: develop</span><br><span class="line">		MYSQL_USER: test</span><br><span class="line">		MYSQL_PASSWORD: testpassword</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">version: &#x27;2&#x27;</span><br><span class="line">services:</span><br><span class="line">    mysql:</span><br><span class="line">        image: mysql:latest</span><br><span class="line">	volumes:</span><br><span class="line">		- ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d</span><br><span class="line">	environment:</span><br><span class="line">		MYSQL_ROOT_PASSWORD: password</span><br><span class="line">		MYSQL_DATABASE: develop</span><br><span class="line">		MYSQL_USER: test</span><br><span class="line">		MYSQL_PASSWORD: testpassword</span><br></pre></td></tr></table></figure>
 
 <p>而在 docker-entrypoint-initdb.d 內放入一小段 sql。</p>
 <p><strong>init.sql</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE IF NOT EXISTS develop;</span><br><span class="line">USE develop;</span><br><span class="line">CREATE TABLE IF NOT EXISTS tasks (</span><br><span class="line">    task_id INT(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">    subject VARCHAR(45) DEFAULT NULL,</span><br><span class="line">    PRIMARY KEY (task_id)</span><br><span class="line">) ENGINE&#x3D;InnoDB;</span><br><span class="line"></span><br><span class="line">INSERT INTO tasks (subject)</span><br><span class="line">VALUES (&#39;task 1&#39;),</span><br><span class="line">       (&#39;task 2&#39;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE IF NOT EXISTS develop;</span><br><span class="line">USE develop;</span><br><span class="line">CREATE TABLE IF NOT EXISTS tasks (</span><br><span class="line">    task_id INT(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">    subject VARCHAR(45) DEFAULT NULL,</span><br><span class="line">    PRIMARY KEY (task_id)</span><br><span class="line">) ENGINE=InnoDB;</span><br><span class="line"></span><br><span class="line">INSERT INTO tasks (subject)</span><br><span class="line">VALUES (&#x27;task 1&#x27;),</span><br><span class="line">       (&#x27;task 2&#x27;);</span><br></pre></td></tr></table></figure>
 
 <h2 id="Step-2-Add-crontab"><a href="#Step-2-Add-crontab" class="headerlink" title="Step 2. Add crontab"></a>Step 2. Add crontab</h2><p>特地把 mysql_backup mount 到 local 的 backup_sql。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">crontab:</span><br><span class="line">       build: .&#x2F;crontab&#x2F;</span><br><span class="line">       volumes:</span><br><span class="line">           - .&#x2F;mysql_backup:&#x2F;backup_sql</span><br><span class="line">       links:</span><br><span class="line">           - mysql</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">crontab:</span><br><span class="line">       build: ./crontab/</span><br><span class="line">       volumes:</span><br><span class="line">           - ./mysql_backup:/backup_sql</span><br><span class="line">       links:</span><br><span class="line">           - mysql</span><br></pre></td></tr></table></figure>
 
 <p>調整你希望備份的時間區間，可修改 <code>crontab.txt</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*&#x2F;1 * * * * &#x2F;script.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*/1 * * * * /script.sh</span><br></pre></td></tr></table></figure>
 
 <p>調整你的執行 mysqldump 的 sh，可修改 <code>script.sh</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;sh</span><br><span class="line"></span><br><span class="line">now&#x3D;$(date +%Y-%m-%d_%H-%M-%S)</span><br><span class="line"></span><br><span class="line">mysqldump -u test -ptestpassword -h mysql develop &gt; &#x2F;backup_sql&#x2F;$now.sql</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">now=$(date +%Y-%m-%d_%H-%M-%S)</span><br><span class="line"></span><br><span class="line">mysqldump -u test -ptestpassword -h mysql develop &gt; /backup_sql/$now.sql</span><br></pre></td></tr></table></figure>
 
-<p>全部的東西可在 <a href="https://github.com/lighter/docker-mysql-backup" target="_blank" rel="noopener">Github</a> 找到。</p>
+<p>全部的東西可在 <a target="_blank" rel="noopener" href="https://github.com/lighter/docker-mysql-backup">Github</a> 找到。</p>
 <h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
-<li><a href="https://stackoverflow.com/questions/37015624/how-to-run-a-cron-job-inside-a-docker-container" target="_blank" rel="noopener">How to run a cron job inside a docker container</a></li>
-<li><a href="https://hub.docker.com/_/mysql/" target="_blank" rel="noopener">Docker Hub - Mysql</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/37015624/how-to-run-a-cron-job-inside-a-docker-container">How to run a cron job inside a docker container</a></li>
+<li><a target="_blank" rel="noopener" href="https://hub.docker.com/_/mysql/">Docker Hub - Mysql</a></li>
 </ul>
 
   </div>

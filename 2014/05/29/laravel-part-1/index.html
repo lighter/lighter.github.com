@@ -6,19 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="安裝 Laravel要在自己的電腦上先安裝composer。 然後在終端機下這樣的指令 1composer create-project laravel&#x2F;laravel ProjectName  安裝完成後開啟網頁輸入網址 http:&#x2F;&#x2F;localhost&#x2F;laravel_sample&#x2F;，你會看到下面這樣的畫面   預設應該是在public資料夾下，所以改成這個路徑http:&#x2F;&#x2F;loca">
+    <meta name="description" content="安裝 Laravel要在自己的電腦上先安裝composer。 然後在終端機下這樣的指令 1composer create-project laravel&#x2F;laravel ProjectName  安裝完成後開啟網頁輸入網址 http:&#x2F;&#x2F;localhost&#x2F;laravel_sample&#x2F;，你會看到下面這樣的畫面   預設應該是在public資料夾下，所以改成這個路徑http:&#x2F;&#x2F;localhost">
 <meta property="og:type" content="article">
 <meta property="og:title" content="laravel part 1">
 <meta property="og:url" content="https://lighter.github.io/2014/05/29/laravel-part-1/index.html">
 <meta property="og:site_name" content="I can&#39;t remember">
-<meta property="og:description" content="安裝 Laravel要在自己的電腦上先安裝composer。 然後在終端機下這樣的指令 1composer create-project laravel&#x2F;laravel ProjectName  安裝完成後開啟網頁輸入網址 http:&#x2F;&#x2F;localhost&#x2F;laravel_sample&#x2F;，你會看到下面這樣的畫面   預設應該是在public資料夾下，所以改成這個路徑http:&#x2F;&#x2F;loca">
+<meta property="og:description" content="安裝 Laravel要在自己的電腦上先安裝composer。 然後在終端機下這樣的指令 1composer create-project laravel&#x2F;laravel ProjectName  安裝完成後開啟網頁輸入網址 http:&#x2F;&#x2F;localhost&#x2F;laravel_sample&#x2F;，你會看到下面這樣的畫面   預設應該是在public資料夾下，所以改成這個路徑http:&#x2F;&#x2F;localhost">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://lighter.github.io/images/laravel_sample/laravel-1.jpg">
 <meta property="og:image" content="https://lighter.github.io/images/laravel_sample/laravel-2.jpg">
 <meta property="og:image" content="https://lighter.github.io/images/laravel_sample/laravel-3.jpg">
 <meta property="og:image" content="https://lighter.github.io/images/laravel_sample/laravel-4.jpg">
 <meta property="article:published_time" content="2014-05-29T05:16:00.000Z">
-<meta property="article:modified_time" content="2020-07-02T11:03:37.791Z">
+<meta property="article:modified_time" content="2014-05-29T05:16:00.000Z">
 <meta property="article:author" content="lighter">
 <meta property="article:tag" content="php">
 <meta property="article:tag" content="laravel">
@@ -138,7 +138,7 @@
       
         <time datetime="2014-05-29T05:16:00.000Z" itemprop="datePublished">2014-05-29</time>
         
-        (Updated: <time datetime="2020-07-02T11:03:37.791Z" itemprop="dateModified">2020-07-02</time>)
+        (Updated: <time datetime="2014-05-29T05:16:00.000Z" itemprop="dateModified">2014-05-29</time>)
         
       
     </div>
@@ -158,9 +158,9 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="安裝-Laravel"><a href="#安裝-Laravel" class="headerlink" title="安裝 Laravel"></a>安裝 Laravel</h2><p>要在自己的電腦上先安裝<a href="https://getcomposer.org/" target="_blank" rel="noopener">composer</a>。</p>
+    <h2 id="安裝-Laravel"><a href="#安裝-Laravel" class="headerlink" title="安裝 Laravel"></a>安裝 Laravel</h2><p>要在自己的電腦上先安裝<a target="_blank" rel="noopener" href="https://getcomposer.org/">composer</a>。</p>
 <p>然後在終端機下這樣的指令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer create-project laravel&#x2F;laravel ProjectName</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer create-project laravel/laravel ProjectName</span><br></pre></td></tr></table></figure>
 
 <p>安裝完成後開啟網頁輸入網址 <code>http://localhost/laravel_sample/</code>，你會看到下面這樣的畫面</p>
 <img src="/images/laravel_sample/laravel-1.jpg" class="">
@@ -172,13 +172,13 @@
 <blockquote>
 <p>如果有權限上的問題在前面加個<code>sudo</code></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 storage</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 storage</span><br></pre></td></tr></table></figure>
 
 <p>再次重整網頁！成功啦！</p>
 <img src="/images/laravel_sample/laravel-3.jpg" class="">
 
 <p>接著我想把public這層路徑拔掉，所以把這層資料夾的<code>.htaccess</code>, <code>index.php</code>, <code>favicon.ico</code>這三個主要的檔案搬到外面，接著開啟<code>index.php</code>做些小修整，主要是修改兩個路徑而已，程式碼如下：</p>
-<figure class="highlight php"><figcaption><span>index.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span>.<span class="string">'/bootstrap/autoload.php'</span>;</span><br><span class="line">$app = <span class="keyword">require_once</span> <span class="keyword">__DIR__</span>.<span class="string">'/bootstrap/start.php'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><figcaption><span>index.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span>.<span class="string">&#x27;/bootstrap/autoload.php&#x27;</span>;</span><br><span class="line"><span class="variable">$app</span> = <span class="keyword">require_once</span> <span class="keyword">__DIR__</span>.<span class="string">&#x27;/bootstrap/start.php&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>把路徑修改成 <code>http://localhost/laravel_sample/</code></p>
 <img src="/images/laravel_sample/laravel-4.jpg" class="">

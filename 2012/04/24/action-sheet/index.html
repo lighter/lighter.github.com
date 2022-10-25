@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="UIActionSheet是一個由下往上出現的視窗，通常彈出一些按鈕選項讓使用者選擇要執行的方式為何！使用一個簡單的範例來介紹它的使用方法。 在iPhone畫面中加入一個Round Rect Button，當Button按下時，ActionSheet則會彈出。   Step 1.建立一個SingleView的專案，專案名稱為Action Sheet Step 2.開啟MainStoryboard.">
+    <meta name="description" content="UIActionSheet是一個由下往上出現的視窗，通常彈出一些按鈕選項讓使用者選擇要執行的方式為何！使用一個簡單的範例來介紹它的使用方法。 在iPhone畫面中加入一個Round Rect Button，當Button按下時，ActionSheet則會彈出。   **Step 1.**建立一個SingleView的專案，專案名稱為Action Sheet **Step 2.**開啟MainSto">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Action Sheet">
 <meta property="og:url" content="https://lighter.github.io/2012/04/24/action-sheet/index.html">
 <meta property="og:site_name" content="I can&#39;t remember">
-<meta property="og:description" content="UIActionSheet是一個由下往上出現的視窗，通常彈出一些按鈕選項讓使用者選擇要執行的方式為何！使用一個簡單的範例來介紹它的使用方法。 在iPhone畫面中加入一個Round Rect Button，當Button按下時，ActionSheet則會彈出。   Step 1.建立一個SingleView的專案，專案名稱為Action Sheet Step 2.開啟MainStoryboard.">
+<meta property="og:description" content="UIActionSheet是一個由下往上出現的視窗，通常彈出一些按鈕選項讓使用者選擇要執行的方式為何！使用一個簡單的範例來介紹它的使用方法。 在iPhone畫面中加入一個Round Rect Button，當Button按下時，ActionSheet則會彈出。   **Step 1.**建立一個SingleView的專案，專案名稱為Action Sheet **Step 2.**開啟MainSto">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://lighter.github.io/images/iPhone/actionSheets1.jpeg">
 <meta property="og:image" content="https://lighter.github.io/images/iPhone/actionSheets2.jpeg">
 <meta property="og:image" content="https://lighter.github.io/images/iPhone/actionSheets3.jpeg">
 <meta property="article:published_time" content="2012-04-24T02:29:00.000Z">
-<meta property="article:modified_time" content="2020-07-02T11:03:37.785Z">
+<meta property="article:modified_time" content="2012-04-24T02:29:00.000Z">
 <meta property="article:author" content="lighter">
 <meta property="article:tag" content="iPhone">
 <meta name="twitter:card" content="summary">
@@ -108,8 +108,8 @@
 &lt;p&gt;在iPhone畫面中加入一個Round Rect Button，當Button按下時，ActionSheet則會彈出。&lt;/p&gt;
 &lt;img src=&#34;/images/iPhone/actionSheets1.jpeg&#34; class=&#34;center&#34;&gt;
 
-&lt;p&gt;&lt;strong&gt;Step 1.&lt;/strong&gt;建立一個&lt;code&gt;SingleView&lt;/code&gt;的專案，專案名稱為Action Sheet&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Step 2.&lt;/strong&gt;開啟MainStoryboard.storyboard，加入一個&lt;code&gt;Round Rect Button&lt;/code&gt;的元件，並且設定該元件的Title為Show Action Sheet&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+&lt;p&gt;**Step 1.**建立一個&lt;code&gt;SingleView&lt;/code&gt;的專案，專案名稱為Action Sheet&lt;/p&gt;
+&lt;p&gt;**Step 2.**開啟MainStoryboard.storyboard，加入一個&lt;code&gt;Round Rect Button&lt;/code&gt;的元件，並且設定該元件的Title為Show Action Sheet&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2012/04/24/action-sheet/&t=Action Sheet"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
@@ -141,7 +141,7 @@
       
         <time datetime="2012-04-24T02:29:00.000Z" itemprop="datePublished">2012-04-24</time>
         
-        (Updated: <time datetime="2020-07-02T11:03:37.785Z" itemprop="dateModified">2020-07-02</time>)
+        (Updated: <time datetime="2012-04-24T02:29:00.000Z" itemprop="dateModified">2012-04-24</time>)
         
       
     </div>
@@ -165,29 +165,29 @@
 <p>在iPhone畫面中加入一個Round Rect Button，當Button按下時，ActionSheet則會彈出。</p>
 <img src="/images/iPhone/actionSheets1.jpeg" class="center">
 
-<p><strong>Step 1.</strong>建立一個<code>SingleView</code>的專案，專案名稱為Action Sheet</p>
-<p><strong>Step 2.</strong>開啟MainStoryboard.storyboard，加入一個<code>Round Rect Button</code>的元件，並且設定該元件的Title為Show Action Sheet</p>
-<a id="more"></a>
+<p>**Step 1.**建立一個<code>SingleView</code>的專案，專案名稱為Action Sheet</p>
+<p>**Step 2.**開啟MainStoryboard.storyboard，加入一個<code>Round Rect Button</code>的元件，並且設定該元件的Title為Show Action Sheet</p>
+<span id="more"></span>
 
 <img src="/images/iPhone/actionSheets2.jpeg" class="center">
 
-<p><strong>Step 3.</strong>編輯ViewController.h</p>
+<p>**Step 3.**編輯ViewController.h</p>
 <p>1.加入<code>UIActionSheetDelegate</code>的協定。</p>
 <p>2.定義showActionSheet為Button的觸發事件。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span>&lt;<span class="title">UIActionSheetDelegate</span>&gt;</span></span><br><span class="line">-(<span class="keyword">IBAction</span>)showActionSheet:(<span class="keyword">id</span>)sender;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span>&lt;<span class="title">UIActionSheetDelegate</span>&gt;</span></span><br><span class="line">-(<span class="keyword">IBAction</span>)showActionSheet:(<span class="type">id</span>)sender;</span><br></pre></td></tr></table></figure>
 
-<p><strong>Step 4.</strong>編輯ViewController.m</p>
+<p>**Step 4.**編輯ViewController.m</p>
 <p>1.在showActionSheet:內定義一個<code>UIActionSheet</code>的actoinSheet變數，當中的參數如以下設定；特別的是當你有其它選項想讓使用者選擇時，<code>otherButtonTitles:</code>這個參數設定後面連續使用<code>@""</code>連接。</p>
 <p>2.<code>actionSheetStyle</code>設定ActionSheet的Style。</p>
 <p>3.記得設定<code>showInVie</code>將ActionSheet顯示在畫面上。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">-(<span class="keyword">IBAction</span>)showActionSheet:(<span class="keyword">id</span>)sender</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">UIActionSheet</span> *actionSheet = [[<span class="built_in">UIActionSheet</span> alloc] initWithTitle:<span class="string">@"Share Save"</span></span><br><span class="line">    			delegate:<span class="keyword">self</span></span><br><span class="line">				cancelButtonTitle:<span class="string">@"Cancel"</span> </span><br><span class="line">			    destructiveButtonTitle:<span class="string">@"Save"</span> </span><br><span class="line">			    otherButtonTitles:<span class="string">@"Email"</span>, <span class="string">@"Facebook"</span>, <span class="string">@"Twitter"</span>, <span class="string">@"Plurk"</span>, <span class="literal">nil</span>];</span><br><span class="line"></span><br><span class="line">    actionSheet.actionSheetStyle = <span class="built_in">UIActionSheetStyleDefault</span>;</span><br><span class="line">    [actionSheet showInView:<span class="keyword">self</span>.view];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">-(<span class="keyword">IBAction</span>)showActionSheet:(<span class="type">id</span>)sender</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">UIActionSheet</span> *actionSheet = [[<span class="built_in">UIActionSheet</span> alloc] initWithTitle:<span class="string">@&quot;Share Save&quot;</span></span><br><span class="line">    			delegate:<span class="keyword">self</span></span><br><span class="line">				cancelButtonTitle:<span class="string">@&quot;Cancel&quot;</span> </span><br><span class="line">			    destructiveButtonTitle:<span class="string">@&quot;Save&quot;</span> </span><br><span class="line">			    otherButtonTitles:<span class="string">@&quot;Email&quot;</span>, <span class="string">@&quot;Facebook&quot;</span>, <span class="string">@&quot;Twitter&quot;</span>, <span class="string">@&quot;Plurk&quot;</span>, <span class="literal">nil</span>];</span><br><span class="line"></span><br><span class="line">    actionSheet.actionSheetStyle = <span class="built_in">UIActionSheetStyleDefault</span>;</span><br><span class="line">    [actionSheet showInView:<span class="keyword">self</span>.view];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>Step 5.</strong>判斷按下了哪個按鈕！！</p>
+<p>**Step 5.**判斷按下了哪個按鈕！！</p>
 <p>可以透過<code>actionSheet:clickedButtonAtIndex:</code>這個方法來協助得知按下了是哪一個按鈕。</p>
 <p>在ViewController.m檔加入這個方法，並使用簡單的<code>switch</code>來判斷是哪一個按鈕被按下了，這邊使用一個簡單的<code>NSLog</code>訊息來告知你按下了哪一個按鈕。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)actionSheet:(<span class="built_in">UIActionSheet</span> *)actionSheet clickedButtonAtIndex:(<span class="built_in">NSInteger</span>)buttonIndex</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">switch</span> (buttonIndex) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"Save"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"Email"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"Facebook"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"Twitter"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"Plurk"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="type">void</span>)actionSheet:(<span class="built_in">UIActionSheet</span> *)actionSheet clickedButtonAtIndex:(<span class="built_in">NSInteger</span>)buttonIndex</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">switch</span> (buttonIndex) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@&quot;Save&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@&quot;Email&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@&quot;Facebook&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@&quot;Twitter&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@&quot;Plurk&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>Step 6.</strong>建立關連</p>
+<p>**Step 6.**建立關連</p>
 <p>建立<code>showActionSheet</code>與<code>Round Rect Button</code>的關聯</p>
 <img src="/images/iPhone/actionSheets3.jpeg" class="center">
   </div>
@@ -238,8 +238,8 @@
 &lt;p&gt;在iPhone畫面中加入一個Round Rect Button，當Button按下時，ActionSheet則會彈出。&lt;/p&gt;
 &lt;img src=&#34;/images/iPhone/actionSheets1.jpeg&#34; class=&#34;center&#34;&gt;
 
-&lt;p&gt;&lt;strong&gt;Step 1.&lt;/strong&gt;建立一個&lt;code&gt;SingleView&lt;/code&gt;的專案，專案名稱為Action Sheet&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Step 2.&lt;/strong&gt;開啟MainStoryboard.storyboard，加入一個&lt;code&gt;Round Rect Button&lt;/code&gt;的元件，並且設定該元件的Title為Show Action Sheet&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+&lt;p&gt;**Step 1.**建立一個&lt;code&gt;SingleView&lt;/code&gt;的專案，專案名稱為Action Sheet&lt;/p&gt;
+&lt;p&gt;**Step 2.**開啟MainStoryboard.storyboard，加入一個&lt;code&gt;Round Rect Button&lt;/code&gt;的元件，並且設定該元件的Title為Show Action Sheet&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2012/04/24/action-sheet/&t=Action Sheet"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 

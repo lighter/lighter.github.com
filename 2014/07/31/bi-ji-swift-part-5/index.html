@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://lighter.github.io/images/swift/swift-37.jpg">
 <meta property="og:image" content="https://lighter.github.io/images/swift/swift-38.jpg">
 <meta property="article:published_time" content="2014-07-31T13:41:58.000Z">
-<meta property="article:modified_time" content="2020-07-02T11:03:37.793Z">
+<meta property="article:modified_time" content="2014-07-31T13:41:58.000Z">
 <meta property="article:author" content="lighter">
 <meta property="article:tag" content="swift">
 <meta property="article:tag" content="iPhone">
@@ -139,7 +139,7 @@
       
         <time datetime="2014-07-31T13:41:58.000Z" itemprop="datePublished">2014-07-31</time>
         
-        (Updated: <time datetime="2020-07-02T11:03:37.793Z" itemprop="dateModified">2020-07-02</time>)
+        (Updated: <time datetime="2014-07-31T13:41:58.000Z" itemprop="dateModified">2014-07-31</time>)
         
       
     </div>
@@ -162,10 +162,10 @@
     <h2 id="closure"><a href="#closure" class="headerlink" title="closure"></a>closure</h2><p><code>closure</code>就有如同<code>c</code>、<code>objective-c</code>的block。<code>function</code>其實也可以當作參數一樣傳遞，下面用簡單的範例做練習。</p>
 <img src="/images/swift/swift-36.jpg" class="">
 
-<a id="more"></a>
+<span id="more"></span>
 
 <p><code>closure</code>的格式如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123; (parameters) -&gt; returnType in</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123; (parameters) -&gt; returnType in</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>單行的表示式<code>closure</code>可以省略<code>return</code>，參數的部分甚至可以省略寫成<code>$0</code>代表第一個參數，<code>$1</code>代表第二個參數，以此類推，下面用簡單的範例表示</p>
 <img src="/images/swift/swift-37.jpg" class="">
@@ -179,19 +179,19 @@
 </ul>
 <img src="/images/swift/swift-38.jpg" class="">
 
-<h2 id="lazy-懶惰的-緩慢的-with-closure"><a href="#lazy-懶惰的-緩慢的-with-closure" class="headerlink" title="lazy(懶惰的?緩慢的) with closure"></a>lazy(<del>懶惰的?</del>緩慢的) with closure</h2><p>什麼是<code>lazy</code>?，<code>就是當你真的需要使用，才真的會分配(記憶體)給你使用</code>。至於以前<code>objcetive-c</code>的寫法可以參考這篇文章<a href="http://mikebuss.com/2014/06/22/lazy-initialization-swift/" target="_blank" rel="noopener">Lazy Initialization with Swift</a>，我覺得她寫很明確，所以我就用我理解的意思大概描述一遍，至於傳統的<code>objective-c</code>的寫法我就不贅述了，畢竟這邊是swift的note。</p>
+<h2 id="lazy-懶惰的-緩慢的-with-closure"><a href="#lazy-懶惰的-緩慢的-with-closure" class="headerlink" title="lazy(懶惰的?緩慢的) with closure"></a>lazy(<del>懶惰的?</del>緩慢的) with closure</h2><p>什麼是<code>lazy</code>?，<code>就是當你真的需要使用，才真的會分配(記憶體)給你使用</code>。至於以前<code>objcetive-c</code>的寫法可以參考這篇文章<a target="_blank" rel="noopener" href="http://mikebuss.com/2014/06/22/lazy-initialization-swift/">Lazy Initialization with Swift</a>，我覺得她寫很明確，所以我就用我理解的意思大概描述一遍，至於傳統的<code>objective-c</code>的寫法我就不贅述了，畢竟這邊是swift的note。</p>
 <p><code>lazy</code>在swift的使用方式如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lazy var lazyVar &#x3D; [String]()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lazy var lazyVar = [String]()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>只需要在<code>var</code>前面加上<code>lazy</code>這個keyword，還有一點要注意的是<code>lazy</code>並不能使用<code>let</code>，因為常數在初始化前是必需要有值的。</p>
 <blockquote>
 <p>原本的寫法是<code>@lazy</code>後來修改為<code>lazy</code>，把小老鼠<code>@</code>給省略了。</p>
 </blockquote>
 <p>如果你希望你的變數有會因為一些邏輯判斷而有不同的值，這時可以用<code>closure</code>來完成，下面這段code直接貼在playground是無法使用的，他會告訴你<code>lazy</code>必須是<code>struct</code>或<code>class</code>的成員。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lazy var lazyStr:String &#x3D; &#123;</span><br><span class="line">    &#x2F;&#x2F; do you want</span><br><span class="line">    return &quot;This is a test&quot;</span><br><span class="line">&#125;()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lazy var lazyStr:String = &#123;</span><br><span class="line">    // do you want</span><br><span class="line">    return &quot;This is a test&quot;</span><br><span class="line">&#125;()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>在什麼時候你會需要使用使用<code>lazy</code>呢?如果你的變數的值，是需要等到物件初始化完成後才能明確的定義，這時你就會需要使用，下面使用一個簡單的範例；下面範例中可以看到<code>[unowned self]</code>，這是要避免<code>strong reference cycle</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class testClass &#123;</span><br><span class="line">    var name:String</span><br><span class="line"></span><br><span class="line">    lazy var sayHiTo:String &#x3D; &#123;</span><br><span class="line">        [unowned self] in</span><br><span class="line">        return &quot;Hi~ \(self.name)&quot;</span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">    init(name:String) &#123;</span><br><span class="line">        self.name &#x3D; name</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var myClass &#x3D; testClass(name: &quot;Maya&quot;)</span><br><span class="line">&#x2F;&#x2F; 實立化一個myClass後，這時sayHiTo變數 is nil</span><br><span class="line"></span><br><span class="line">myClass.sayHiTo</span><br><span class="line">&#x2F;&#x2F; 當sayHiTo這個變數被呼叫到才真正的給予值</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class testClass &#123;</span><br><span class="line">    var name:String</span><br><span class="line"></span><br><span class="line">    lazy var sayHiTo:String = &#123;</span><br><span class="line">        [unowned self] in</span><br><span class="line">        return &quot;Hi~ \(self.name)&quot;</span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">    init(name:String) &#123;</span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var myClass = testClass(name: &quot;Maya&quot;)</span><br><span class="line">// 實立化一個myClass後，這時sayHiTo變數 is nil</span><br><span class="line"></span><br><span class="line">myClass.sayHiTo</span><br><span class="line">// 當sayHiTo這個變數被呼叫到才真正的給予值</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
   </div>

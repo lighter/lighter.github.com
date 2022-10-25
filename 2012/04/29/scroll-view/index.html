@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://lighter.github.io/images/iPhone/scrollViews4.jpeg">
 <meta property="og:image" content="https://lighter.github.io/images/iPhone/scrollViews5.jpeg">
 <meta property="article:published_time" content="2012-04-29T09:27:00.000Z">
-<meta property="article:modified_time" content="2020-07-02T11:03:37.785Z">
+<meta property="article:modified_time" content="2012-04-29T09:27:00.000Z">
 <meta property="article:author" content="lighter">
 <meta property="article:tag" content="iPhone">
 <meta name="twitter:card" content="summary">
@@ -142,7 +142,7 @@
       
         <time datetime="2012-04-29T09:27:00.000Z" itemprop="datePublished">2012-04-29</time>
         
-        (Updated: <time datetime="2020-07-02T11:03:37.785Z" itemprop="dateModified">2020-07-02</time>)
+        (Updated: <time datetime="2012-04-29T09:27:00.000Z" itemprop="dateModified">2012-04-29</time>)
         
       
     </div>
@@ -168,14 +168,14 @@
 <img src="/images/iPhone/scrollViews2.jpeg" class="">
 <img src="/images/iPhone/scrollViews3.jpeg" class="">
 
-<a id="more"></a>
+<span id="more"></span>
 
-<p><strong>Step 1.</strong>建立<code>Single View</code>專案，專案命名為<code>Scroll View</code>。</p>
-<p><strong>Step 2.</strong>編輯MainStoryboard.storyboard。</p>
+<p>**Step 1.**建立<code>Single View</code>專案，專案命名為<code>Scroll View</code>。</p>
+<p>**Step 2.**編輯MainStoryboard.storyboard。</p>
 <p>加入一個<code>Scroll View</code>到View中。</p>
 <img src="/images/iPhone/scrollViews4.jpeg" class="">
 
-<p><strong>Step 3.</strong>編輯ViewController.h。</p>
+<p>**Step 3.**編輯ViewController.h。</p>
 <ol>
     <li>加入<code>UIScrollViewDelegate</code>的協定。</li>
     <li>定義一個<code>UIScrollView</code>的變數<code>scrollView_</code>。</li>
@@ -183,7 +183,7 @@
 
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span>&lt;<span class="title">UIScrollViewDelegate</span>&gt;</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">UIScrollView</span> *scrollView_;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UIScrollView</span> *scrollView;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>Step 4.</strong>編輯ViewController.m。</p>
+<p>**Step 4.**編輯ViewController.m。</p>
 <ol>
     <li>首先要在專案內加入幾張圖片檔案。</li>
     <li>第6行，定義一個<code>NSMutableArray</code>的陣列變數<code>photoName</code>記錄圖片的檔案名稱。</li>
@@ -199,9 +199,9 @@
     <li>第26行，定義<code>scrollView_</code>的<code>delegate</code>為<code>self</code>。</li>
 </ol>
 
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@synthesize</span> scrollView = scrollView_;</span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSMutableArray</span> *photoName = [<span class="built_in">NSMutableArray</span> arrayWithObjects:<span class="string">@"a2.jpg"</span>, <span class="string">@"a3.jpg"</span>, <span class="string">@"a4.jpg"</span>, <span class="string">@"a5.jpg"</span>, <span class="literal">nil</span>];</span><br><span class="line">    <span class="built_in">NSMutableArray</span> *photos = [<span class="built_in">NSMutableArray</span> arrayWithObjects:</span><br><span class="line">                                [<span class="built_in">UIImage</span> imageNamed:[photoName objectAtIndex:<span class="number">0</span>]],</span><br><span class="line">                                [<span class="built_in">UIImage</span> imageNamed:[photoName objectAtIndex:<span class="number">1</span>]],</span><br><span class="line">                                [<span class="built_in">UIImage</span> imageNamed:[photoName objectAtIndex:<span class="number">2</span>]],</span><br><span class="line">                                [<span class="built_in">UIImage</span> imageNamed:[photoName objectAtIndex:<span class="number">3</span>]],</span><br><span class="line">                                <span class="literal">nil</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">UIImage</span> *image <span class="keyword">in</span> photos) &#123;</span><br><span class="line">        <span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithImage:image];</span><br><span class="line">        imageView.contentMode = <span class="built_in">UIViewContentModeScaleToFill</span>;</span><br><span class="line">        imageView.clipsToBounds = <span class="literal">YES</span>;</span><br><span class="line">        </span><br><span class="line">        imageView.frame = <span class="built_in">CGRectMake</span>(<span class="number">320</span>*i++,<span class="number">0</span> ,<span class="number">320</span>, <span class="number">460</span>);</span><br><span class="line">        </span><br><span class="line">        [<span class="keyword">self</span>.scrollView addSubview:imageView];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.scrollView.contentSize = <span class="built_in">CGSizeMake</span>(<span class="number">320</span>*i, <span class="number">460</span>);</span><br><span class="line">    scrollView_.delegate = <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@synthesize</span> scrollView = scrollView_;</span><br><span class="line">- (<span class="type">void</span>)viewDidLoad</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="variable language_">super</span> viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSMutableArray</span> *photoName = [<span class="built_in">NSMutableArray</span> arrayWithObjects:<span class="string">@&quot;a2.jpg&quot;</span>, <span class="string">@&quot;a3.jpg&quot;</span>, <span class="string">@&quot;a4.jpg&quot;</span>, <span class="string">@&quot;a5.jpg&quot;</span>, <span class="literal">nil</span>];</span><br><span class="line">    <span class="built_in">NSMutableArray</span> *photos = [<span class="built_in">NSMutableArray</span> arrayWithObjects:</span><br><span class="line">                                [<span class="built_in">UIImage</span> imageNamed:[photoName objectAtIndex:<span class="number">0</span>]],</span><br><span class="line">                                [<span class="built_in">UIImage</span> imageNamed:[photoName objectAtIndex:<span class="number">1</span>]],</span><br><span class="line">                                [<span class="built_in">UIImage</span> imageNamed:[photoName objectAtIndex:<span class="number">2</span>]],</span><br><span class="line">                                [<span class="built_in">UIImage</span> imageNamed:[photoName objectAtIndex:<span class="number">3</span>]],</span><br><span class="line">                                <span class="literal">nil</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">UIImage</span> *image <span class="keyword">in</span> photos) &#123;</span><br><span class="line">        <span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithImage:image];</span><br><span class="line">        imageView.contentMode = <span class="built_in">UIViewContentModeScaleToFill</span>;</span><br><span class="line">        imageView.clipsToBounds = <span class="literal">YES</span>;</span><br><span class="line">        </span><br><span class="line">        imageView.frame = <span class="built_in">CGRectMake</span>(<span class="number">320</span>*i++,<span class="number">0</span> ,<span class="number">320</span>, <span class="number">460</span>);</span><br><span class="line">        </span><br><span class="line">        [<span class="keyword">self</span>.scrollView addSubview:imageView];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.scrollView.contentSize = <span class="built_in">CGSizeMake</span>(<span class="number">320</span>*i, <span class="number">460</span>);</span><br><span class="line">    scrollView_.delegate = <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>Step 5.</strong>建立關連</p>
+<p>**Step 5.**建立關連</p>
 <img src="/images/iPhone/scrollViews5.jpeg" class="">
   </div>
 </article>

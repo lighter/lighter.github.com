@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://lighter.github.io/images/docker_phpstorm_xdebug/docker-phpstorm-xdebug5.png">
 <meta property="og:image" content="https://lighter.github.io/images/docker_phpstorm_xdebug/docker-phpstorm-xdebug6.png">
 <meta property="article:published_time" content="2016-06-18T02:55:10.000Z">
-<meta property="article:modified_time" content="2020-07-02T11:03:37.795Z">
+<meta property="article:modified_time" content="2016-06-18T02:55:10.000Z">
 <meta property="article:author" content="lighter">
 <meta property="article:tag" content="php">
 <meta property="article:tag" content="docker">
@@ -140,7 +140,7 @@
       
         <time datetime="2016-06-18T02:55:10.000Z" itemprop="datePublished">2016-06-18</time>
         
-        (Updated: <time datetime="2020-07-02T11:03:37.795Z" itemprop="dateModified">2020-07-02</time>)
+        (Updated: <time datetime="2016-06-18T02:55:10.000Z" itemprop="dateModified">2016-06-18</time>)
         
       
     </div>
@@ -167,23 +167,23 @@
   <div class="content" itemprop="articleBody">
     <p>延續這篇文章”<a href="http://lighter.github.io/2016/05/11/from-vagrant-to-docker-how-to-use-docker-for-local-web-development/">網頁開發者如何使用Docker</a>“建立完環境之後，在開發上為了trace執行的過程，因此想要加上xdebug。</p>
 <p>首先修改原本<code>./php/Dockerfile</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FROM php:5.6-fpm</span><br><span class="line">RUN docker-php-ext-install pdo_mysql</span><br><span class="line"></span><br><span class="line"># 加入這些設定到xdebug.ini</span><br><span class="line">RUN yes | pecl install xdebug \</span><br><span class="line">    &amp;&amp; echo &quot;zend_extension&#x3D;$(find &#x2F;usr&#x2F;local&#x2F;lib&#x2F;php&#x2F;extensions&#x2F; -name xdebug.so)&quot; &gt; &#x2F;usr&#x2F;local&#x2F;etc&#x2F;php&#x2F;conf.d&#x2F;xdebug.ini \</span><br><span class="line">    &amp;&amp; echo &quot;xdebug.remote_enable&#x3D;on&quot; &gt;&gt; &#x2F;usr&#x2F;local&#x2F;etc&#x2F;php&#x2F;conf.d&#x2F;xdebug.ini \</span><br><span class="line">    &amp;&amp; echo &quot;xdebug.remote_autostart&#x3D;off&quot; &gt;&gt; &#x2F;usr&#x2F;local&#x2F;etc&#x2F;php&#x2F;conf.d&#x2F;xdebug.ini</span><br><span class="line">RUN echo &quot;xdebug.remote_connect_back&#x3D;on&quot; &gt;&gt; &#x2F;usr&#x2F;local&#x2F;etc&#x2F;php&#x2F;conf.d&#x2F;xdebug.ini</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FROM php:5.6-fpm</span><br><span class="line">RUN docker-php-ext-install pdo_mysql</span><br><span class="line"></span><br><span class="line"># 加入這些設定到xdebug.ini</span><br><span class="line">RUN yes | pecl install xdebug \</span><br><span class="line">    &amp;&amp; echo &quot;zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)&quot; &gt; /usr/local/etc/php/conf.d/xdebug.ini \</span><br><span class="line">    &amp;&amp; echo &quot;xdebug.remote_enable=on&quot; &gt;&gt; /usr/local/etc/php/conf.d/xdebug.ini \</span><br><span class="line">    &amp;&amp; echo &quot;xdebug.remote_autostart=off&quot; &gt;&gt; /usr/local/etc/php/conf.d/xdebug.ini</span><br><span class="line">RUN echo &quot;xdebug.remote_connect_back=on&quot; &gt;&gt; /usr/local/etc/php/conf.d/xdebug.ini</span><br></pre></td></tr></table></figure>
 
 <p>因為remote_hosts的ip可能不一定相通，所以將這個設定寫在<code>docker-compose.yml</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">php:</span><br><span class="line">  build: .&#x2F;php&#x2F;</span><br><span class="line">  expose:</span><br><span class="line">    - 9000</span><br><span class="line">  links:</span><br><span class="line">    - mysql</span><br><span class="line">  volumes_from:</span><br><span class="line">    - app</span><br><span class="line">  environment:</span><br><span class="line">    XDEBUG_CONFIG: &quot;remote_host&#x3D;10.10.1.233 idekey&#x3D;gtiapidocker remote_enable&#x3D;1 remote_handler&#x3D;dbgp remote_port&#x3D;9000 remote_autostart&#x3D;1 remote_connect_back&#x3D;0 remote_log&#x3D;&#x2F;var&#x2F;www&#x2F;html&#x2F;xdebug.log&quot;</span><br><span class="line">    PHP_IDE_CONFIG: &quot;serverName&#x3D;docker-ci&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">php:</span><br><span class="line">  build: ./php/</span><br><span class="line">  expose:</span><br><span class="line">    - 9000</span><br><span class="line">  links:</span><br><span class="line">    - mysql</span><br><span class="line">  volumes_from:</span><br><span class="line">    - app</span><br><span class="line">  environment:</span><br><span class="line">    XDEBUG_CONFIG: &quot;remote_host=10.10.1.233 idekey=gtiapidocker remote_enable=1 remote_handler=dbgp remote_port=9000 remote_autostart=1 remote_connect_back=0 remote_log=/var/www/html/xdebug.log&quot;</span><br><span class="line">    PHP_IDE_CONFIG: &quot;serverName=docker-ci&quot;</span><br></pre></td></tr></table></figure>
 
 <p>執行下面指令取得目前您電腦連線的 IP，並指定給 remote_host</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ipconfig getifaddr en0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ipconfig getifaddr en0</span><br></pre></td></tr></table></figure>
 
 <p>以及注意到<code>PHP_IDE_CONFIG</code>的<code>serverName</code>，需與 PHPStorm Name 一致。</p>
 <p>接著來設定PHPStorm。叫出Preferences(<code>command + ,</code>)，<code>Languages &amp; Frameworks &gt; PHP &gt; Servers</code>，設定如下。</p>
-<p><img src="/images/docker_phpstorm_xdebug/docker-phpstorm-xdebug2.jpg" alt=""></p>
+<p><img src="/images/docker_phpstorm_xdebug/docker-phpstorm-xdebug2.jpg"></p>
 <p>接著點擊右上方，新增一個<code>PHP Remote Debug</code></p>
-<p><img src="/images/docker_phpstorm_xdebug/docker-phpstorm-xdebug7.png" alt=""></p>
+<p><img src="/images/docker_phpstorm_xdebug/docker-phpstorm-xdebug7.png"></p>
 <p><code>Servers</code>，選到剛剛新增的 <code>docker-ci</code>，<code>Ide key</code> 記得要和 <code>docker-compose.yml</code> 裡的設定一樣</p>
-<p><img src="/images/docker_phpstorm_xdebug/docker-phpstorm-xdebug5.png" alt=""></p>
+<p><img src="/images/docker_phpstorm_xdebug/docker-phpstorm-xdebug5.png"></p>
 <p>最後選到 <code>docker-ci</code>，並把話筒點開！監聽 xdebug。</p>
-<p><img src="/images/docker_phpstorm_xdebug/docker-phpstorm-xdebug6.png" alt=""></p>
+<p><img src="/images/docker_phpstorm_xdebug/docker-phpstorm-xdebug6.png"></p>
 
   </div>
 </article>

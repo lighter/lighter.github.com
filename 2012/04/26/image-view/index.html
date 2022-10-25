@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://lighter.github.io/images/iPhone/imageViews4.jpeg">
 <meta property="og:image" content="https://lighter.github.io/images/iPhone/imageViews5.jpeg">
 <meta property="article:published_time" content="2012-04-25T22:09:00.000Z">
-<meta property="article:modified_time" content="2020-07-02T11:03:37.785Z">
+<meta property="article:modified_time" content="2012-04-25T22:09:00.000Z">
 <meta property="article:author" content="lighter">
 <meta property="article:tag" content="iPhone">
 <meta name="twitter:card" content="summary">
@@ -141,7 +141,7 @@
       
         <time datetime="2012-04-25T22:09:00.000Z" itemprop="datePublished">2012-04-26</time>
         
-        (Updated: <time datetime="2020-07-02T11:03:37.785Z" itemprop="dateModified">2020-07-02</time>)
+        (Updated: <time datetime="2012-04-25T22:09:00.000Z" itemprop="dateModified">2012-04-26</time>)
         
       
     </div>
@@ -166,38 +166,38 @@
 <img src="/images/iPhone/imageViews1.jpeg" class="">
 <img src="/images/iPhone/imageViews2.jpeg" class="">
 
-<a id="more"></a>
+<span id="more"></span>
 
-<p><strong>Step 1.</strong>建立<code>SingleView</code>專案，專案命名為<code>Image View</code>。</p>
-<p><strong>Step 2.</strong>編輯MainStoryboard.storyboard。</p>
+<p>**Step 1.**建立<code>SingleView</code>專案，專案命名為<code>Image View</code>。</p>
+<p>**Step 2.**編輯MainStoryboard.storyboard。</p>
 <p>加入<code>Image View</code>、<code>Round Rect Button</code>兩個元件，元件的大小調整、Title這就不多做描述。</p>
 <img src="/images/iPhone/imageViews3.jpeg" class="">
 
-<p><strong>Step 3.</strong>加入圖片檔。</p>
+<p>**Step 3.**加入圖片檔。</p>
 <p>加入兩張圖片到該專案下(此範例僅使用兩張圖片作為範例)。</p>
 <img src="/images/iPhone/imageViews4.jpeg" class="">
 
-<p><strong>Step 4.</strong>編輯ViewController.h。</p>
+<p>**Step 4.**編輯ViewController.h。</p>
 <ol>
 <li><code>imageView_</code>是要用來顯示圖片。</li>
 <li><code>currentImage</code>是用來判斷目前要顯示哪張圖片。</li>
 <li><code>switchImage</code>為Button事件，用來改變圖片。</li>
 </ol>
 
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span></span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">UIImageView</span> *imageView_;</span><br><span class="line">    <span class="built_in">NSInteger</span> currentImage;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UIImageView</span> *imageView;</span><br><span class="line">-(<span class="keyword">IBAction</span>)switchImage:(<span class="keyword">id</span>)sender;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span></span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">UIImageView</span> *imageView_;</span><br><span class="line">    <span class="built_in">NSInteger</span> currentImage;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UIImageView</span> *imageView;</span><br><span class="line">-(<span class="keyword">IBAction</span>)switchImage:(<span class="type">id</span>)sender;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>Step 5.</strong>編輯ViewController.m</p>
+<p>**Step 5.**編輯ViewController.m</p>
 <ol>
 <li>將<code>currentImage</code>設為0。</li>
 <li>並指定<code>imageView</code>的image為哪一個圖片檔(<code>imageNamed</code>)。</li>
 </ol>
 
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@synthesize</span> imageView;</span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];  </span><br><span class="line">    currentImage = <span class="number">0</span>;</span><br><span class="line">    imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"t1.jpg"</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@synthesize</span> imageView;</span><br><span class="line">- (<span class="type">void</span>)viewDidLoad</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="variable language_">super</span> viewDidLoad];  </span><br><span class="line">    currentImage = <span class="number">0</span>;</span><br><span class="line">    imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@&quot;t1.jpg&quot;</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><code>switchImage</code>首先判斷<code>currentImage</code>是否為0(零)，條件成立時，將會改變<code>currentImage</code>，並且改變<code>imageView</code>的image，當下次在執行<code>switchImage</code>時，一樣會先判斷<code>currentImage</code>的值，並改變<code>imageView</code>的image。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">IBAction</span>)switchImage:(<span class="keyword">id</span>)sender</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(currentImage == <span class="number">0</span>)&#123;</span><br><span class="line">        currentImage = <span class="number">1</span>;</span><br><span class="line">        imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"t2.jpg"</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        currentImage = <span class="number">0</span>;</span><br><span class="line">        imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"t1.jpg"</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">IBAction</span>)switchImage:(<span class="type">id</span>)sender</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(currentImage == <span class="number">0</span>)&#123;</span><br><span class="line">        currentImage = <span class="number">1</span>;</span><br><span class="line">        imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@&quot;t2.jpg&quot;</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        currentImage = <span class="number">0</span>;</span><br><span class="line">        imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@&quot;t1.jpg&quot;</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>Step 6.</strong>建立關連</p>
+<p>**Step 6.**建立關連</p>
 <img src="/images/iPhone/imageViews5.jpeg" class="">
   </div>
 </article>

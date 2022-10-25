@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://www.alexkras.com/wp-content/uploads/pulling-out-hair.jpg">
 <meta property="og:image" content="http://www.alexkras.com/wp-content/uploads/git-bisect.gif">
 <meta property="article:published_time" content="2016-07-08T16:22:13.000Z">
-<meta property="article:modified_time" content="2020-07-02T11:03:37.795Z">
+<meta property="article:modified_time" content="2016-07-08T16:22:13.000Z">
 <meta property="article:author" content="lighter">
 <meta property="article:tag" content="翻譯練習">
 <meta property="article:tag" content="git">
@@ -149,7 +149,7 @@
       
         <time datetime="2016-07-08T16:22:13.000Z" itemprop="datePublished">2016-07-09</time>
         
-        (Updated: <time datetime="2020-07-02T11:03:37.795Z" itemprop="dateModified">2020-07-02</time>)
+        (Updated: <time datetime="2016-07-08T16:22:13.000Z" itemprop="dateModified">2016-07-09</time>)
         
       
     </div>
@@ -174,9 +174,9 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>原文出處：<a href="http://www.alexkras.com/19-git-tips-for-everyday-use/" target="_blank" rel="noopener">http://www.alexkras.com/19-git-tips-for-everyday-use/</a></p>
+    <p>原文出處：<a target="_blank" rel="noopener" href="http://www.alexkras.com/19-git-tips-for-everyday-use/">http://www.alexkras.com/19-git-tips-for-everyday-use/</a></p>
 <p>我用Git已經4年了，想與大家分享一些實用的技巧。希望能幫助到你。</p>
-<p>如果你是一個Git新手，我推薦你可先看看這篇文章<a href="http://www.alexkras.com/getting-started-with-git/" target="_blank" rel="noopener">Git Cheat Sheet</a>。這篇文章撰寫的對象是有3個月以上Git經驗的人。</p>
+<p>如果你是一個Git新手，我推薦你可先看看這篇文章<a target="_blank" rel="noopener" href="http://www.alexkras.com/getting-started-with-git/">Git Cheat Sheet</a>。這篇文章撰寫的對象是有3個月以上Git經驗的人。</p>
 <h1 id="指令清單"><a href="#指令清單" class="headerlink" title="指令清單"></a>指令清單</h1><ol>
 <li>善用 log 參數，<code>git log --online --graph</code></li>
 <li>檔案的修改差異，<code>git log -p filename</code></li>
@@ -212,21 +212,21 @@
 <p>例如，每週五主管需要我提交每週的報告。所以我會執行: <code>git log --author=&quot;Alex Kras&quot; --after=&quot;1 week ago&quot; --oneline</code>，然後修飾一下並提交給主管。</p>
 <p>Git log有很多參數供你使用。<code>man git-log</code>可以看到很多參數的功能。</p>
 <p>如果你不喜歡原本的輸出格式，<code>--pretty</code>參數提供你客製化的輸出格式。</p>
-<p><img src="http://www.alexkras.com/wp-content/uploads/git-log-oneline.png" alt=""></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-log-oneline.png"></p>
 <h1 id="2-顯示檔案的差異"><a href="#2-顯示檔案的差異" class="headerlink" title="2. 顯示檔案的差異"></a>2. 顯示檔案的差異</h1><p>範例：<code>git log -p filename</code></p>
 <p><code>git log -p</code> 或 <code>git log -p filename</code> 不僅能看到 commit 訊息、作者、日期，還有實際檔案的差異內容。</p>
 <p>你可以使用”反斜線(slash)”搜尋你要的關鍵字，例如<code>/your-search-here</code>。(使用<code>n</code>往下尋找下一個，<code>N</code>往上尋找上一個)。</p>
-<p><img src="http://www.alexkras.com/wp-content/uploads/git-log-search.png" alt=""></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-log-search.png"></p>
 <h1 id="3-特定檔案特定行數的變化"><a href="#3-特定檔案特定行數的變化" class="headerlink" title="3. 特定檔案特定行數的變化"></a>3. 特定檔案特定行數的變化</h1><p>範例：<code>git log -L 1,1:some-file.txt</code></p>
 <p><code>git blame filename</code>可以顯示檔案每行修改的人</p>
-<p><img src="http://www.alexkras.com/wp-content/uploads/git-blame.png" alt=""></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-blame.png"></p>
 <p><code>git blame</code>是個很棒的指令，但是有時提供你的資訊並不足夠。</p>
 <p>另一個替代方案是使用<code>git log</code>搭配<code>-L</code>旗標(flag)。這個旗標可以讓你指定行數。如同<code>git log -p</code>顯示異動的內容。</p>
 <p><code>git log -L 1,1:some-file.txt</code></p>
-<p><img src="http://www.alexkras.com/wp-content/uploads/git-log-lines.png" alt=""></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-log-lines.png"></p>
 <h1 id="4-顯示尚未合併到父-parent-分支"><a href="#4-顯示尚未合併到父-parent-分支" class="headerlink" title="4. 顯示尚未合併到父(parent)分支"></a>4. 顯示尚未合併到父(parent)分支</h1><p>範例：<code>git log --no-merges master..</code></p>
 <p>與多人共同開發時，你在某個分支開發了很久的時間，當你將父(parent)分支(例如, master)合併進你的分支時。這時你會發現很難看出你開發的分支與master的差異。</p>
-<p><code>git log --no-merges master..</code>指令可以解決這問題。<code>--no-merges</code>旗標為不顯示merge的訊息，<strong>master..</strong>參數為顯示尚未合併到master的commit(在maste之後必須加上<code>..</code>)。</p>
+<p><code>git log --no-merges master..</code>指令可以解決這問題。<code>--no-merges</code>旗標為不顯示merge的訊息，**master..**參數為顯示尚未合併到master的commit(在maste之後必須加上<code>..</code>)。</p>
 <p><code>git show --no-merges master..</code> 和 <code>git log -p --no-merges maser..</code>不同的是第一個指令可以看到檔案的異動。</p>
 <h1 id="5-取得特定檔案在特定分支的內容"><a href="#5-取得特定檔案在特定分支的內容" class="headerlink" title="5. 取得特定檔案在特定分支的內容"></a>5. 取得特定檔案在特定分支的內容</h1><p>範例：<code>git show some-branch:some-file.js</code></p>
 <p>這是個很方便的功能，無需切換分支，就可以查看檔案在其他分支的內容。</p>
@@ -240,15 +240,15 @@
 <p>我認為rebase是一個進階的功能，甚至可以獨立出一篇文專專門描述rebase。</p>
 <p>Git book提及rebase</p>
 <blockquote>
-<p>   rebase並不是沒有缺點的。請不要對於已經存在於遠端的commit做rebase的動作。如果你不遵守這個規則，你會被朋友討厭，甚至被家人嘲笑。</p>
+<p>rebase並不是沒有缺點的。請不要對於已經存在於遠端的commit做rebase的動作。如果你不遵守這個規則，你會被朋友討厭，甚至被家人嘲笑。</p>
 </blockquote>
-<p><a href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing#The-Perils-of-Rebasing" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Branching-Rebasing#The-Perils-of-Rebasing</a></p>
+<p><a target="_blank" rel="noopener" href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing#The-Perils-of-Rebasing">https://git-scm.com/book/en/v2/Git-Branching-Rebasing#The-Perils-of-Rebasing</a></p>
 <p>但並不要對於rebase感到害怕，你只需要小心的使用它。</p>
 <p>而最好的方法就是使用rebase的互動模式(interactive rebasing)，<code>git rebase -i some commit hash</code>。它會開啟一個編輯器，並提供指令的解說。</p>
-<p><img src="http://www.alexkras.com/wp-content/uploads/git-rebase-i.png" alt=""></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-rebase-i.png"></p>
 <h2 id="git-pull-rebase是個很有用的指令。"><a href="#git-pull-rebase是個很有用的指令。" class="headerlink" title="git pull --rebase是個很有用的指令。"></a><code>git pull --rebase</code>是個很有用的指令。</h2><p>舉例來說，當你在本地端的master分支開發時，你commit了一個小改變。同時其他人將他本週的修改推上了遠地master分支。當你試著推上你的commit時，git會要求你先做<code>git pull</code>的動作。當你下了<code>git pull</code>時，git會幫你產生一個</p>
 <blockquote>
-<p>Merge remtoe-tracking branch ‘origin/master’</p>
+<p>Merge remtoe-tracking branch ‘origin&#x2F;master’</p>
 </blockquote>
 <p>的 commit。</p>
 <p>雖然這沒什麼大不了的，但是這讓log看起來有點混亂了。</p>
@@ -259,7 +259,7 @@
 <p>如果你在本地的做分支合併，你會發現git樹狀結構是一條直線。</p>
 <p>如果你想要強調分支的歷史紀錄，你可以加入<code>--no-ff</code>標籤，這可以凸顯你的分支歷史樹狀結構。</p>
 <p><code>git merge --no-ff some-branch-name</code></p>
-<p><img src="http://www.alexkras.com/wp-content/uploads/git-merge-no-ff.png" alt=""></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-merge-no-ff.png"></p>
 <h1 id="8-修正你的commit"><a href="#8-修正你的commit" class="headerlink" title="8. 修正你的commit"></a>8. 修正你的commit</h1><p>範例：<code>git commit --amend</code></p>
 <p>如果你已經commit了，但是你發現commit的文字描述有錯誤時，這時你可以使用這個指令來重新編輯妳的commit</p>
 <p><strong>注意！如果你尚未把commit push到遠端</strong>，你可以遵照以下的步驟：</p>
@@ -269,7 +269,7 @@
 <li>執行<code>git commit --amend</code>，你將可以修正最後一次的commit。</li>
 <li>修正完畢時推上遠端的分支。</li>
 </ol>
-<p><img src="http://www.alexkras.com/wp-content/uploads/git-commit-amend.gif" alt=""></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-commit-amend.gif"></p>
 <p>如果進行開發的分支，只屬於你擁有的，你當同步到遠端分支時，一樣可以進行修改commit訊息；當你修正完commit訊息時，執行<code>git push -f</code>(-f 是強制(force)的意思)，他會覆寫歷史紀錄。但是如果該分支有別人同時進行開發，切勿這麼做！</p>
 <h1 id="9-三種Stage，之間如何切換-Three-stages-in-git-and-how-to-move-between-them"><a href="#9-三種Stage，之間如何切換-Three-stages-in-git-and-how-to-move-between-them" class="headerlink" title="9. 三種Stage，之間如何切換(Three stages in git, and how to move between them)"></a>9. 三種Stage，之間如何切換(Three stages in git, and how to move between them)</h1><p>範例：<code>git reset --hard HEAD</code>, <code>git status -s</code></p>
 <p>檔案在git有三種 stage</p>
@@ -280,14 +280,14 @@
 </ol>
 <p><code>git status</code>可以看到更多詳盡的檔案狀態資訊。<code>git add filename.js</code>指令會將檔案加入為暫存檔案(staged file)，或者使用<code>git add .</code>將所有檔案加入為暫存檔案(staged file)。</p>
 <p>執行<code>git status -s</code>可以看到檔案目前的狀態</p>
-<p><img src="http://www.alexkras.com/wp-content/uploads/git-stages.png" alt=""></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-stages.png"></p>
 <p><code>git status</code>並不會顯示提交修改檔案紀錄，你可以使用<code>git log</code>查看已經提交修改的歷史紀錄。</p>
 <p>下面提供一些方法，供你檔案 stage 的狀態。</p>
 <h2 id="reset-檔案"><a href="#reset-檔案" class="headerlink" title="reset 檔案"></a>reset 檔案</h2><p>reset有三種方式。reset允許你任意還原到你指定的歷史紀錄。</p>
 <ol>
 <li><code>git reset --hard some-commit-hash</code> - 還原到你指定的commit hash。<strong>你所有的改變將都會還原，不會保留</strong>。</li>
-<li><code>git reset some-commit-hash</code> - 還原到你指定的commit hash。<strong>所有改變都會保留，並且不會加入暫存檔案(unstaged files)</strong>。而你可以在使用<code>git add .</code>和<code>git commit</code>後還原回去。</li>
-<li><code>git reset --soft some-commit-hash</code> - 還原到你指定的commit hash。<strong>所有改變都會保留，並且加入暫存檔案(staged files)</strong>。你只需要使用<code>git commit</code>即可還原。</li>
+<li><code>git reset some-commit-hash</code> - 還原到你指定的commit hash。**所有改變都會保留，並且不會加入暫存檔案(unstaged files)**。而你可以在使用<code>git add .</code>和<code>git commit</code>後還原回去。</li>
+<li><code>git reset --soft some-commit-hash</code> - 還原到你指定的commit hash。**所有改變都會保留，並且加入暫存檔案(staged files)**。你只需要使用<code>git commit</code>即可還原。</li>
 </ol>
 <p>這樣一來你就可以切換檔案到任一不同的版本。</p>
 <p>以下是我最常使用的情形：</p>
@@ -307,51 +307,51 @@
 <p>如果你想要復原先前提交的commit，可以使用revert來達到這個目的。</p>
 <p>通常<code>git revert</code>會自動幫你建立一個新的commit，提醒你有做了一個revert的動作。<code>-n</code>這個參數，是告訴git復原並且不要自動完成commit；你可以試著自己親手操作看看。</p>
 <h1 id="11-使用第三方軟體比對整個專案的差異"><a href="#11-使用第三方軟體比對整個專案的差異" class="headerlink" title="11. 使用第三方軟體比對整個專案的差異"></a>11. 使用第三方軟體比對整個專案的差異</h1><p>範例：<code>git difftool -d</code></p>
-<p>我非常喜歡的差異比對軟體是<a href="http://www.alexkras.com/how-to-run-meld-on-mac-os-x-yosemite-without-homebrew-macports-or-think/" target="_blank" rel="noopener">Meld</a>。</p>
+<p>我非常喜歡的差異比對軟體是<a target="_blank" rel="noopener" href="http://www.alexkras.com/how-to-run-meld-on-mac-os-x-yosemite-without-homebrew-macports-or-think/">Meld</a>。</p>
 <p>Meld可以與git diff, merge使用。執行下面的指令來修改你預設diff和merge開啟的工具：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global diff.tool meld</span><br><span class="line">git config --global merge.tool meld</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global diff.tool meld</span><br><span class="line">git config --global merge.tool meld</span><br></pre></td></tr></table></figure>
 
 <p>之後執行<code>git difftool some-file.js</code>使用Meld來看檔案的差異。</p>
 <p><strong>除此之外Meld也支援資料夾的差異比對。</strong></p>
 <p><code>git difftool</code>加上<code>-d</code>參數，會比對整個資料夾的差異。</p>
-<p><img src="http://www.alexkras.com/wp-content/uploads/git-difftool-d.png" alt=""></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-difftool-d.png"></p>
 <h1 id="12-忽略空白"><a href="#12-忽略空白" class="headerlink" title="12. 忽略空白"></a>12. 忽略空白</h1><p>範例：<code>git diff -w</code>或<code>git blame -w</code></p>
 <p>如果你對程式碼作縮排或是整個排版整理，<code>git blame</code>會顯示所有你的異動。</p>
 <p>git很聰明，他知道你異動了什麼，只需要加上一個參數<code>-w</code>就可以將空白的異動忽略不顯示。</p>
 <h1 id="13-加入檔案局部的修改"><a href="#13-加入檔案局部的修改" class="headerlink" title="13. 加入檔案局部的修改"></a>13. 加入檔案局部的修改</h1><p>範例：<code>git add -p</code></p>
 <p>有些人使用git的時候很喜歡<code>-p</code>這個參數，因為他有些很便利的功能。</p>
 <p><code>git add -p</code>可讓你選擇檔案中哪些異動範圍是你想要加入暫存檔案(staged file)，並且準備commit的。</p>
-<p><img src="http://www.alexkras.com/wp-content/uploads/git-add-p.png" alt=""></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-add-p.png"></p>
 <h1 id="14-老舊的分支"><a href="#14-老舊的分支" class="headerlink" title="14. 老舊的分支"></a>14. 老舊的分支</h1><p>範例：<code>git branch -a</code></p>
 <p>通常遠端的分支很多，有些分支也已經合併到master了。如果你像我一樣有些潔癖，這可能會讓你有點惱怒。</p>
 <p>加上<code>-a</code>參數，可以看到所有的方知包含遠地，加上<code>--merged</code>參數，僅會列出完整merge到master的分支。</p>
 <p>當你在<code>git fetch</code>時，可以加上<code>-p</code>參數，抓取遠地資訊的同時，也一併清理舊有的資料。</p>
-<p><img src="http://www.alexkras.com/wp-content/uploads/git-add-p.png" alt=""></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-add-p.png"></p>
 <p><code>git for-each-ref --sort=committerdate --format=&#39;%(refname:short) * %(authorname) * %(committerdate:relative)&#39; refs/remotes/ | column -t -s &#39;*&#39;</code>指令會列出所有遠端的分支，以及每個分支的最後一個commit。</p>
-<p><img src="http://www.alexkras.com/wp-content/uploads/fancy-branch-view.png" alt=""></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/fancy-branch-view.png"></p>
 <p>不幸的是，僅想要列出已合併的分支並不是一件簡單的事情。如果你只想看到合併的分支commit，可能需要寫一個script去比對找出合併的分支。</p>
 <h1 id="15-將檔案加入stash-儲藏"><a href="#15-將檔案加入stash-儲藏" class="headerlink" title="15. 將檔案加入stash(儲藏)"></a>15. 將檔案加入stash(儲藏)</h1><p>範例：<code>git stash --keep-index</code>或<code>git statsh -p</code></p>
 <p><code>git stash</code>就是將你修改過的檔案存放到一個堆疊(stack)，下次當你想要使用時，執行<code>git stash pop</code>就可以重新使用堆疊裡面修改的程式碼。<code>git stash list</code>可以看到所有你儲存的修改。使用<code>man git-stash</code>看一下還有哪些參數可以使用吧。</p>
 <p>通常執行<code>git stash</code>會一次將所有檔案放到stash(儲藏)。有時你只想將特定的檔案放入stash(儲藏)，而其他的檔案繼續在你的工作區。</p>
 <p>是否還記得前面使用過的<code>-p</code>這個參數?如同上述，在<code>git stash</code>後加上<code>-p</code>這個參數，會出現一個互動式的介面，針對一個修改區塊一個修改的區塊問你是否要加入stash(儲藏)。</p>
-<p><img src="http://www.alexkras.com/wp-content/uploads/git-stash-p.png" alt=""></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-stash-p.png"></p>
 <p>當你只想將某些檔案加入stash，還有一個小技巧是：</p>
 <ol>
 <li>先使用<code>git add</code>將你不想放入stash的檔案加入到staged file，例如<code>git add file1.js, file2.js</code>。</li>
 <li>接著執行<code>git stash --keep-index</code>。他會將你在unstaged file的檔案加入到stash。</li>
 <li>最後執行<code>git reset</code>，將staged file的檔案放回到unstaged file。</li>
 </ol>
-<h1 id="16-好的commit訊息"><a href="#16-好的commit訊息" class="headerlink" title="16. 好的commit訊息"></a>16. 好的commit訊息</h1><p>不久之前，我看一篇文章，是有關於良好的commit訊息，文章在此<a href="http://chris.beams.io/posts/git-commit/" target="_blank" rel="noopener">How to Write a Git Commit Message</a>。</p>
+<h1 id="16-好的commit訊息"><a href="#16-好的commit訊息" class="headerlink" title="16. 好的commit訊息"></a>16. 好的commit訊息</h1><p>不久之前，我看一篇文章，是有關於良好的commit訊息，文章在此<a target="_blank" rel="noopener" href="http://chris.beams.io/posts/git-commit/">How to Write a Git Commit Message</a>。</p>
 <p>有一個我非常堅持的原則是，<strong>每一個commit都應該是一個完整的句子</strong></p>
-<p><strong>When applied,this commit will:</strong>YOUR COMMIT MESSAGE</p>
+<p>**When applied,this commit will:**YOUR COMMIT MESSAGE</p>
 <p>例如：</p>
 <ul>
 <li>When applied this commit will <strong>Update README file</strong></li>
-<li>When applied this commit will **Add validation for GET /user/:id API call</li>
+<li>When applied this commit will **Add validation for GET &#x2F;user&#x2F;:id API call</li>
 <li>When applied this commit will Revert commit 12345</li>
 </ul>
 <h1 id="17-Git-自動補齊"><a href="#17-Git-自動補齊" class="headerlink" title="17. Git 自動補齊"></a>17. Git 自動補齊</h1><p>在有些作業系統預設(如：Ubuntu)有支援git自動補齊。如果你的作業系統沒有支援(如：Mac)，你可以參考下列的指南來啟動自動補齊：</p>
-<p><a href="https://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks#Auto-Completion" target="_blank" rel="noopener">https://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks#Auto-Completion</a></p>
+<p><a target="_blank" rel="noopener" href="https://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks#Auto-Completion">https://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks#Auto-Completion</a></p>
 <h1 id="18-將常用的指令建立一個新的別名"><a href="#18-將常用的指令建立一個新的別名" class="headerlink" title="18. 將常用的指令建立一個新的別名"></a>18. 將常用的指令建立一個新的別名</h1><p>太長的指令不易閱讀，你可以對這個長的指令創建一個短的別名指令。</p>
 <p>學習git最好的方式就是使用command line，而學習command line最好的方式就是自己親自動手下去做。</p>
 <p>使用一段時間後，你會發現哪些指令是你最常使用的，而你可以針對這些指令建立一個短的別名。</p>
@@ -366,7 +366,7 @@
 <p><code>git bisect</code>使用2分法，幫助你在許多commit中快速找到哪一個commit造成你程式無法正常執行。</p>
 <p>當你結束一個長假，回到公司pull專案的最新的版本，尚未pull時確認過程式可以正常運作，<br>但是pull之後就壞了。</p>
 <p>在你放假期間，專案中已經有好多commit了，你很難找出到底是在哪一次的commit造成的錯誤。</p>
-<p><img src="http://www.alexkras.com/wp-content/uploads/pulling-out-hair.jpg" alt=""></p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/pulling-out-hair.jpg"></p>
 <p>這時你可能嘗試找出是哪一隻程式出錯，然後使用<code>git blame</code>找出哪一行程式出錯，以及修改的人。</p>
 <p>如果簡單的錯誤還可以，但如果這個錯誤很難找出問題原因，這時你可以試著從commit的歷史紀錄找出造成功能無法正常運作的commit。</p>
 <p><code>git bisect</code>可以幫助你快速找到出問題的commit。</p>
@@ -385,8 +385,8 @@
 <li>執行<code>git bisect reset</code>回到你一開始執行<code>git bisect</code>的commit(例如你是在master分支最新的commit執行的)</li>
 <li><code>git bisect log</code> - 顯示<code>git bisect</code>最後一次成功的紀錄。</li>
 </ol>
-<p>你也可以結合<code>git bisect</code>寫一個自動化的script。你可以參考<a href="http://git-scm.com/docs/git-bisect#_bisect_run" target="_blank" rel="noopener">http://git-scm.com/docs/git-bisect#_bisect_run</a>。</p>
-<p><img src="http://www.alexkras.com/wp-content/uploads/git-bisect.gif" alt=""></p>
+<p>你也可以結合<code>git bisect</code>寫一個自動化的script。你可以參考<a target="_blank" rel="noopener" href="http://git-scm.com/docs/git-bisect#_bisect_run">http://git-scm.com/docs/git-bisect#_bisect_run</a>。</p>
+<p><img src="http://www.alexkras.com/wp-content/uploads/git-bisect.gif"></p>
 
   </div>
 </article>
