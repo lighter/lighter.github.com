@@ -151,7 +151,7 @@ date: 2019-08-07 17:06:40
 
 | 開始時間 	| 結束時間 	| 名稱 	| 平台 | 狀態 	|
 |:--------:|:----------:|:------:|:------:|:----:|
-|2022/10/15||投資癮的完整交易邏輯|pressplay|reading|
+|2022/10/15|2022/11/02|投資癮的完整交易邏輯|pressplay|done|
 |2022/07/12|2022/08/25|UX設計/研究全攻略:給新手的職場通識課|Hahow|done|
 |2022/03/12|2022/10/15|100 Days of Code: The Complete Python Pro Bootcamp for 2022|Udemy|done|
 |2022/02/08|2022/03/12|Docker Mastery: with Kubernetes +Swarm from a Docker Captain|Udemy|done|
