@@ -827,6 +827,11 @@
   dependencies:
     "sprintf-js" "^1.0.3"
 
+"hexo-insert-markdown@^1.4.4":
+  "integrity" "sha512-uGpI2lIRZdqUYJpQ2MiL2HhTwsx3FwBAFvnV8srqBI+Y89Q+Ny+bYI4nSxZJZ0pXFqXk1FziZv/lv/SnPa+sRg=="
+  "resolved" "https://registry.npmjs.org/hexo-insert-markdown/-/hexo-insert-markdown-1.4.4.tgz"
+  "version" "1.4.4"
+
 "hexo-log@^2.0.0":
   "integrity" "sha512-U7zdDae74pXcyhQEyNmpJdq3UI6zWKxQ7/zLoMr/d3CBRdIfB5yO8DWqKUnewfibYv0gODyTWUIhxQDWuwloow=="
   "resolved" "https://registry.npmjs.org/hexo-log/-/hexo-log-2.0.0.tgz"
@@ -911,7 +916,7 @@
     "prismjs" "^1.17.1"
     "strip-indent" "^3.0.0"
 
-"hexo@^6.3.0":
+"hexo@^6.3.0", "hexo@6.x":
   "integrity" "sha512-4Jq+rWd8sYvR1YdIQyndN/9WboQ/Mqm6eax8CjrjO+ePFm2oMVafSOx9WEyJ42wcLOHjfyMfnlQhnUuNmJIpPg=="
   "resolved" "https://registry.npmjs.org/hexo/-/hexo-6.3.0.tgz"
   "version" "6.3.0"
