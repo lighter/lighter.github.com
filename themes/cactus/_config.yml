@@ -26,7 +26,7 @@ nav:
 # (see https://fontawesome.com/icons?d=gallery&s=brands);
 # only 'mail' is an exception.
 social_links:
-  github: http://github.com/lighter
+    # github: http://github.com/lighter
     #  twitter: /
     #  facebook: /
     #  linkedin: /
