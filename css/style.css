@@ -1586,6 +1586,9 @@ article .content .caption {
 .highlight .code .strong {
   font-weight: bold;
 }
+.my-learning table {
+  display: table !important;
+}
 .my-learning td {
   border-bottom: 1px dashed #666 !important;
 }
