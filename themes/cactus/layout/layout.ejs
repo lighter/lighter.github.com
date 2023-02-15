@@ -5,6 +5,9 @@
     <% if (is_post()) { %>
       <%- partial('_partial/post/actions_desktop') %>
     <% } %>
+    <% if (is_current('learning')) { %>
+      <%- partial('_partial/learning/actions_desktop') %>
+    <% } %>
     <div class="content index py4">
         <% if (!is_post()) { %>
           <%- partial('_partial/header') %>
@@ -12,6 +15,9 @@
         <%- body %>
         <% if (is_post()) { %>
           <%- partial('_partial/post/actions_mobile') %>
+        <% } %>
+        <% if (is_current('learning')) { %>
+          <%- partial('_partial/learning/actions_mobile') %>
         <% } %>
         <%- partial('_partial/footer') %>
     </div>

@@ -66,7 +66,7 @@ public class Example {
 
 整個概念就是這樣。其他就是依據情況去做些變化使用。你可以藉由一個 setter 傳入依賴(dependency)。也可透過一個介面，並定義 setter 方法，最後實作呼叫這些 setter 方法。你可以將你的依賴設計為一個介面或是多行等等。
 
-### Part III: 為什麼我們要這麼做?
+## Part III: 為什麼我們要這麼做?
 
 除此之外，下面是一個 Example 類別的測試。
 

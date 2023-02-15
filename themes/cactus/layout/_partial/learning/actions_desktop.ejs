@@ -1,0 +1,22 @@
+<div id="header-post">
+  <a id="menu-icon" href="#" aria-label="<%- __('icons.menu') %>"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="<%- __('icons.menu') %>"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="<%- __('icons.top') %>"
+    onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
+      class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <br />
+    <span id="actions">
+      <ul>
+        <li><a class="icon" aria-label="<%- __('post.desktop.back_to_top') %>" href="#"
+            onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"
+              onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a>
+        </li>
+      </ul>
+    </span>
+    <br />
+    <div id="toc">
+      <%- toc(page.content) %>
+    </div>
+  </span>
+</div>
