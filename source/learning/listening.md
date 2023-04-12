@@ -39,5 +39,6 @@ date: 2023-02-04 14:33:09
 |2023/03/31|緬甸的未竟之路：種族、資本主義與二十一世紀的民主新危機|9789865509590|pressplay|
 |2023/04/01|從1%的選擇開始，去做你真正渴望的事|9789863986904|[youtube](https://www.youtube.com/watch?v=fmIO3OBHx6Q)*|
 |2023/04/02|怡辰老師的高效時間管理課|9786263053137|[youtube](https://www.youtube.com/watch?v=aFGAZc9ShNY)*|
+|2023/04/10|懲罰貧窮：大數據橫行的自動化時代，隱藏在演算法之下的不平等歧視|9786267089385|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/4FDDE3FBFF65911516046FE3BFCDF56E)|
 
 </div>
