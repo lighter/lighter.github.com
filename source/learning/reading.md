@@ -13,7 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 開始時間 	| 結束時間 	| 書名 	| 狀態 	| ISBN |
 |:--------:|:----------:|:------:|:----:|:----:|
-|2023/03/10||Building a Second Brain: A Proven Method to Organise Your Digital Life and Unlock Your Creative Potential|reading|B09MDNDYYF|
+|2023/03/10|2023/04/13|Building a Second Brain: A Proven Method to Organise Your Digital Life and Unlock Your Creative Potential|done|9781800812215|
 |2023/03/01|2023/03/08|間歇高效率的三次閱讀法：讀懂一本書只要100分鐘，解決過目就忘、知識無法內化與活用的閱讀煩惱|done|9789865076047|
 |2023/02/21|2023/03/01|網格交易策略|done|1230004392897|
 |2023/02/14|2023/02/20|加密貨幣的真相：揭穿區塊鏈無本金融的國王新衣|done|9789861344386|
