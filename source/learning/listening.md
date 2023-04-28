@@ -42,6 +42,8 @@ date: 2023-02-04 14:33:09
 |2023/04/13|高手決斷：「精英日課」人氣作家，帶你突破偏誤、盲點、偽邏輯，以科學思考打造優勢決|9789573297758|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/D2B6C5EB0506D0FEBAEF1853359D6779)|
 |2023/04/20|最強疲勞恢復法：國家級體能訓練師教你對抗慢性疲勞，打造不累的體質|9789573297758|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/CC378C02FE75C78BF121E9B2BC3275A1)|
 |2023/04/20|腸胃調整好，百病不上身|9786267095843|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/A20010461882CFFE421021E114F35FFD)|
+|2023/04/27|每個人的商學院・個人進階|9789862488997|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/C0B634A0ADE2C8E56FE3C03469282C68)|
+|2023/04/27|長勝心態：贏家不是一時得勝，卻輸掉人生！成功是慢慢存、可持續終生的行動|9789865519551|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/8FE1618B7152DC4F179094C1A8C06D87)|
 
 ## youtube
 
