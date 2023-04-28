@@ -44,6 +44,9 @@ date: 2023-02-04 14:33:09
 |2023/04/20|腸胃調整好，百病不上身|9786267095843|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/A20010461882CFFE421021E114F35FFD)|
 |2023/04/27|每個人的商學院・個人進階|9789862488997|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/C0B634A0ADE2C8E56FE3C03469282C68)|
 |2023/04/27|長勝心態：贏家不是一時得勝，卻輸掉人生！成功是慢慢存、可持續終生的行動|9789865519551|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/8FE1618B7152DC4F179094C1A8C06D87)|
+|2023/04/28|這輩子，只能平庸過日子？：學會把心智圖轉化「清單」和「行事曆」，找到「遠離舒適圈」的勇氣|9789869716420|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/3D5EBCF3D2E548FA8131107875365584)|
+|2023/04/28|倦怠，為何我們不想工作： 努力不一定能賺更多，我的人生站不起來，又不想跪下，除了躺平還可以怎樣？|9789860742718|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/544EA26EAF8D39917C83C4542D93DAB9)|
+|2023/04/28|我炒的是人生，不是股票！：運用投機者的脱貧思維，打造屬於你的自由人生|9786267014837|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/99A3B14394ECD6F18911CF779C992FE4)|
 
 ## youtube
 
