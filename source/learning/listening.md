@@ -47,6 +47,9 @@ date: 2023-02-04 14:33:09
 |2023/04/28|這輩子，只能平庸過日子？：學會把心智圖轉化「清單」和「行事曆」，找到「遠離舒適圈」的勇氣|9789869716420|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/3D5EBCF3D2E548FA8131107875365584)|
 |2023/04/28|倦怠，為何我們不想工作： 努力不一定能賺更多，我的人生站不起來，又不想跪下，除了躺平還可以怎樣？|9789860742718|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/544EA26EAF8D39917C83C4542D93DAB9)|
 |2023/04/28|我炒的是人生，不是股票！：運用投機者的脱貧思維，打造屬於你的自由人生|9786267014837|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/99A3B14394ECD6F18911CF779C992FE4)|
+|2023/05/09|護眼，從用對光開始：防3C藍害專家教你保護眼睛的終極秘笈|9786263183148|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/ADAF56F118F540D39EC8338A81AF6932)|
+|2023/05/09|人的條件|9789865482428|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/D87009A003A78E4BFFB0C913B754F2A9)|
+|2023/05/10|大局思維：倫敦政經學院行為科學教授，教你如何放大格局、掌握關鍵，達成最有利的職涯擴張目標|9789573292272|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/E16B346C918983B5EE4094178441DE49)|
 
 ## youtube
 
