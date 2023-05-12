@@ -13,6 +13,10 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/05/12|歐洲演講比賽冠軍的德國式邏輯陳述法：使你的發言溫暖、有說服力又受歡迎|9789573296560|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/6AC417C09606135958B4DEBA0E4A618A)|
+|2023/05/11|**練習設立界線：在愛裡保持距離，將那些無法掌控的事情全部放手**|9789573281597|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/71C1304C820D0B765353E19DF6C1A501)|
+|2023/05/11|為什麼要學歷史：面對當前世界危機的十個歷史教訓|9786263181489|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/058FFD53F714A473BFDDCD76BECD42DC)|
+|2023/05/11|一個人的療癒：真正的放下，是你不介意再度提起|9789865612627|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/BFA687DAC4F8BAA2F92E37AA827D632C)|
 |2023/05/10|為工作而活：生存、勞動、追求幸福感，一部人類的工作大歷史|9789860763607|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/81A11FAE872BFD6740ED2583C3A0C021)|
 |2023/05/10|大局思維：倫敦政經學院行為科學教授，教你如何放大格局、掌握關鍵，達成最有利的職涯擴張目標|9789573292272|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/E16B346C918983B5EE4094178441DE49)|
 |2023/05/09|人的條件|9789865482428|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/D87009A003A78E4BFFB0C913B754F2A9)|
@@ -30,7 +34,7 @@ date: 2023-02-04 14:33:09
 |2023/03/31|緬甸的未竟之路：種族、資本主義與二十一世紀的民主新危機|9789865509590|pressplay|
 |2023/03/30|個人儀式的力量：用微小而深刻的奇蹟習慣，在混亂中安頓身心|9789865076269|pressplay|
 |2023/03/30|詐騙交鋒：FBI安全顧問、神鬼交鋒傳奇詐欺師，教你輕鬆識破詐騙陷阱、練就戰勝騙子的反詐心法|9789579199919|pressplay|
-|2023/03/27|矽谷阿雅 追不到夢想就創一個！從台灣記者到臉書電商產品經理的顛覆筆記|9789863618515|pressplay|
+|2023/03/27|**矽谷阿雅 追不到夢想就創一個！從台灣記者到臉書電商產品經理的顛覆筆記**|9789863618515|pressplay|
 |2023/03/27|改變人心、贏得支持的奇蹟說服力|9789579094894|pressplay|
 |2023/03/24|每天10分鐘的高效率練習：德國腦開發教授教你輕鬆駕馭工作、生活的黃金法則|9789863612728|pressplay|
 |2023/03/17|寫作，是最好的自我投資|9789573284352|pressplay|
