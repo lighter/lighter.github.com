@@ -13,6 +13,9 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/05/15|Google、臉書、微軟專家教你的66堂科技趨勢必修課|9789867778956|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/2947A53F612DC3EF2B466B8B7427308C)|
+|2023/05/15|**除了經驗，我們還剩下什麼？：讓資深工作者邁入職涯高原期時，仍然維持競爭力的職場智慧**|9789864775453|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/E736A48CBE271C03BBB6EBDBD2B27C38)|
+|2023/05/15|瘋潮行銷：華頓商學院最熱門的一堂行銷課！6大關鍵感染力，瞬間引爆大流行|9789571364513|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/227DCFE202884BDE103E9C8B6110078B)|
 |2023/05/12|歐洲演講比賽冠軍的德國式邏輯陳述法：使你的發言溫暖、有說服力又受歡迎|9789573296560|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/6AC417C09606135958B4DEBA0E4A618A)|
 |2023/05/11|**練習設立界線：在愛裡保持距離，將那些無法掌控的事情全部放手**|9789573281597|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/71C1304C820D0B765353E19DF6C1A501)|
 |2023/05/11|為什麼要學歷史：面對當前世界危機的十個歷史教訓|9786263181489|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/058FFD53F714A473BFDDCD76BECD42DC)|
@@ -62,6 +65,7 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/05/14|少才是力量|9789579054393|[youtube](https://www.youtube.com/watch?v=OEo4KT-l3u4)|
 |2023/04/02|怡辰老師的高效時間管理課|9786263053137|[youtube](https://www.youtube.com/watch?v=aFGAZc9ShNY)|
 |2023/04/01|從1%的選擇開始，去做你真正渴望的事|9789863986904|[youtube](https://www.youtube.com/watch?v=fmIO3OBHx6Q)|
 
