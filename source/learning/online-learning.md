@@ -13,6 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 開始時間 	| 結束時間 	| 名稱 	| 平台 | 狀態 	|
 |:--------:|:----------:|:------:|:------:|:----:|
+|2023/05/15||Next.js Tutorial for Beginners|[youtube](https://www.youtube.com/playlist?list=PLC3y8-rFHvwgC9mj0qv972IO5DmD-H0ZH)|reading|
 |2023/04/29||解開全身痠痛 X 終生受用-從肌肉出發的痠痛自救實戰課|[pressplay](https://www.pressplay.cc/project/75EDE38CFD35285DFFEC2DE04DA239B3/about)|reading|
 |2023/04/15|2023/04/28|超級數字力|[知識衛星](https://sat.cool/course/28)|done|
 |2023/01/21|2023/03/26|機器學習基石上 (Machine Learning Foundations)---Mathematical Foundations 国立台湾大学|Coursera|done|

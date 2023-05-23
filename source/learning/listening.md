@@ -13,6 +13,11 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/05/21|長勝：靠運氣贏來的，憑實力也不會輸回去，常春藤名校「模型思維」課程指定必讀|9786267129760|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/6C3B4A745FA0F8B7D6AC464F41A2F8E1)|
+|2023/05/21|思維的良率：台積電教我的高效工作法，像經營者一樣思考、解題|9789865519568|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/D333A804CCF184B832E9D9C428244681)|
+|2023/05/18|終結毒性思考：瞬間扭轉負面想法的轉念練習|9789865073961|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/9FF3A62D6C85AFC7BC0E9AAE2A1615BF)|
+|2023/05/18|讓上司挺你、朋友懂你，跟誰都能聊不停的「回話技術」|9789865683177|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/3CC292A54630096AFA9F9A5A6DBD2179)|
+|2023/05/16|**100歲的人生戰略**|9789869373395|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/34D9429B4E91F14FD427305F815B0B03?oid=4687CF549F)|
 |2023/05/15|Google、臉書、微軟專家教你的66堂科技趨勢必修課|9789867778956|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/2947A53F612DC3EF2B466B8B7427308C)|
 |2023/05/15|**除了經驗，我們還剩下什麼？：讓資深工作者邁入職涯高原期時，仍然維持競爭力的職場智慧**|9789864775453|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/E736A48CBE271C03BBB6EBDBD2B27C38)|
 |2023/05/15|瘋潮行銷：華頓商學院最熱門的一堂行銷課！6大關鍵感染力，瞬間引爆大流行|9789571364513|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/227DCFE202884BDE103E9C8B6110078B)|
