@@ -13,6 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/05/23|IDEA工作原力：4大原則X6周聚焦思維，讓你找到越投入越快樂的職場天命|9789573299134|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/C03C6EA6636D10A18237105BCBDC3D87)|
 |2023/05/21|長勝：靠運氣贏來的，憑實力也不會輸回去，常春藤名校「模型思維」課程指定必讀|9786267129760|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/6C3B4A745FA0F8B7D6AC464F41A2F8E1)|
 |2023/05/21|思維的良率：台積電教我的高效工作法，像經營者一樣思考、解題|9789865519568|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/D333A804CCF184B832E9D9C428244681)|
 |2023/05/18|終結毒性思考：瞬間扭轉負面想法的轉念練習|9789865073961|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/9FF3A62D6C85AFC7BC0E9AAE2A1615BF)|
