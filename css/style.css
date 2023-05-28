@@ -1592,8 +1592,14 @@ article .content .caption {
 .my-learning td {
   border-bottom: 1px dashed #666 !important;
 }
+.my-learning td strong {
+  color: #ff4500;
+}
 .my-learning tbody tr:hover {
   background-color: #ecfda9;
+}
+.my-learning tbody tr:hover td strong {
+  color: #9400d3;
 }
 pre {
   overflow-x: auto;
