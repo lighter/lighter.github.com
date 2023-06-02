@@ -13,6 +13,8 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/06/02|智慧型手機知識碎片化時代的「閱讀力」最新技術大全：把現代病「無法集中」轉為個人智能，「輸入」與「輸出」最大化！|9786267095744|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/06C2CCA8F32E3E2099A7975B0D04918D)|
+|2023/05/31|低內耗的人，更輕盈|9786263531703|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/10AEBBEB97A218C83D0A69B45CD9F6B7)|
 |2023/05/28|**投資最重要的事：一本股神巴菲特讀了兩遍的書**|9789869422642|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/93123FF3F27DC36E36B3F1D80A13F3B8)|
 |2023/05/23|IDEA工作原力：4大原則X6周聚焦思維，讓你找到越投入越快樂的職場天命|9789573299134|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/C03C6EA6636D10A18237105BCBDC3D87)|
 |2023/05/21|長勝：靠運氣贏來的，憑實力也不會輸回去，常春藤名校「模型思維」課程指定必讀|9786267129760|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/6C3B4A745FA0F8B7D6AC464F41A2F8E1)|
