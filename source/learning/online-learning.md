@@ -13,6 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 開始時間 	| 結束時間 	| 名稱 	| 平台 | 狀態 	|
 |:--------:|:----------:|:------:|:------:|:----:|
+|2023/06/04||產品設計實戰：用Figma打造絕佳UI/UX|[Hahow](https://hahow.in/courses/5ee4d65789dc7e4854909ba1)|reading|
 |2023/05/15|2023/05/27|Next.js Tutorial for Beginners|[youtube](https://www.youtube.com/playlist?list=PLC3y8-rFHvwgC9mj0qv972IO5DmD-H0ZH)|done|
 |2023/04/29|2023/05/31|解開全身痠痛 X 終生受用-從肌肉出發的痠痛自救實戰課|[pressplay](https://www.pressplay.cc/pfoject/75EDE38CFD35285DFFEC2DE04DA239B3/about)|done|
 |2023/04/15|2023/04/28|超級數字力|[知識衛星](https://sat.cool/course/28)|done|
