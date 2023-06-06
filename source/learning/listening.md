@@ -13,6 +13,10 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/06/06|最高生產力工作法：不再窮忙！有策略的組織工作X專注優先要務的習慣，拿回人生主導權|9789863986386|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/55B07632899D66119C3DDB2484E1EF0F)|
+|2023/06/06|財務自由的條件：破產青年脫貧翻身的真實血淚故事，6條原則改變你的一生|9786267173305|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/8942DD3DF679E40CE864390B3E195144)|
+|2023/06/06|閱讀變現：一天30分鐘的榨書法，幫你最速儲備職場競爭力！|9786267079638|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/46DD530B953DCD2BEF06AA9685C7530C)|
+|2023/06/06|你管別人怎麼想：科學奇才費曼博士|9789864794836|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/712118DF1C59AF3D16B6854422703064)|
 |2023/06/02|智慧型手機知識碎片化時代的「閱讀力」最新技術大全：把現代病「無法集中」轉為個人智能，「輸入」與「輸出」最大化！|9786267095744|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/06C2CCA8F32E3E2099A7975B0D04918D)|
 |2023/05/31|低內耗的人，更輕盈|9786263531703|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/10AEBBEB97A218C83D0A69B45CD9F6B7)|
 |2023/05/28|**投資最重要的事：一本股神巴菲特讀了兩遍的書**|9789869422642|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/93123FF3F27DC36E36B3F1D80A13F3B8)|
