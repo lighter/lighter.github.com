@@ -13,6 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/06/12|從0開始的獲利模式：人人都可成為知名部落客,團購主,youtuber,直播客|9789864772872|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/BC547A4C2D5513A9A0ABA2319490DF2B)|
 |2023/06/12|**愛：如何在覺知中相愛，同時無懼地相處**|9786263103702|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/963F2232E005F76653D2B7428FB53ACD)|
 |2023/06/06|最高生產力工作法：不再窮忙！有策略的組織工作X專注優先要務的習慣，拿回人生主導權|9789863986386|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/55B07632899D66119C3DDB2484E1EF0F)|
 |2023/06/06|財務自由的條件：破產青年脫貧翻身的真實血淚故事，6條原則改變你的一生|9786267173305|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/8942DD3DF679E40CE864390B3E195144)|
