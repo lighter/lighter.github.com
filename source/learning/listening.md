@@ -13,6 +13,10 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/06/14|賺錢，也賺幸福：讓你累積財富、享受人生的理財魔法書|9789867778949|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/8E9CFE39CF39C6657FB8A9DEA56EA43E)|
+|2023/06/14|高階覺察：幫助思考與學習的後設認知，更加理解自己與他人，且能解釋未來的複雜決策|9789573296287|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/64EA7E1257FC93145830D6833897F65E)|
+|2023/06/14|**薩提爾的故事溝通：陪孩子練習愛，在愛中學習成長**|9789573294504|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/1AC233023AA3B97EC92D65E12AD9FFE7)|
+|2023/06/14|**薩提爾自我療癒之路：一場關於連結渴望、提昇生命力、轉化創傷的內在旅程**|4710405005918|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/C1254F5DEAAE95B6409B2305D85B5983)|
 |2023/06/13|上班族提早退休金錢課：富媽媽十方教你加速養大有限收入，博無限自由|9786269688708|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/181B36C1229891F7D475CF1148D75911?utm_source=edm&utm_medium=email&utm_campaign=system_R01&utm_content=article&utm_term=purchase_section)|
 |2023/06/12|從0開始的獲利模式：人人都可成為知名部落客,團購主,youtuber,直播客|9789864772872|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/BC547A4C2D5513A9A0ABA2319490DF2B)|
 |2023/06/12|**愛：如何在覺知中相愛，同時無懼地相處**|9786263103702|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/963F2232E005F76653D2B7428FB53ACD)|
