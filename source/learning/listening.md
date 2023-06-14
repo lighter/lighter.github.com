@@ -13,6 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/06/14|蒼藍鴿醫師告訴你：90％攸關性命的醫學常識，沒有人教！|9789869692212|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/AD199F93D9CFF5CB3CEE78086002D934)|
 |2023/06/14|賺錢，也賺幸福：讓你累積財富、享受人生的理財魔法書|9789867778949|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/8E9CFE39CF39C6657FB8A9DEA56EA43E)|
 |2023/06/14|高階覺察：幫助思考與學習的後設認知，更加理解自己與他人，且能解釋未來的複雜決策|9789573296287|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/64EA7E1257FC93145830D6833897F65E)|
 |2023/06/14|**薩提爾的故事溝通：陪孩子練習愛，在愛中學習成長**|9789573294504|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/1AC233023AA3B97EC92D65E12AD9FFE7)|
