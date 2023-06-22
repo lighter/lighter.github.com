@@ -13,6 +13,8 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/06/20|如何活用行為經濟學：解讀人性，運用推力，引導人們做出更好的行為，設計出更有效的政策|9789860611601|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/72EDBFEF1B23BEFC0489CAB55424E23D)|
+|2023/06/16|**連我都不瞭解自己內心的時候：韓國90萬人的線上心理師，陪你重新理解不安、憂鬱與焦慮，找到痛點，正視內心的求救訊號**|9786267095645|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/AB0116118FF21BEF96704DDE9DDC70A5)|
 |2023/06/14|蒼藍鴿醫師告訴你：90％攸關性命的醫學常識，沒有人教！|9789869692212|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/AD199F93D9CFF5CB3CEE78086002D934)|
 |2023/06/14|賺錢，也賺幸福：讓你累積財富、享受人生的理財魔法書|9789867778949|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/8E9CFE39CF39C6657FB8A9DEA56EA43E)|
 |2023/06/14|高階覺察：幫助思考與學習的後設認知，更加理解自己與他人，且能解釋未來的複雜決策|9789573296287|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/64EA7E1257FC93145830D6833897F65E)|
