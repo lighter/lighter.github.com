@@ -13,6 +13,9 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/06/22|你可以當好人，但不要好得不像人：有本事才給予。設立界線、有限度討好是長久關係的祕密|9786269660186|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/0ED3354EB7D21BA170FBAF70DA0517AE)|
+|2023/06/22|你不必成為一個好人：從令人疲憊的人際關係中釋放自己|9789573294009|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/2510346F7605E8304041C3111E4C01DD)|
+|2023/06/22|如何與朋友分手？清爽到不可思議的友情整理術|9786267164907|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/777B44E4CB6A008A2705FC47148774F4)|
 |2023/06/20|如何活用行為經濟學：解讀人性，運用推力，引導人們做出更好的行為，設計出更有效的政策|9789860611601|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/72EDBFEF1B23BEFC0489CAB55424E23D)|
 |2023/06/16|**連我都不瞭解自己內心的時候：韓國90萬人的線上心理師，陪你重新理解不安、憂鬱與焦慮，找到痛點，正視內心的求救訊號**|9786267095645|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/AB0116118FF21BEF96704DDE9DDC70A5)|
 |2023/06/14|蒼藍鴿醫師告訴你：90％攸關性命的醫學常識，沒有人教！|9789869692212|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/AD199F93D9CFF5CB3CEE78086002D934)|
