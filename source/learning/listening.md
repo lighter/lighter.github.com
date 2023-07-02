@@ -13,6 +13,10 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/07/02|矽島的危與機：半導體與地緣政治|9789865470432|[pressplay](https://www.pressplay.cc/link/6EC932124A)|
+|2023/07/01|投資前的精準判讀：巴菲特多次推薦，質化分析的12項金律|9789864774135|[pressplay](https://www.pressplay.cc/link/5486A1FB72)|
+|2023/06/30|開始分心，就是快要變強了：哈佛醫學院的「思緒漫遊」講座，如何用分心提升思想的廣度與創造力，還能使心情平靜而愉快|9789573299172|[pressplay](https://www.pressplay.cc/link/3238924980)|
+|2023/06/27|思維的製程：台積電教我的思維進階法，練成全局經營腦和先進工作術|9786267252062|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/8999868352CE22A099E22EC83881715C)|
 |2023/06/24|禮貌的力量：掌握最強生存思維！逆轉有毒關係、改造人生與職場的新科學|9786267212004|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/7960B7328AABB0E3B966ACE0E461E4DA)|
 |2023/06/23|矽谷傳說臥底報告|9786263358829|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/75D8F41B1F466756ECEC0608B4A7BC53)|
 |2023/06/22|你可以當好人，但不要好得不像人：有本事才給予。設立界線、有限度討好是長久關係的祕密|9786269660186|[pressplay](https://www.pressplay.cc/project/082A3A85B647A6210495A9C0DCCC0FCC/articles/0ED3354EB7D21BA170FBAF70DA0517AE)|

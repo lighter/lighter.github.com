@@ -13,6 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 開始時間 	| 結束時間 	| 名稱 	| 平台 | 狀態 	|
 |:--------:|:----------:|:------:|:------:|:----:|
+|2023/07/02||大人的文法課|[word up](https://shop.wordup.com.tw/product/422)|reading|
 |2023/06/05||Machine Learning A-Z™: AI, Python & R + ChatGPT Bonus [2023]|[Udemy](https://www.udemy.com/course/machinelearning/)|reading|
 |2023/06/04|2023/06/19|產品設計實戰：用Figma打造絕佳UI/UX|[Hahow](https://hahow.in/courses/5ee4d65789dc7e4854909ba1)|done|
 |2023/05/15|2023/05/27|Next.js Tutorial for Beginners|[youtube](https://www.youtube.com/playlist?list=PLC3y8-rFHvwgC9mj0qv972IO5DmD-H0ZH)|done|
