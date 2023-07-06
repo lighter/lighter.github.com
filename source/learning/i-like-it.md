@@ -15,6 +15,7 @@ date: 2023-06-11 21:34:09
 - [3 Simple Ideas From Functional Programming To Improve Your Code](https://www.youtube.com/watch?v=4B24vYj_vaI), `#sotfware-design`
 - [重新构想原子化 CSS](https://antfu.me/posts/reimagine-atomic-css-zh), `#css`
 - [Building a Simple Virtual DOM from Scratch](https://dev.to/ycmjason/building-a-simple-virtual-dom-from-scratch-3d05), `#javascript`
+- [Load Balancing](https://samwho.dev/load-balancing/), `#load-balancing`
 
 ## traval
 
