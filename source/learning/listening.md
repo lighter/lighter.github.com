@@ -13,6 +13,9 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/07/14|天賦就是你的超能力：陪伴青少年認識自我，成就最好的自己|9786263185203|[pressplay](https://www.pressplay.cc/link/4728C68EEF)|
+|2023/07/13|理性：人類最有效的認知工具，讓我們做出更好的選擇，採取更正確的行動|9786263180963|[pressplay](https://www.pressplay.cc/link/8532C0C0A8)|
+|2023/07/13|走路，也是一種哲學|9786269645602|[pressplay](https://www.pressplay.cc/link/2F52909F8C)|
 |2023/07/12|零干擾：善用簡單決策的力量，找回時間與注意力|9789573293354|[pressplay](https://www.pressplay.cc/link/6198A04197)|
 |2023/07/12|壓力管理大腦使用手冊：科學鍛鍊大腦最佳狀態，高壓下保持清晰思維|9789865515560|[pressplay](https://www.pressplay.cc/link/A976CCF15E)|
 |2023/07/12|商業書10倍高效閱讀法：這樣選書、讀書、用書最有效率|9786267099582|[pressplay](https://www.pressplay.cc/link/050AC17186)|
