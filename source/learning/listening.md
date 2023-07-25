@@ -13,6 +13,10 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/07/25|原則：生活和工作|9789867778178|[pressplay](https://www.pressplay.cc/link/41E2FE60BC)|
+|2023/07/25|豐田智慧：充分發揮人的力量|9789869783682|[pressplay](https://www.pressplay.cc/link/991A936FC3)|
+|2023/07/18|梅迪奇效應：跨界思考的技術，改變世界的力量|9789864774852|[pressplay](https://www.pressplay.cc/link/063896EBDD)|
+|2023/07/17|一年投資5分鐘：打造每月3萬被動收入，免看盤、不選股的最強小資理財法|9789573293958|[pressplay](https://www.pressplay.cc/link/8C99BF9FA8)|
 |2023/07/16|不被投資綁住的樂享生活理財族：《華爾街日報》第1名暢銷書．讓每一塊錢都能回本的「低風險現金流投資法」，打造真正理想的財富與自由|9789865079222|[pressplay](https://www.pressplay.cc/link/9C1E0B9A1F)|
 |2023/07/14|天賦就是你的超能力：陪伴青少年認識自我，成就最好的自己|9786263185203|[pressplay](https://www.pressplay.cc/link/4728C68EEF)|
 |2023/07/13|理性：人類最有效的認知工具，讓我們做出更好的選擇，採取更正確的行動|9786263180963|[pressplay](https://www.pressplay.cc/link/8532C0C0A8)|
