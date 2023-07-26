@@ -13,6 +13,9 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/07/26|理性與感性|9789863596134|[pressplay](https://www.pressplay.cc/link/6B84C5A32D)|
+|2023/07/26|共濟會，被隱藏的世界史：影響人類歷史，塑造世界版圖的神祕組織|9789865480363|[pressplay](https://www.pressplay.cc/link/578BD7F37B)|
+|2023/07/26|真希望我20歲就懂的事：史丹佛大學的創新×創意×創業震撼課程|9789573265177|[pressplay](https://www.pressplay.cc/link/A0E4C64755)|
 |2023/07/25|原則：生活和工作|9789867778178|[pressplay](https://www.pressplay.cc/link/41E2FE60BC)|
 |2023/07/25|豐田智慧：充分發揮人的力量|9789869783682|[pressplay](https://www.pressplay.cc/link/991A936FC3)|
 |2023/07/18|梅迪奇效應：跨界思考的技術，改變世界的力量|9789864774852|[pressplay](https://www.pressplay.cc/link/063896EBDD)|
