@@ -13,6 +13,9 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/08/09|卡內基快樂學：如何停止憂慮重新生活|9789869869379|[pressplay](https://www.pressplay.cc/link/2A1874F95D)|
+|2023/08/09|**如果父母情緒不成熟：和內在父母和解，從假性孤兒邁向情感獨立的大人**|9789865401177|[pressplay](https://www.pressplay.cc/link/0007C3B4A745FA0F8B7D6AC464F41A2F8E1)|
+|2023/08/09|讓可愛的錢繼續滾進來：28種財務自由的方法，讓你的錢比你會賺錢|9789571393926|[pressplay](https://www.pressplay.cc/link/2D72FB94D2)|
 |2023/08/06|OKR：做最重要的事|9789864796335|[pressplay](https://www.pressplay.cc/link/9E8AAF291F)|
 |2023/08/01|全息人生：專注本業，閒錢投資。輕鬆打造股市印鈔機，COVER 你一生！|9786267184981|[pressplay](https://www.pressplay.cc/link/546D7BFD37)|
 |2023/07/31|最有專注力的一年：在斜槓世代，把每件重要的事做得又快又好，讓你一心不亂的高效提案|9786263490482|[pressplay](https://www.pressplay.cc/link/DBA3090CA9)|
