@@ -13,6 +13,8 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/08/13|慢富：慢慢成為富一代，快快過上自由生活|9786263610002|[pressplay](https://www.pressplay.cc/link/629B0F4723)|
+|2023/08/13|完美投資組合：親訪10位投資界傳奇的長勝策略|9786263357389|[pressplay](https://www.pressplay.cc/link/0C03C564AD)|
 |2023/08/09|卡內基快樂學：如何停止憂慮重新生活|9789869869379|[pressplay](https://www.pressplay.cc/link/2A1874F95D)|
 |2023/08/09|**如果父母情緒不成熟：和內在父母和解，從假性孤兒邁向情感獨立的大人**|9789865401177|[pressplay](https://www.pressplay.cc/link/0007C3B4A745FA0F8B7D6AC464F41A2F8E1)|
 |2023/08/09|讓可愛的錢繼續滾進來：28種財務自由的方法，讓你的錢比你會賺錢|9789571393926|[pressplay](https://www.pressplay.cc/link/2D72FB94D2)|
