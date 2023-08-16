@@ -1,0 +1,8 @@
+User-agent: * 
+Disallow: /learning/
+Disallow: /css/
+Disallow: /js/
+Disallow: /images/
+
+User-agent: GPTBot
+Disallow: /
