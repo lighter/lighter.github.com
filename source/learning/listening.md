@@ -13,6 +13,10 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/08/17|世界冠軍教我的8堂高效能課|9786267252130|[pressplay](https://www.pressplay.cc/link/E474876B43)|
+|2023/08/17|優雅反駁的技術：善用溝通標靶，練就批判思考，讓對方服氣又不傷和氣|9789571399546|[pressplay](https://www.pressplay.cc/link/50AC9B7903)|
+|2023/08/16|外語腦升級革命|9786263535961|[pressplay](https://www.pressplay.cc/link/C012380E11)
+|2023/08/16|**彼得處方：《彼得原理》作者送給百萬讀者的終極職場解方**|9786267079980|[pressplay](https://www.pressplay.cc/link/03738F8890)
 |2023/08/13|慢富：慢慢成為富一代，快快過上自由生活|9786263610002|[pressplay](https://www.pressplay.cc/link/629B0F4723)|
 |2023/08/13|完美投資組合：親訪10位投資界傳奇的長勝策略|9786263357389|[pressplay](https://www.pressplay.cc/link/0C03C564AD)|
 |2023/08/09|卡內基快樂學：如何停止憂慮重新生活|9789869869379|[pressplay](https://www.pressplay.cc/link/2A1874F95D)|
