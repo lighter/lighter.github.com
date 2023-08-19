@@ -13,6 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/08/18|最高自律力：養成自律，從來都不靠硬撐|9789577416841|[pressplay](https://www.pressplay.cc/link/9F5045676F)|
 |2023/08/17|世界冠軍教我的8堂高效能課|9786267252130|[pressplay](https://www.pressplay.cc/link/E474876B43)|
 |2023/08/17|優雅反駁的技術：善用溝通標靶，練就批判思考，讓對方服氣又不傷和氣|9789571399546|[pressplay](https://www.pressplay.cc/link/50AC9B7903)|
 |2023/08/16|外語腦升級革命|9786263535961|[pressplay](https://www.pressplay.cc/link/C012380E11)
