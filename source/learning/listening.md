@@ -13,6 +13,9 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/09/04|瘋狂、恐慌與崩盤：一部投資人必讀的金融崩潰史|9789869887861|[pressplay](https://www.pressplay.cc/link/2EB19D3EA5)|
+|2023/09/04|一次讀10本書的串聯閱讀法|9789865078522|[pressplay](https://www.pressplay.cc/link/FC97D2C963)|
+|2023/09/04|**間歇高效率的三次閱讀法：讀懂一本書只要100分鐘，解決過目就忘、知識無法內化與活用的閱讀煩惱**|9789865076047|[pressplay](https://www.pressplay.cc/link/E9565077D8)|
 |2023/08/29|21天代謝回正飲食：從「食」傾聽心理真正的缺乏，吃好吃對，打破代謝負循環！|9786267184127|[pressplay](https://www.pressplay.cc/link/CAB29D8A10)|
 |2023/08/29|人慈：橫跨二十萬年的人性旅程，用更好的視角看待自己|9789571392110|[pressplay](https://www.pressplay.cc/link/2ED9CD5E14)|
 |2023/08/28|經濟學家眼中的世界(40周年好評增修版)：一本讀懂經濟學的優劣與局限，剖析政府、市場和公共政策，探索人類的幸福|9786267266151|[pressplay](https://www.pressplay.cc/link/3E9659B52E)|
@@ -49,13 +52,13 @@ date: 2023-02-04 14:33:09
 |2023/07/13|走路，也是一種哲學|9786269645602|[pressplay](https://www.pressplay.cc/link/2F52909F8C)|
 |2023/07/12|零干擾：善用簡單決策的力量，找回時間與注意力|9789573293354|[pressplay](https://www.pressplay.cc/link/6198A04197)|
 |2023/07/12|壓力管理大腦使用手冊：科學鍛鍊大腦最佳狀態，高壓下保持清晰思維|9789865515560|[pressplay](https://www.pressplay.cc/link/A976CCF15E)|
-|2023/07/12|商業書10倍高效閱讀法：這樣選書、讀書、用書最有效率|9786267099582|[pressplay](https://www.pressplay.cc/link/050AC17186)|
+|2023/07/12|商業書10倍高效閱讀法：這樣選書、讀書、用書最有效率|9786267099582|[pressplay](https://www.pressplay.cc/link/3B35E954EA)|
 |2023/07/06|自駕車革命：改變人類生活、顛覆社會樣貌的科技創新|9789869708623|[pressplay](https://www.pressplay.cc/link/F8982ED04C)|
 |2023/07/06|有錢人都在實踐的財富教養學：懂得賺錢的大腦是靠後天訓練的！啟動致富思維的6堂知識課|9789862896471|[pressplay](https://www.pressplay.cc/link/C2555F3CDB)|
 |2023/07/06|零時差攻擊：一秒癱瘓世界！《紐約時報》記者追蹤7年、訪問逾300位關鍵人物，揭露21世紀數位軍火地下產業鏈的暗黑真相|9786263100688|[pressplay](https://www.pressplay.cc/link/5DFD2DF383)|
 |2023/07/06|好策略的關鍵：策略大師從觀念到實作完整教戰，教你一步步擬訂好策略|9786267099674|[pressplay](https://www.pressplay.cc/link/E6C2F9683C)|
 |2023/07/06|彼得原理|9789869887878|[pressplay](https://www.pressplay.cc/link/360E409818)|
-|2023/07/06|卡片盒筆記：最高效思考筆記術，德國教授超強秘技，促進寫作、學習與思考，使你洞見源源不斷，成為專家|9789573295082|[pressplay](https://www.pressplay.cc/link/12860EFF14)|
+|2023/07/06|卡片盒筆記：最高效思考筆記術，德國教授超強秘技，促進寫作、學習與思考，使你洞見源源不斷，成為專家|9789573295082|[pressplay](https://www.pressplay.cc/link/F07CFF66A0)|
 |2023/07/03|咖哩的世界史：從印度出發到各國餐桌，日本最受歡迎國民料理的進化故事|9786267044063|[pressplay](https://www.pressplay.cc/link/5319704203)|
 |2023/07/02|矽島的危與機：半導體與地緣政治|9789865470432|[pressplay](https://www.pressplay.cc/link/6EC932124A)|
 |2023/07/01|投資前的精準判讀：巴菲特多次推薦，質化分析的12項金律|9789864774135|[pressplay](https://www.pressplay.cc/link/5486A1FB72)|
