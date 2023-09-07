@@ -13,6 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/09/07|大亨小傳|9789573270140|[pressplay](https://www.pressplay.cc/link/67BF2FD4D0)|
 |2023/09/04|瘋狂、恐慌與崩盤：一部投資人必讀的金融崩潰史|9789869887861|[pressplay](https://www.pressplay.cc/link/2EB19D3EA5)|
 |2023/09/04|一次讀10本書的串聯閱讀法|9789865078522|[pressplay](https://www.pressplay.cc/link/FC97D2C963)|
 |2023/09/04|**間歇高效率的三次閱讀法：讀懂一本書只要100分鐘，解決過目就忘、知識無法內化與活用的閱讀煩惱**|9789865076047|[pressplay](https://www.pressplay.cc/link/E9565077D8)|
