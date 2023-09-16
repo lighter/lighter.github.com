@@ -13,6 +13,10 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/09/15|通膨時代，我選擇穩定致富：輕鬆跑贏通膨、躺著也賺的指數化投資，讓你的錢錢不縮水！|9789573299332|[pressplay](https://www.pressplay.cc/link/57D07BAAB4)|
+|2023/09/15|微創新大突破：八大心法教你培育創意的火花，平凡的點子也能積累出意想不到的成果|9789573299035|[pressplay](https://www.pressplay.cc/link/0EE88D96F9)|
+|2023/09/15|打造第二大腦：多一個數位大腦，資訊超載時代的高效能知識管理術|9786267252093|[pressplay](https://www.pressplay.cc/link/C0B5ED1F9A)|
+|2023/09/14|收穫心態：跳脫滿分思維，當下的成功和幸福，由你決定|9786267252499|[pressplay](https://www.pressplay.cc/link/6F36D7C7A5)|
 |2023/09/07|大亨小傳|9789573270140|[pressplay](https://www.pressplay.cc/link/67BF2FD4D0)|
 |2023/09/04|瘋狂、恐慌與崩盤：一部投資人必讀的金融崩潰史|9789869887861|[pressplay](https://www.pressplay.cc/link/2EB19D3EA5)|
 |2023/09/04|一次讀10本書的串聯閱讀法|9789865078522|[pressplay](https://www.pressplay.cc/link/FC97D2C963)|
