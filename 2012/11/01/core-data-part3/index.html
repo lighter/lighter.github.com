@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="延續Core Data-Part2的文章，現在要加入的是搜尋，當Table View中有越來越多的資料後，要尋找某比資料的話，用眼睛尋找是一件很累人的事情！所以可以透過輸入關鍵字來搜尋，接下來就來完成這個範例。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Core Data-Part3">
+<meta property="og:url" content="https://lighter.github.io/2012/11/01/core-data-part3/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:description" content="延續Core Data-Part2的文章，現在要加入的是搜尋，當Table View中有越來越多的資料後，要尋找某比資料的話，用眼睛尋找是一件很累人的事情！所以可以透過輸入關鍵字來搜尋，接下來就來完成這個範例。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lighter.github.io/images/CoreDataWithSearch/1.png">
+<meta property="og:image" content="https://lighter.github.io/images/CoreDataWithSearch/2.png">
+<meta property="og:image" content="https://lighter.github.io/images/CoreDataWithSearch/3.png">
+<meta property="article:published_time" content="2012-11-01T03:48:00.000Z">
+<meta property="article:modified_time" content="2012-11-01T03:48:00.000Z">
+<meta property="article:author" content="lighter">
+<meta property="article:tag" content="core data">
+<meta property="article:tag" content="iPhone">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lighter.github.io/images/CoreDataWithSearch/1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>Core Data-Part3</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2012/11/03/core-data-relationship/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2012/10/28/ios-with-dropbox/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="回到頁首" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2012/11/01/core-data-part3/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2012/11/01/core-data-part3/&text=Core Data-Part3"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2012/11/01/core-data-part3/&title=Core Data-Part3"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2012/11/01/core-data-part3/&is_video=false&description=Core Data-Part3"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Core Data-Part3&body=Check out this article: https://lighter.github.io/2012/11/01/core-data-part3/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2012/11/01/core-data-part3/&title=Core Data-Part3"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2012/11/01/core-data-part3/&title=Core Data-Part3"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2012/11/01/core-data-part3/&title=Core Data-Part3"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2012/11/01/core-data-part3/&title=Core Data-Part3"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2012/11/01/core-data-part3/&name=Core Data-Part3&description=&lt;p&gt;延續&lt;a href=&#34;http://lighter.tw/blog/2012/06/02/core-data-part2/&#34;&gt;Core Data-Part2&lt;/a&gt;的文章，現在要加入的是搜尋，當Table View中有越來越多的資料後，要尋找某比資料的話，用眼睛尋找是一件很累人的事情！所以可以透過輸入關鍵字來搜尋，接下來就來完成這個範例。&lt;/p&gt;
+&lt;img src=&#34;/images/CoreDataWithSearch/1.png&#34; class=&#34;&#34; title=&#34;216px 390px&#34;&gt;
+&lt;img src=&#34;/images/CoreDataWithSearch/2.png&#34; class=&#34;&#34; title=&#34;216px 390px&#34;&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2012/11/01/core-data-part3/&t=Core Data-Part3"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Core Data-Part3
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">lighter</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2012-11-01T03:48:00.000Z" itemprop="datePublished">2012-11-01</time>
+        
+        (Updated: <time datetime="2012-11-01T03:48:00.000Z" itemprop="dateModified">2012-11-01</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/core-data/" rel="tag">core data</a>, <a class="tag-link-link" href="/tags/iPhone/" rel="tag">iPhone</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>延續<a target="_blank" rel="noopener" href="http://lighter.tw/blog/2012/06/02/core-data-part2/">Core Data-Part2</a>的文章，現在要加入的是搜尋，當Table View中有越來越多的資料後，要尋找某比資料的話，用眼睛尋找是一件很累人的事情！所以可以透過輸入關鍵字來搜尋，接下來就來完成這個範例。</p>
+<img src="/images/CoreDataWithSearch/1.png" class="" title="216px 390px">
+<img src="/images/CoreDataWithSearch/2.png" class="" title="216px 390px">
+
+<span id="more"></span>
+
+<p><strong>Step 1.加入<code>Search Bar and Search Display Controller</code></strong></p>
+<p>加入<code>Search Bar and Search Display Controller</code>到<code>Table View</code>上方。</p>
+<img src="/images/CoreDataWithSearch/3.png" class="">
+
+<p><strong>Step 2.編輯MasterViewController.h檔案</strong></p>
+<figure class="highlight objc"><figcaption><span>MasterViewController.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="string">&lt;CoreData/CoreData.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="meta">#import <span class="string">&quot;Phone.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MasterViewController</span> : <span class="title">UITableViewController</span> </span></span><br><span class="line">&lt;<span class="built_in">NSFetchedResultsControllerDelegate</span>, <span class="built_in">UISearchDisplayDelegate</span>, <span class="built_in">UISearchBarDelegate</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">//3</span></span><br><span class="line">  <span class="type">BOOL</span> savedSearchTerm;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="built_in">NSFetchedResultsController</span> *fetchedResultsController;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="built_in">NSManagedObjectContext</span> *managedObjectContext;</span><br><span class="line"></span><br><span class="line"><span class="comment">//4</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">retain</span>) <span class="built_in">NSMutableArray</span> *searchResults;</span><br><span class="line"></span><br><span class="line"><span class="comment">//5</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">retain</span>) <span class="built_in">NSIndexPath</span> *indexP;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><pre><code>引入&lt;code&gt;Phone.h&lt;/code&gt;。
+</code></pre>
+<ol start="2">
+<li><pre><code>加入&lt;code&gt;UISearchDisplayDelegate&lt;/code&gt;、&lt;code&gt;UISearchBarDelegate&lt;/code&gt;兩個協定。
+</code></pre>
+<ol start="3">
+<li><pre><code>&lt;code&gt;saveSearchTerm&lt;/code&gt;用來判斷是否為搜尋狀態。
+</code></pre>
+<ol start="4">
+<li><pre><code>&lt;code&gt;searchResults&lt;/code&gt;陣列是用來儲存搜尋的結果。
+</code></pre>
+<ol start="5">
+<li><pre><code>&lt;code&gt;indexP&lt;/code&gt;是用來取得搜尋結果，點選cell的索引值。
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Step 3.編輯MasterViewController.m</strong></p>
+<figure class="highlight objc"><figcaption><span>MasterViewController.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@synthesize</span> indexP;</span><br></pre></td></tr></table></figure>
+
+<p>補上<code>synthesize</code>。</p>
+<figure class="highlight objc"><figcaption><span>MasterViewController.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">- (<span class="type">void</span>)viewDidLoad</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="variable language_">super</span> viewDidLoad];</span><br><span class="line">    <span class="keyword">self</span>.searchResults = [<span class="built_in">NSMutableArray</span> arrayWithCapacity:[[<span class="keyword">self</span>.fetchedResultsController fetchedObjects] count]];</span><br><span class="line">    [<span class="keyword">self</span>.tableView reloadData];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">- (<span class="type">void</span>)viewDidUnload</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="variable language_">super</span> viewDidUnload];</span><br><span class="line">    <span class="keyword">self</span>.searchResults = <span class="literal">nil</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><pre><code>在`viewDidLoad`方法內對`searchResults`初始化，並且重新整理`Table View`。
+</code></pre>
+<ol start="2">
+<li><pre><code>`viewDidUnload`方法內，將`searchResults`釋放掉。
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight objc"><figcaption><span>MasterViewController.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSInteger</span>)tableView:(<span class="built_in">UITableView</span> *)tableView numberOfRowsInSection:(<span class="built_in">NSInteger</span>)section</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (tableView == <span class="keyword">self</span>.searchDisplayController.searchResultsTableView) &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span>.searchResults count];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="type">id</span> &lt;<span class="built_in">NSFetchedResultsSectionInfo</span>&gt; sectionInfo = [[<span class="keyword">self</span>.fetchedResultsController sections] objectAtIndex:section];</span><br><span class="line">    <span class="keyword">return</span> [sectionInfo numberOfObjects];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>Table View</code>的<code>cell</code>個數，在搜尋的時候會不一樣，因此<code>tableView:numberOfRowsInSection:</code>方法需要做修改。 </p>
+<p>如上當<code>if</code>判斷式條件成立時，會回傳<code>searchResults</code>陣列的個數，否則就回傳原本<code>fetchedResultsController</code>的個數。</p>
+<figure class="highlight objc"><figcaption><span>MasterViewController.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:<span class="string">@&quot;Cell&quot;</span>];</span><br><span class="line">	</span><br><span class="line">    <span class="comment">//1</span></span><br><span class="line">    <span class="keyword">if</span> (cell == <span class="literal">nil</span>) &#123;</span><br><span class="line">      cell = [[<span class="built_in">UITableViewCell</span> alloc] initWithStyle:<span class="built_in">UITableViewCellStyleDefault</span> reuseIdentifier:<span class="string">@&quot;Cell&quot;</span>];</span><br><span class="line">      cell.accessoryType = <span class="built_in">UITableViewCellAccessoryDisclosureIndicator</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">//2</span></span><br><span class="line">    Phone *phone = <span class="literal">nil</span>;</span><br><span class="line">    <span class="keyword">if</span> (tableView == <span class="keyword">self</span>.searchDisplayController.searchResultsTableView)</span><br><span class="line">    &#123;</span><br><span class="line">      phone = [<span class="keyword">self</span>.searchResults objectAtIndex:indexPath.row];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      phone = [<span class="keyword">self</span>.fetchedResultsController objectAtIndexPath:indexPath];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//3</span></span><br><span class="line">    cell.textLabel.text = phone.name;</span><br><span class="line">    <span class="keyword">return</span> cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><pre><code>這邊需要額外使用程式碼的方式定義一個`cell`，並且初始化，因為在搜尋的時候並不知道`Storyboard`中的`cell`。
+</code></pre>
+<ol start="2">
+<li><pre><code>當`tableView`是在搜尋的狀態時，指定`searchResults`搜尋結果給`phone`，反之將`fetchedResultsController`指定給`phone`。
+</code></pre>
+<ol start="3">
+<li><pre><code>這邊改成直接指定`cell`的文字為`phone.name`。
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight objc"><figcaption><span>MasterViewController.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> mark -</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> mark UISearchDisplayController Delegate Methods</span></span><br><span class="line"></span><br><span class="line">- (<span class="type">BOOL</span>)searchDisplayController:(<span class="built_in">UISearchDisplayController</span> *)controller shouldReloadTableForSearchString:(<span class="built_in">NSString</span> *)searchString</span><br><span class="line">&#123;</span><br><span class="line">  [<span class="keyword">self</span> filterContentForSearchText:searchString scope:<span class="string">@&quot;All&quot;</span>];</span><br><span class="line">  savedSearchTerm = <span class="literal">TRUE</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="type">BOOL</span>)searchDisplayController:(<span class="built_in">UISearchDisplayController</span> *)controller shouldReloadTableForSearchScope:(<span class="built_in">NSInteger</span>)searchOption</span><br><span class="line">&#123;</span><br><span class="line">  [<span class="keyword">self</span> filterContentForSearchText:[<span class="keyword">self</span>.searchDisplayController.searchBar text] scope:<span class="string">@&quot;All&quot;</span>];</span><br><span class="line">  savedSearchTerm = <span class="literal">TRUE</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="type">void</span>) searchDisplayControllerWillEndSearch:(<span class="built_in">UISearchDisplayController</span> *)controller&#123;</span><br><span class="line">  savedSearchTerm = <span class="literal">TRUE</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加入上述三個<code>UISearchDisplayController</code>的方法，並且指定<code>savedSearchTerm</code>為<code>TRUE</code>，其中可以看到<code>filterContentForSearchText:scope:</code>這個方法，該方法是用來根據您輸入的文字做搜尋的。</p>
+<figure class="highlight objc"><figcaption><span>MasterViewController.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> mark -</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> mark Content Filtering</span></span><br><span class="line"></span><br><span class="line">- (<span class="type">void</span>)filterContentForSearchText:(<span class="built_in">NSString</span>*)searchText scope:(<span class="built_in">NSString</span>*)scope</span><br><span class="line">&#123;</span><br><span class="line">	[<span class="keyword">self</span>.searchResults removeAllObjects];</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@&quot;search text: %@&quot;</span>, searchText);</span><br><span class="line">	<span class="keyword">for</span> (Phone *phone <span class="keyword">in</span> [<span class="keyword">self</span>.fetchedResultsController fetchedObjects])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> ([scope isEqualToString:<span class="string">@&quot;All&quot;</span>] || [phone.name isEqualToString:scope])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">NSComparisonResult</span> result = [phone.name compare:searchText</span><br><span class="line">                                             options:(<span class="built_in">NSCaseInsensitiveSearch</span>|<span class="built_in">NSDiacriticInsensitiveSearch</span>)</span><br><span class="line">                                               range:<span class="built_in">NSMakeRange</span>(<span class="number">0</span>, [searchText length])];</span><br><span class="line">      <span class="keyword">if</span> (result == <span class="built_in">NSOrderedSame</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				[<span class="keyword">self</span>.searchResults addObject:phone];</span><br><span class="line">      &#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>該方法會根據您輸入的字串，尋找到符合的結果！</p>
+<figure class="highlight objc"><figcaption><span>MasterViewController.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line">-(<span class="type">void</span>) tableView:(<span class="built_in">UITableView</span> *)tableView didSelectRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> (savedSearchTerm) &#123;</span><br><span class="line">    indexP = indexPath;</span><br><span class="line">    [<span class="keyword">self</span> performSegueWithIdentifier:<span class="string">@&quot;showDetail&quot;</span> sender:<span class="keyword">self</span>];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">- (<span class="type">void</span>)prepareForSegue:(<span class="built_in">UIStoryboardSegue</span> *)segue sender:(<span class="type">id</span>)sender</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> ([[segue identifier] isEqualToString:<span class="string">@&quot;showDetail&quot;</span>]) &#123;</span><br><span class="line">      <span class="keyword">if</span> (savedSearchTerm) &#123;</span><br><span class="line">        <span class="built_in">NSManagedObject</span> *object = [[<span class="keyword">self</span> fetchedResultsController] objectAtIndexPath:indexP];</span><br><span class="line">        [[segue destinationViewController] setDetailItem:object];</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">NSIndexPath</span> *indexPath = [<span class="keyword">self</span>.tableView indexPathForSelectedRow];</span><br><span class="line">        <span class="built_in">NSManagedObject</span> *object = [[<span class="keyword">self</span> fetchedResultsController] objectAtIndexPath:indexPath];</span><br><span class="line">        [[segue destinationViewController] setDetailItem:object];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><pre><code>當你搜尋完畢後要可以點選`cell`，然後看到該`cell`的細部資訊，所以透過`tableView:didSelectRowAtIndexPath:`方法可以取得你點選`cell`的`indexPath`索引值，將該值指定給`indexP`，在呼叫到`perforSegueWithIdentifier:sender:`方法。
+</code></pre>
+<ol start="2">
+<li><pre><code>該方法就是要用來傳遞參數到`DetailViewController`的，一樣需要判斷是否在搜尋的狀態，然後再傳遞對應的索引值(`indexPath`或`indexP`)。
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>請開啟 JavaScript 功能來使用留言系統</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/learning/">學習中</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2012/11/01/core-data-part3/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2012/11/01/core-data-part3/&text=Core Data-Part3"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2012/11/01/core-data-part3/&title=Core Data-Part3"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2012/11/01/core-data-part3/&is_video=false&description=Core Data-Part3"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Core Data-Part3&body=Check out this article: https://lighter.github.io/2012/11/01/core-data-part3/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2012/11/01/core-data-part3/&title=Core Data-Part3"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2012/11/01/core-data-part3/&title=Core Data-Part3"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2012/11/01/core-data-part3/&title=Core Data-Part3"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2012/11/01/core-data-part3/&title=Core Data-Part3"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2012/11/01/core-data-part3/&name=Core Data-Part3&description=&lt;p&gt;延續&lt;a href=&#34;http://lighter.tw/blog/2012/06/02/core-data-part2/&#34;&gt;Core Data-Part2&lt;/a&gt;的文章，現在要加入的是搜尋，當Table View中有越來越多的資料後，要尋找某比資料的話，用眼睛尋找是一件很累人的事情！所以可以透過輸入關鍵字來搜尋，接下來就來完成這個範例。&lt;/p&gt;
+&lt;img src=&#34;/images/CoreDataWithSearch/1.png&#34; class=&#34;&#34; title=&#34;216px 390px&#34;&gt;
+&lt;img src=&#34;/images/CoreDataWithSearch/2.png&#34; class=&#34;&#34; title=&#34;216px 390px&#34;&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2012/11/01/core-data-part3/&t=Core Data-Part3"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <!-- <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2023
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'lighter/lighter.github.com';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'utteranc';
+      var utterances_theme = 'github-light';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

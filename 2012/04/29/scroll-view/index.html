@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="當iPhone的畫面要塞進很多內容時，可以利用Scroll View來捲動畫面瀏覽頁面，例如當畫面需要呈現很多張圖片的時候，一個View只能呈現一張UIImage，因此可以利用Scroll View來呈現。 最後的結果如下圖：(將圖片向右排列，手指將畫面往左拖曳，即可看到其他的圖片)。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scroll View">
+<meta property="og:url" content="https://lighter.github.io/2012/04/29/scroll-view/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:description" content="當iPhone的畫面要塞進很多內容時，可以利用Scroll View來捲動畫面瀏覽頁面，例如當畫面需要呈現很多張圖片的時候，一個View只能呈現一張UIImage，因此可以利用Scroll View來呈現。 最後的結果如下圖：(將圖片向右排列，手指將畫面往左拖曳，即可看到其他的圖片)。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/scrollViews1.jpeg">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/scrollViews2.jpeg">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/scrollViews3.jpeg">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/scrollViews4.jpeg">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/scrollViews5.jpeg">
+<meta property="article:published_time" content="2012-04-29T09:27:00.000Z">
+<meta property="article:modified_time" content="2012-04-29T09:27:00.000Z">
+<meta property="article:author" content="lighter">
+<meta property="article:tag" content="iPhone">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lighter.github.io/images/iPhone/scrollViews1.jpeg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>Scroll View</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2012/05/01/segmented-controller/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2012/04/26/image-view/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="回到頁首" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2012/04/29/scroll-view/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2012/04/29/scroll-view/&text=Scroll View"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2012/04/29/scroll-view/&title=Scroll View"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2012/04/29/scroll-view/&is_video=false&description=Scroll View"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Scroll View&body=Check out this article: https://lighter.github.io/2012/04/29/scroll-view/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2012/04/29/scroll-view/&title=Scroll View"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2012/04/29/scroll-view/&title=Scroll View"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2012/04/29/scroll-view/&title=Scroll View"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2012/04/29/scroll-view/&title=Scroll View"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2012/04/29/scroll-view/&name=Scroll View&description=&lt;p&gt;當iPhone的畫面要塞進很多內容時，可以利用&lt;code&gt;Scroll View&lt;/code&gt;來捲動畫面瀏覽頁面，例如當畫面需要呈現很多張圖片的時候，一個&lt;code&gt;View&lt;/code&gt;只能呈現一張&lt;code&gt;UIImage&lt;/code&gt;，因此可以利用&lt;code&gt;Scroll View&lt;/code&gt;來呈現。&lt;/p&gt;
+&lt;p&gt;最後的結果如下圖：(將圖片向右排列，手指將畫面往左拖曳，即可看到其他的圖片)。&lt;/p&gt;
+&lt;img src=&#34;/images/iPhone/scrollViews1.jpeg&#34; class=&#34;&#34;&gt;
+&lt;img src=&#34;/images/iPhone/scrollViews2.jpeg&#34; class=&#34;&#34;&gt;
+&lt;img src=&#34;/images/iPhone/scrollViews3.jpeg&#34; class=&#34;&#34;&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2012/04/29/scroll-view/&t=Scroll View"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Scroll View
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">lighter</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2012-04-29T09:27:00.000Z" itemprop="datePublished">2012-04-29</time>
+        
+        (Updated: <time datetime="2012-04-29T09:27:00.000Z" itemprop="dateModified">2012-04-29</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/iPhone/" rel="tag">iPhone</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>當iPhone的畫面要塞進很多內容時，可以利用<code>Scroll View</code>來捲動畫面瀏覽頁面，例如當畫面需要呈現很多張圖片的時候，一個<code>View</code>只能呈現一張<code>UIImage</code>，因此可以利用<code>Scroll View</code>來呈現。</p>
+<p>最後的結果如下圖：(將圖片向右排列，手指將畫面往左拖曳，即可看到其他的圖片)。</p>
+<img src="/images/iPhone/scrollViews1.jpeg" class="">
+<img src="/images/iPhone/scrollViews2.jpeg" class="">
+<img src="/images/iPhone/scrollViews3.jpeg" class="">
+
+<span id="more"></span>
+
+<p>**Step 1.**建立<code>Single View</code>專案，專案命名為<code>Scroll View</code>。</p>
+<p>**Step 2.**編輯MainStoryboard.storyboard。</p>
+<p>加入一個<code>Scroll View</code>到View中。</p>
+<img src="/images/iPhone/scrollViews4.jpeg" class="">
+
+<p>**Step 3.**編輯ViewController.h。</p>
+<ol>
+    <li>加入<code>UIScrollViewDelegate</code>的協定。</li>
+    <li>定義一個<code>UIScrollView</code>的變數<code>scrollView_</code>。</li>
+</ol>
+
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span>&lt;<span class="title">UIScrollViewDelegate</span>&gt;</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">UIScrollView</span> *scrollView_;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UIScrollView</span> *scrollView;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>**Step 4.**編輯ViewController.m。</p>
+<ol>
+    <li>首先要在專案內加入幾張圖片檔案。</li>
+    <li>第6行，定義一個<code>NSMutableArray</code>的陣列變數<code>photoName</code>記錄圖片的檔案名稱。</li>
+    <li>第7行，再定義一個<code>NSMutableArray</code>的陣列變數<code>photos</code>，一個一個使用<code>objectAtIndex</code>定義<code>UIImage</code>。</li>
+    <li>第14行，<code>i</code>變數用調整<code>UIImage View</code>的寬度。</li>
+    <li>第15行，使用for迴圈，一個一個定義<code>UIImage</code>。</li>
+    <li>第16行，使用<code>UIImageView</code>來放置要顯示的圖片<code>UIImage</code>。</li>
+    <li>第17行，定義<code>UIImageView</code>的模式為<code>UIViewContentModeScaleToFill</code>自動縮放填滿畫面。</li>
+    <li>第18行，定義<code>clipsToBounds</code>，當值為<code>YES</code>時，畫面會自動切除影像超出Bounds的部份</li>
+    <li>第20行，使用<code>CGRectMake</code>定義<code>UIImageView</code>的<code>(x座標, y座標, 寬, 高)</code>。</li>
+    <li>第22行，將<code>imageView</code>加入<code>scrollView</code>。</li>
+    <li>第25行，定義<code>scrollView</code>的頁面大小<code>CGSizeMake(寬, 高)</code>。</li>
+    <li>第26行，定義<code>scrollView_</code>的<code>delegate</code>為<code>self</code>。</li>
+</ol>
+
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@synthesize</span> scrollView = scrollView_;</span><br><span class="line">- (<span class="type">void</span>)viewDidLoad</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="variable language_">super</span> viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSMutableArray</span> *photoName = [<span class="built_in">NSMutableArray</span> arrayWithObjects:<span class="string">@&quot;a2.jpg&quot;</span>, <span class="string">@&quot;a3.jpg&quot;</span>, <span class="string">@&quot;a4.jpg&quot;</span>, <span class="string">@&quot;a5.jpg&quot;</span>, <span class="literal">nil</span>];</span><br><span class="line">    <span class="built_in">NSMutableArray</span> *photos = [<span class="built_in">NSMutableArray</span> arrayWithObjects:</span><br><span class="line">                                [<span class="built_in">UIImage</span> imageNamed:[photoName objectAtIndex:<span class="number">0</span>]],</span><br><span class="line">                                [<span class="built_in">UIImage</span> imageNamed:[photoName objectAtIndex:<span class="number">1</span>]],</span><br><span class="line">                                [<span class="built_in">UIImage</span> imageNamed:[photoName objectAtIndex:<span class="number">2</span>]],</span><br><span class="line">                                [<span class="built_in">UIImage</span> imageNamed:[photoName objectAtIndex:<span class="number">3</span>]],</span><br><span class="line">                                <span class="literal">nil</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">UIImage</span> *image <span class="keyword">in</span> photos) &#123;</span><br><span class="line">        <span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithImage:image];</span><br><span class="line">        imageView.contentMode = <span class="built_in">UIViewContentModeScaleToFill</span>;</span><br><span class="line">        imageView.clipsToBounds = <span class="literal">YES</span>;</span><br><span class="line">        </span><br><span class="line">        imageView.frame = <span class="built_in">CGRectMake</span>(<span class="number">320</span>*i++,<span class="number">0</span> ,<span class="number">320</span>, <span class="number">460</span>);</span><br><span class="line">        </span><br><span class="line">        [<span class="keyword">self</span>.scrollView addSubview:imageView];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.scrollView.contentSize = <span class="built_in">CGSizeMake</span>(<span class="number">320</span>*i, <span class="number">460</span>);</span><br><span class="line">    scrollView_.delegate = <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>**Step 5.**建立關連</p>
+<img src="/images/iPhone/scrollViews5.jpeg" class="">
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>請開啟 JavaScript 功能來使用留言系統</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/learning/">學習中</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2012/04/29/scroll-view/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2012/04/29/scroll-view/&text=Scroll View"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2012/04/29/scroll-view/&title=Scroll View"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2012/04/29/scroll-view/&is_video=false&description=Scroll View"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Scroll View&body=Check out this article: https://lighter.github.io/2012/04/29/scroll-view/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2012/04/29/scroll-view/&title=Scroll View"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2012/04/29/scroll-view/&title=Scroll View"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2012/04/29/scroll-view/&title=Scroll View"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2012/04/29/scroll-view/&title=Scroll View"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2012/04/29/scroll-view/&name=Scroll View&description=&lt;p&gt;當iPhone的畫面要塞進很多內容時，可以利用&lt;code&gt;Scroll View&lt;/code&gt;來捲動畫面瀏覽頁面，例如當畫面需要呈現很多張圖片的時候，一個&lt;code&gt;View&lt;/code&gt;只能呈現一張&lt;code&gt;UIImage&lt;/code&gt;，因此可以利用&lt;code&gt;Scroll View&lt;/code&gt;來呈現。&lt;/p&gt;
+&lt;p&gt;最後的結果如下圖：(將圖片向右排列，手指將畫面往左拖曳，即可看到其他的圖片)。&lt;/p&gt;
+&lt;img src=&#34;/images/iPhone/scrollViews1.jpeg&#34; class=&#34;&#34;&gt;
+&lt;img src=&#34;/images/iPhone/scrollViews2.jpeg&#34; class=&#34;&#34;&gt;
+&lt;img src=&#34;/images/iPhone/scrollViews3.jpeg&#34; class=&#34;&#34;&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2012/04/29/scroll-view/&t=Scroll View"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <!-- <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2023
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'lighter/lighter.github.com';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'utteranc';
+      var utterances_theme = 'github-light';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="在既有的 mysql 中加入 crontab 的方式去定期備份 data。 Step 1. init database希望一開始就幫我們把資料加入，因此 mount 一個 docker-entrypoint-initdb.d 到 container 內的。可參考[Mysql Docker Hub]  Initializing a fresh instance When a container is">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker mysql crontab backup">
+<meta property="og:url" content="https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:description" content="在既有的 mysql 中加入 crontab 的方式去定期備份 data。 Step 1. init database希望一開始就幫我們把資料加入，因此 mount 一個 docker-entrypoint-initdb.d 到 container 內的。可參考[Mysql Docker Hub]  Initializing a fresh instance When a container is">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2017-07-22T09:18:07.000Z">
+<meta property="article:modified_time" content="2017-07-22T09:18:07.000Z">
+<meta property="article:author" content="lighter">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>docker mysql crontab backup</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2017/06/21/dependency-injection/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="回到頁首" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&text=docker mysql crontab backup"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&title=docker mysql crontab backup"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&is_video=false&description=docker mysql crontab backup"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=docker mysql crontab backup&body=Check out this article: https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&title=docker mysql crontab backup"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&title=docker mysql crontab backup"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&title=docker mysql crontab backup"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&title=docker mysql crontab backup"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&name=docker mysql crontab backup&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&t=docker mysql crontab backup"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-1-init-database"><span class="toc-number">1.</span> <span class="toc-text">Step 1. init database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-2-Add-crontab"><span class="toc-number">2.</span> <span class="toc-text">Step 2. Add crontab</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ref"><span class="toc-number">3.</span> <span class="toc-text">Ref</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        docker mysql crontab backup
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">lighter</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2017-07-22T09:18:07.000Z" itemprop="datePublished">2017-07-22</time>
+        
+        (Updated: <time datetime="2017-07-22T09:18:07.000Z" itemprop="dateModified">2017-07-22</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/docker/" rel="tag">docker</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>在既有的 mysql 中加入 crontab 的方式去定期備份 data。</p>
+<h2 id="Step-1-init-database"><a href="#Step-1-init-database" class="headerlink" title="Step 1. init database"></a>Step 1. init database</h2><p>希望一開始就幫我們把資料加入，因此 mount 一個 docker-entrypoint-initdb.d 到 container 內的。可參考[<a target="_blank" rel="noopener" href="https://hub.docker.com/_/mysql/">Mysql Docker Hub</a>]</p>
+<blockquote>
+<p>Initializing a fresh instance</p>
+<p>When a container is started for the first time, a new database with the specified name will be created and initialized with the provided configuration variables. Furthermore, it will execute files with extensions .sh, .sql and .sql.gz that are found in &#x2F;docker-entrypoint-initdb.d. Files will be executed in alphabetical order. You can easily populate your mysql services by mounting a SQL dump into that directory and provide custom images with contributed data. SQL files will be imported by default to the database specified by the MYSQL_DATABASE variable.</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">version: &#x27;2&#x27;</span><br><span class="line">services:</span><br><span class="line">    mysql:</span><br><span class="line">        image: mysql:latest</span><br><span class="line">	volumes:</span><br><span class="line">		- ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d</span><br><span class="line">	environment:</span><br><span class="line">		MYSQL_ROOT_PASSWORD: password</span><br><span class="line">		MYSQL_DATABASE: develop</span><br><span class="line">		MYSQL_USER: test</span><br><span class="line">		MYSQL_PASSWORD: testpassword</span><br></pre></td></tr></table></figure>
+
+<p>而在 docker-entrypoint-initdb.d 內放入一小段 sql。</p>
+<p><strong>init.sql</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE IF NOT EXISTS develop;</span><br><span class="line">USE develop;</span><br><span class="line">CREATE TABLE IF NOT EXISTS tasks (</span><br><span class="line">    task_id INT(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">    subject VARCHAR(45) DEFAULT NULL,</span><br><span class="line">    PRIMARY KEY (task_id)</span><br><span class="line">) ENGINE=InnoDB;</span><br><span class="line"></span><br><span class="line">INSERT INTO tasks (subject)</span><br><span class="line">VALUES (&#x27;task 1&#x27;),</span><br><span class="line">       (&#x27;task 2&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Step-2-Add-crontab"><a href="#Step-2-Add-crontab" class="headerlink" title="Step 2. Add crontab"></a>Step 2. Add crontab</h2><p>特地把 mysql_backup mount 到 local 的 backup_sql。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">crontab:</span><br><span class="line">       build: ./crontab/</span><br><span class="line">       volumes:</span><br><span class="line">           - ./mysql_backup:/backup_sql</span><br><span class="line">       links:</span><br><span class="line">           - mysql</span><br></pre></td></tr></table></figure>
+
+<p>調整你希望備份的時間區間，可修改 <code>crontab.txt</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*/1 * * * * /script.sh</span><br></pre></td></tr></table></figure>
+
+<p>調整你的執行 mysqldump 的 sh，可修改 <code>script.sh</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">now=$(date +%Y-%m-%d_%H-%M-%S)</span><br><span class="line"></span><br><span class="line">mysqldump -u test -ptestpassword -h mysql develop &gt; /backup_sql/$now.sql</span><br></pre></td></tr></table></figure>
+
+<p>全部的東西可在 <a target="_blank" rel="noopener" href="https://github.com/lighter/docker-mysql-backup">Github</a> 找到。</p>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/37015624/how-to-run-a-cron-job-inside-a-docker-container">How to run a cron job inside a docker container</a></li>
+<li><a target="_blank" rel="noopener" href="https://hub.docker.com/_/mysql/">Docker Hub - Mysql</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>請開啟 JavaScript 功能來使用留言系統</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/learning/">學習中</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-1-init-database"><span class="toc-number">1.</span> <span class="toc-text">Step 1. init database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Step-2-Add-crontab"><span class="toc-number">2.</span> <span class="toc-text">Step 2. Add crontab</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ref"><span class="toc-number">3.</span> <span class="toc-text">Ref</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&text=docker mysql crontab backup"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&title=docker mysql crontab backup"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&is_video=false&description=docker mysql crontab backup"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=docker mysql crontab backup&body=Check out this article: https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&title=docker mysql crontab backup"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&title=docker mysql crontab backup"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&title=docker mysql crontab backup"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&title=docker mysql crontab backup"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&name=docker mysql crontab backup&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2017/07/22/docker-mysql-crontab-backup/&t=docker mysql crontab backup"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <!-- <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2023
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'lighter/lighter.github.com';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'utteranc';
+      var utterances_theme = 'github-light';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

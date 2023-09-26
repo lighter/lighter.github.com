@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Core Data主要分成三個部分  Managed Object Context Persistent Store Coordinator Persistent Object Store   Managed Object Context這類別記載了我們的App在記憶體中所有的Entity，當你要求Core Data載入物件時，你必須先向Managed Object Context提出要求。 …假">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Core Data-Part1">
+<meta property="og:url" content="https://lighter.github.io/2012/05/08/core-data-part1/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:description" content="Core Data主要分成三個部分  Managed Object Context Persistent Store Coordinator Persistent Object Store   Managed Object Context這類別記載了我們的App在記憶體中所有的Entity，當你要求Core Data載入物件時，你必須先向Managed Object Context提出要求。 …假">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/coredatas1.jpeg">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/coredatas2.jpeg">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/coredatas3.jpeg">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/coredatas4.jpeg">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/coredatas5.jpeg">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/coredatas6.jpeg">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/coredatas7.jpeg">
+<meta property="article:published_time" content="2012-05-08T02:52:00.000Z">
+<meta property="article:modified_time" content="2012-05-08T02:52:00.000Z">
+<meta property="article:author" content="lighter">
+<meta property="article:tag" content="iPhone">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lighter.github.io/images/iPhone/coredatas1.jpeg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>Core Data-Part1</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2012/05/08/map-view/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2012/05/01/segmented-controller/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="回到頁首" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2012/05/08/core-data-part1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2012/05/08/core-data-part1/&text=Core Data-Part1"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2012/05/08/core-data-part1/&title=Core Data-Part1"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2012/05/08/core-data-part1/&is_video=false&description=Core Data-Part1"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Core Data-Part1&body=Check out this article: https://lighter.github.io/2012/05/08/core-data-part1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2012/05/08/core-data-part1/&title=Core Data-Part1"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2012/05/08/core-data-part1/&title=Core Data-Part1"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2012/05/08/core-data-part1/&title=Core Data-Part1"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2012/05/08/core-data-part1/&title=Core Data-Part1"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2012/05/08/core-data-part1/&name=Core Data-Part1&description=&lt;p&gt;&lt;code&gt;Core Data&lt;/code&gt;主要分成三個部分&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Managed Object Context&lt;/li&gt;
+&lt;li&gt;Persistent Store Coordinator&lt;/li&gt;
+&lt;li&gt;Persistent Object Store&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;code&gt;Managed Object Context&lt;/code&gt;這類別記載了我們的App在記憶體中所有的&lt;code&gt;Entity&lt;/code&gt;，當你要求Core Data載入物件時，你必須先向&lt;code&gt;Managed Object Context&lt;/code&gt;提出要求。&lt;/p&gt;
+&lt;p&gt;…假如不存在記憶體中的話，它會向&lt;code&gt;Persistent Store Coordinator&lt;/code&gt;發出請求，試著嘗試尋找它。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Persistent Store Coordinator&lt;/code&gt;的任務是追蹤&lt;code&gt;Persistent Object Store&lt;/code&gt;，而&lt;code&gt;Persistent Object Store&lt;/code&gt;實際知道如何讀寫資料。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Managed Object Model&lt;/code&gt;則是用來處理資料的，這些元件都知道要如何處理資料。&lt;/p&gt;
+&lt;p&gt;整個流程大致上如下圖：&lt;/p&gt;
+&lt;img src=&#34;/images/iPhone/coredatas1.jpeg&#34; class=&#34;&#34;&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2012/05/08/core-data-part1/&t=Core Data-Part1"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Core Data-Part1
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">lighter</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2012-05-08T02:52:00.000Z" itemprop="datePublished">2012-05-08</time>
+        
+        (Updated: <time datetime="2012-05-08T02:52:00.000Z" itemprop="dateModified">2012-05-08</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/iPhone/" rel="tag">iPhone</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><code>Core Data</code>主要分成三個部分</p>
+<ol>
+<li>Managed Object Context</li>
+<li>Persistent Store Coordinator</li>
+<li>Persistent Object Store</li>
+</ol>
+
+<p><code>Managed Object Context</code>這類別記載了我們的App在記憶體中所有的<code>Entity</code>，當你要求Core Data載入物件時，你必須先向<code>Managed Object Context</code>提出要求。</p>
+<p>…假如不存在記憶體中的話，它會向<code>Persistent Store Coordinator</code>發出請求，試著嘗試尋找它。</p>
+<p><code>Persistent Store Coordinator</code>的任務是追蹤<code>Persistent Object Store</code>，而<code>Persistent Object Store</code>實際知道如何讀寫資料。</p>
+<p><code>Managed Object Model</code>則是用來處理資料的，這些元件都知道要如何處理資料。</p>
+<p>整個流程大致上如下圖：</p>
+<img src="/images/iPhone/coredatas1.jpeg" class="">
+
+<span id="more"></span>
+
+<p>**Step 1.**建立<code>Empty Application</code>，專案名稱為core data example</p>
+<img src="/images/iPhone/coredatas2.jpeg" class="">
+
+<p>記得要將<code>Use Core Data</code>打勾。</p>
+<img src="/images/iPhone/coredatas3.jpeg" class="">
+
+<p><strong>Step 2.</strong> 編輯core_data_sample.xcdatamodeld</p>
+<p>首先開啟<code>core_data_sample.xcdatamodeld</code>這個檔案，點選中間下方的<code>Add Entity</code>，並輸入<code>Phone</code>(註：第一個字要大寫)，接著在右邊可以找到<code>Attributes</code>，點選<code>＋</code>加號，加入兩個屬性分別為<code>name</code>、<code>number</code>，其型態分別為<code>String</code><br>、<code>Integer 32</code>。</p>
+<img src="/images/iPhone/coredatas4.jpeg" class="">
+
+<p>**Step 3.**建立<code>Phone.m、Phone.h</code></p>
+<p>點選專案資料夾，右鍵➔New File。</p>
+<img src="/images/iPhone/coredatas5.jpeg" class="">
+
+<p>選擇iOS➔Core Data➔NSManagedObject subclass，接著都直接下一步。</p>
+<img src="/images/iPhone/coredatas6.jpeg" class="">
+
+<p>接著可以在專案的資料夾內會出現<code>Phone.m、Phone.h</code></p>
+<img src="/images/iPhone/coredatas7.jpeg" class="">
+
+<p>在這兩個檔案可看到裡面的變數都是跟xcdatamodeld內的有相關連的</p>
+<figure class="highlight objc"><figcaption><span>Phone.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="string">&lt;CoreData/CoreData.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Phone</span> : <span class="title">NSManagedObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">retain</span>)  <span class="built_in">NSString</span> * name;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">retain</span>) <span class="built_in">NSNumber</span> * number;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>這邊的<code>@dynamic</code>主要是告知 compiler 不要產生<code>setter、getter</code>，而是由程式本身來實作甚至是直到 Runtime 時以 Dynamic Loading 方式連結。</p>
+<figure class="highlight objc"><figcaption><span>Phone.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="string">&quot;Phone.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Phone</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@dynamic</span> name;</span><br><span class="line"><span class="keyword">@dynamic</span> number;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Step .4</strong>編輯AppDelegate.m</p>
+<p>在該檔案內自行新增一個<code>creatData</code>方法</p>
+<figure class="highlight objc"><figcaption><span>AppDelegate.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="type">void</span>)creatData&#123;</span><br><span class="line">    <span class="built_in">NSManagedObjectContext</span> *context = [<span class="keyword">self</span> managedObjectContext];</span><br><span class="line">    </span><br><span class="line">    Phone *detail = [<span class="built_in">NSEntityDescription</span> insertNewObjectForEntityForName:<span class="string">@&quot;Phone&quot;</span> inManagedObjectContext:context];</span><br><span class="line">    detail.name = <span class="string">@&quot;Mary&quot;</span>;</span><br><span class="line">    detail.number = [<span class="built_in">NSNumber</span> numberWithInt:<span class="number">323232123</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">NSError</span> *error;</span><br><span class="line">    <span class="keyword">if</span>(![context save:&amp;error])&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//撈取資料</span></span><br><span class="line">    <span class="built_in">NSFetchRequest</span> *request = [[<span class="built_in">NSFetchRequest</span> alloc] init];</span><br><span class="line">    <span class="built_in">NSEntityDescription</span> *entity = [<span class="built_in">NSEntityDescription</span> entityForName:<span class="string">@&quot;Phone&quot;</span> inManagedObjectContext:context];</span><br><span class="line">    [request setEntity:entity];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSArray</span> *array = [context executeFetchRequest:request error:&amp;error];</span><br><span class="line">    <span class="keyword">for</span> (Phone *pho <span class="keyword">in</span> array) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;Name: %@&quot;</span>, pho.name);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;Number: %@&quot;</span>, pho.number);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight objc"><figcaption><span>AppDelegate.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="type">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="keyword">self</span> creatData];   <span class="comment">//加入這行</span></span><br><span class="line">    <span class="keyword">self</span>.window = [[<span class="built_in">UIWindow</span> alloc] initWithFrame:[[<span class="built_in">UIScreen</span> mainScreen] bounds]];</span><br><span class="line">    <span class="keyword">self</span>.window.backgroundColor = [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">    [<span class="keyword">self</span>.window makeKeyAndVisible];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最後編譯後，可以在Debug的地方看到<code>NSLog</code>的訊息。</p>
+<p>參考資料：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="http://www.youtube.com/watch?v=QBrkavVJsw0&feature=relmfu">iPhone Core Data 1 - Intro</a></li>
+<li><a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/1160498/synthesize-vs-dynamic-what-are-the-differences">@synthesize vs @dynamic, what are the differences?</a></li>
+<li><a target="_blank" rel="noopener" href="http://rintarou.dyndns.org/2011/07/12/the-objective-c-programming-guide-%E5%85%A5%E9%96%80%E7%AD%86%E8%A8%98/">The Objective-C Programming Guide 入門筆記</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/zyc851224/article/details/7387805">iPhone开发之CoreData(基础篇)</a></li>
+</ol>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>請開啟 JavaScript 功能來使用留言系統</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/learning/">學習中</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2012/05/08/core-data-part1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2012/05/08/core-data-part1/&text=Core Data-Part1"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2012/05/08/core-data-part1/&title=Core Data-Part1"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2012/05/08/core-data-part1/&is_video=false&description=Core Data-Part1"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Core Data-Part1&body=Check out this article: https://lighter.github.io/2012/05/08/core-data-part1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2012/05/08/core-data-part1/&title=Core Data-Part1"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2012/05/08/core-data-part1/&title=Core Data-Part1"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2012/05/08/core-data-part1/&title=Core Data-Part1"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2012/05/08/core-data-part1/&title=Core Data-Part1"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2012/05/08/core-data-part1/&name=Core Data-Part1&description=&lt;p&gt;&lt;code&gt;Core Data&lt;/code&gt;主要分成三個部分&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Managed Object Context&lt;/li&gt;
+&lt;li&gt;Persistent Store Coordinator&lt;/li&gt;
+&lt;li&gt;Persistent Object Store&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;code&gt;Managed Object Context&lt;/code&gt;這類別記載了我們的App在記憶體中所有的&lt;code&gt;Entity&lt;/code&gt;，當你要求Core Data載入物件時，你必須先向&lt;code&gt;Managed Object Context&lt;/code&gt;提出要求。&lt;/p&gt;
+&lt;p&gt;…假如不存在記憶體中的話，它會向&lt;code&gt;Persistent Store Coordinator&lt;/code&gt;發出請求，試著嘗試尋找它。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Persistent Store Coordinator&lt;/code&gt;的任務是追蹤&lt;code&gt;Persistent Object Store&lt;/code&gt;，而&lt;code&gt;Persistent Object Store&lt;/code&gt;實際知道如何讀寫資料。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Managed Object Model&lt;/code&gt;則是用來處理資料的，這些元件都知道要如何處理資料。&lt;/p&gt;
+&lt;p&gt;整個流程大致上如下圖：&lt;/p&gt;
+&lt;img src=&#34;/images/iPhone/coredatas1.jpeg&#34; class=&#34;&#34;&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2012/05/08/core-data-part1/&t=Core Data-Part1"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <!-- <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2023
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'lighter/lighter.github.com';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'utteranc';
+      var utterances_theme = 'github-light';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="上一篇中，僅對於基本的Core Data的流程有個初步的概念，但是光看NSLog訊息還是有點生疏，而且依照我目前的程度，是很少去修改到AppDelegate的部份，所以接著嘗試試著修改Master Detail Application看看。 最後的結果是希望可以在Table View中看到我新增的姓名，點選該姓名可以看到該姓名的電話。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Core Data-Part2">
+<meta property="og:url" content="https://lighter.github.io/2012/06/02/core-data-part2/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:description" content="上一篇中，僅對於基本的Core Data的流程有個初步的概念，但是光看NSLog訊息還是有點生疏，而且依照我目前的程度，是很少去修改到AppDelegate的部份，所以接著嘗試試著修改Master Detail Application看看。 最後的結果是希望可以在Table View中看到我新增的姓名，點選該姓名可以看到該姓名的電話。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/coredata2-1.png">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/coredata2-2.png">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/coredata2-3.png">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/coredata2-4.png">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/coredata2-5.png">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/coredata2-6.png">
+<meta property="og:image" content="https://lighter.github.io/images/iPhone/coredata2-7.png">
+<meta property="article:published_time" content="2012-06-02T06:36:00.000Z">
+<meta property="article:modified_time" content="2012-06-02T06:36:00.000Z">
+<meta property="article:author" content="lighter">
+<meta property="article:tag" content="core data">
+<meta property="article:tag" content="iPhone">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lighter.github.io/images/iPhone/coredata2-1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>Core Data-Part2</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2012/07/21/jiang-xcodede-cheng-shi-fa-bu-dao-ioszhuang-zhi/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2012/05/08/map-view/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="回到頁首" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2012/06/02/core-data-part2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2012/06/02/core-data-part2/&text=Core Data-Part2"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2012/06/02/core-data-part2/&title=Core Data-Part2"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2012/06/02/core-data-part2/&is_video=false&description=Core Data-Part2"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Core Data-Part2&body=Check out this article: https://lighter.github.io/2012/06/02/core-data-part2/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2012/06/02/core-data-part2/&title=Core Data-Part2"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2012/06/02/core-data-part2/&title=Core Data-Part2"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2012/06/02/core-data-part2/&title=Core Data-Part2"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2012/06/02/core-data-part2/&title=Core Data-Part2"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2012/06/02/core-data-part2/&name=Core Data-Part2&description=&lt;p&gt;上一篇中，僅對於基本的Core Data的流程有個初步的概念，但是光看&lt;code&gt;NSLog&lt;/code&gt;訊息還是有點生疏，而且依照我目前的程度，是很少去修改到&lt;code&gt;AppDelegate&lt;/code&gt;的部份，所以接著嘗試試著修改&lt;code&gt;Master Detail Application&lt;/code&gt;看看。&lt;/p&gt;
+&lt;p&gt;最後的結果是希望可以在&lt;code&gt;Table View&lt;/code&gt;中看到我新增的姓名，點選該姓名可以看到該姓名的電話。&lt;/p&gt;
+&lt;img src=&#34;/images/iPhone/coredata2-1.png&#34; class=&#34;&#34; title=&#34;216px 390px&#34;&gt;
+&lt;img src=&#34;/images/iPhone/coredata2-2.png&#34; class=&#34;&#34; title=&#34;216px 390px&#34;&gt;
+&lt;img src=&#34;/images/iPhone/coredata2-3.png&#34; class=&#34;&#34; title=&#34;216px 390px&#34;&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2012/06/02/core-data-part2/&t=Core Data-Part2"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Core Data-Part2
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">lighter</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2012-06-02T06:36:00.000Z" itemprop="datePublished">2012-06-02</time>
+        
+        (Updated: <time datetime="2012-06-02T06:36:00.000Z" itemprop="dateModified">2012-06-02</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/core-data/" rel="tag">core data</a>, <a class="tag-link-link" href="/tags/iPhone/" rel="tag">iPhone</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>上一篇中，僅對於基本的Core Data的流程有個初步的概念，但是光看<code>NSLog</code>訊息還是有點生疏，而且依照我目前的程度，是很少去修改到<code>AppDelegate</code>的部份，所以接著嘗試試著修改<code>Master Detail Application</code>看看。</p>
+<p>最後的結果是希望可以在<code>Table View</code>中看到我新增的姓名，點選該姓名可以看到該姓名的電話。</p>
+<img src="/images/iPhone/coredata2-1.png" class="" title="216px 390px">
+<img src="/images/iPhone/coredata2-2.png" class="" title="216px 390px">
+<img src="/images/iPhone/coredata2-3.png" class="" title="216px 390px">
+
+<span id="more"></span>
+
+<p>**Step 1.**建立<code>Master Detail Application</code>的專案，專案名稱為core data example。</p>
+<p>**Step 2.**開啟<code>core_data_example.xcdatamodeld</code>，將原本專案預設的<code>Entity</code>刪除，另外新增一個<code>Phone</code>的<code>Entity</code>，並新增兩個<code>Attributes</code>，name、number，如下圖。</p>
+<img src="/images/iPhone/coredata2-4.png" class="">
+
+<p>**Step 3.**新增<code>Managed Object Model</code>，對著專案右鍵<code>New File</code>➔<code>iOS</code>➔<code>Core Data</code>➔<code>NSManagedObjectsubclass</code>，接著會自動新增二個檔案，<code>Phone.m</code>跟<code>Phone.h</code>。</p>
+<p>如果沒有直接自動產生，應該會出現以下的畫面，只需要勾選並且下一步即可。</p>
+<img src="/images/iPhone/coredata2-5.png" class="">
+<img src="/images/iPhone/coredata2-6.png" class="">
+
+<p>**Step 4.**修改<code>MainStoryboard.storyboard</code>。</p>
+<p>在<code>Navigation</code>的右方加入一個<code>Bar Button Item</code>，點選新增是會跑到上面的畫面，讓我們新增姓名還有電話，下面則是點選姓名時可以看到該姓名的電話。因此需要新增一個<code>AddDetailViewController</code>來控制該新增畫面。在此就不多贅述。</p>
+<img src="/images/iPhone/coredata2-7.png" class="">
+
+<p>**Step 5.**編輯<code>AddDetailViewController</code>。</p>
+<ol>
+<li>import<code>Phone.h</code>，因為需要透過它來得知<code>Entity</code>的<code>name</code>、<code>number</code>。</li>
+<li>import<code>AppDelegate.h</code>，因為需要使用它裡面的<code>NSManagedObjectContext</code>，所以在此無需重複定義。</li>
+<li>二個<code>UITextField</code>顧名思義就是對應到畫面上二個Text使用的。</li>
+<li><code>app</code>就是要用來引用<code>NSManagedObjectContext</code>。</li>
+<li><code>save</code>就是在新增的畫面的Navigation右方，按下save按鈕儲存資料。</li>
+</ol>
+<figure class="highlight objc"><figcaption><span>AddDetailViewController.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="string">&quot;Phone.h&quot;</span></span></span><br><span class="line"><span class="meta">#import <span class="string">&quot;AppDelegate.h&quot;</span></span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AddDetailViewController</span> : <span class="title">UIViewController</span></span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">UITextField</span> *name_;</span><br><span class="line">    <span class="built_in">UITextField</span> *number_;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UITextField</span> *name;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UITextField</span> *number;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">retain</span>, <span class="keyword">nonatomic</span>) AppDelegate *app;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">IBAction</span>)save:(<span class="type">id</span>)sender;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>第5行，取得AppDelegate的<code>delegate</code></p>
+<p>第6行，透過app取得AppDelegete的<code>NSManagedObjectContext</code></p>
+<p>第7行，定義要加入的Entity是Phone。</p>
+<p>第9行，用一個<code>if</code>檢查欄位的值是否為空白，當不是空白的時候才寫入。</p>
+<p>第18~22，當寫入發生錯誤時才會執行。</p>
+<figure class="highlight objc"><figcaption><span>AddDetailViewController.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@synthesize</span> name = name_, number = number_, app;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">IBAction</span>)save:(<span class="type">id</span>)sender</span><br><span class="line">&#123;</span><br><span class="line">    app = [[<span class="built_in">UIApplication</span> sharedApplication] delegate];</span><br><span class="line">    <span class="built_in">NSManagedObjectContext</span> *context = [app managedObjectContext];</span><br><span class="line">    Phone *phone = [<span class="built_in">NSEntityDescription</span> insertNewObjectForEntityForName:<span class="string">@&quot;Phone&quot;</span> inManagedObjectContext:context];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (name_.text.length &lt;= <span class="number">0</span> || number_.text.length &lt;= <span class="number">0</span> ) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;Nope&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        phone.name = name_.text;</span><br><span class="line">        phone.number = [<span class="built_in">NSNumber</span> numberWithInteger:[number_.text integerValue]];</span><br><span class="line">        [<span class="keyword">self</span>.navigationController popViewControllerAnimated:<span class="literal">YES</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSError</span> *error;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (![context save:&amp;error]) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;Woops&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>**Step 6.**編輯<code>MasterViewController.m</code>。</p>
+<p>這裡僅需要搜尋<code>Event</code>，並且改成<code>Phone</code>取代(因為Entity已經被我換掉了)，還有搜尋<code>timeStamp</code>，並且改成<code>name</code>取代(因為Attribute已經不是timeStamp，我們在<code>Table View</code>中希望呈現姓名，因此改成<code>name</code>)。</p>
+<p>最後記得要將<code>viewDidLoad</code>內的方法刪除，僅留下第一行即可(如下)。</p>
+<figure class="highlight objc"><figcaption><span>MasterViewController.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="type">void</span>)viewDidLoad</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="variable language_">super</span> viewDidLoad];</span><br><span class="line">	<span class="comment">// Do any additional setup after loading the view, typically from a nib.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>**Step 7.**編輯<code>DetailViewController</code></p>
+<p>因為比原本的專案多了一個<code>UILabel</code>元件，所以要多定義一個，並且找到<code>configureView</code>方法，加入第8行設定<code>detailNumber</code>，而<code>valueForKey</code>記得要修改成跟<code>Entity</code>對應的name、number。</p>
+<figure class="highlight objc"><figcaption><span>DetailViewController.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">DetailViewController</span> : <span class="title">UIViewController</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="type">id</span> detailItem;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UILabel</span> *detailDescriptionLabel;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UILabel</span> *detailNumber;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight objc"><figcaption><span>DetailViewController.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@synthesize</span> detailNumber = _detailNumber;</span><br><span class="line"></span><br><span class="line">- (<span class="type">void</span>)configureView</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Update the user interface for the detail item.</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.detailItem) &#123;</span><br><span class="line">        <span class="keyword">self</span>.detailDescriptionLabel.text = [[<span class="keyword">self</span>.detailItem valueForKey:<span class="string">@&quot;name&quot;</span>] description];</span><br><span class="line">        <span class="keyword">self</span>.detailNumber.text = [[<span class="keyword">self</span>.detailItem valueForKey:<span class="string">@&quot;number&quot;</span>] description];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Step 8.建立關連</p>
+<p>最後就是將元件跟<code>IBOutlet</code>、<code>IBAction</code>建立關連，在此就不多做贅述了。</p>
+<p>範例下載：<a target="_blank" rel="noopener" href="https://lighter@github.com/lighter/Core-Data-Example.git">Download here</a></p>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>請開啟 JavaScript 功能來使用留言系統</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/learning/">學習中</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2012/06/02/core-data-part2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2012/06/02/core-data-part2/&text=Core Data-Part2"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2012/06/02/core-data-part2/&title=Core Data-Part2"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2012/06/02/core-data-part2/&is_video=false&description=Core Data-Part2"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Core Data-Part2&body=Check out this article: https://lighter.github.io/2012/06/02/core-data-part2/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2012/06/02/core-data-part2/&title=Core Data-Part2"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2012/06/02/core-data-part2/&title=Core Data-Part2"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2012/06/02/core-data-part2/&title=Core Data-Part2"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2012/06/02/core-data-part2/&title=Core Data-Part2"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2012/06/02/core-data-part2/&name=Core Data-Part2&description=&lt;p&gt;上一篇中，僅對於基本的Core Data的流程有個初步的概念，但是光看&lt;code&gt;NSLog&lt;/code&gt;訊息還是有點生疏，而且依照我目前的程度，是很少去修改到&lt;code&gt;AppDelegate&lt;/code&gt;的部份，所以接著嘗試試著修改&lt;code&gt;Master Detail Application&lt;/code&gt;看看。&lt;/p&gt;
+&lt;p&gt;最後的結果是希望可以在&lt;code&gt;Table View&lt;/code&gt;中看到我新增的姓名，點選該姓名可以看到該姓名的電話。&lt;/p&gt;
+&lt;img src=&#34;/images/iPhone/coredata2-1.png&#34; class=&#34;&#34; title=&#34;216px 390px&#34;&gt;
+&lt;img src=&#34;/images/iPhone/coredata2-2.png&#34; class=&#34;&#34; title=&#34;216px 390px&#34;&gt;
+&lt;img src=&#34;/images/iPhone/coredata2-3.png&#34; class=&#34;&#34; title=&#34;216px 390px&#34;&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2012/06/02/core-data-part2/&t=Core Data-Part2"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <!-- <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2023
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'lighter/lighter.github.com';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'utteranc';
+      var utterances_theme = 'github-light';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

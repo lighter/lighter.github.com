@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Core Image是一項Mac OS X的技術，利用機器的繪圖處理器來作影像相關特效。於2004年8月的世界開發者大會(WWDC)中展示。(引用自維基百科Core Image) 我們可以透過Core Image的框架(framework)來調整圖片的顏色、亮度…等。而Core Image包含了很多的濾鏡的效果，這些都可以在Document中找到。 而Core Image有幾個重要的類別  CIC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Core Image">
+<meta property="og:url" content="https://lighter.github.io/2012/11/06/core-image/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:description" content="Core Image是一項Mac OS X的技術，利用機器的繪圖處理器來作影像相關特效。於2004年8月的世界開發者大會(WWDC)中展示。(引用自維基百科Core Image) 我們可以透過Core Image的框架(framework)來調整圖片的顏色、亮度…等。而Core Image包含了很多的濾鏡的效果，這些都可以在Document中找到。 而Core Image有幾個重要的類別  CIC">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lighter.github.io/images/CoreImage/1.png">
+<meta property="og:image" content="https://lighter.github.io/images/CoreImage/2.png">
+<meta property="og:image" content="https://lighter.github.io/images/CoreImage/3.png">
+<meta property="og:image" content="https://lighter.github.io/images/CoreImage/4.png">
+<meta property="og:image" content="https://lighter.github.io/images/CoreImage/5.png">
+<meta property="og:image" content="https://lighter.github.io/images/CoreImage/6.png">
+<meta property="og:image" content="https://lighter.github.io/images/CoreImage/7.png">
+<meta property="og:image" content="https://lighter.github.io/images/CoreImage/8.png">
+<meta property="article:published_time" content="2012-11-06T11:01:00.000Z">
+<meta property="article:modified_time" content="2012-11-06T11:01:00.000Z">
+<meta property="article:author" content="lighter">
+<meta property="article:tag" content="iPhone">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lighter.github.io/images/CoreImage/1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>Core Image</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2013/01/10/jsonzi-liao-yu-tableviewyu-pull-refresh/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2012/11/03/core-data-relationship/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="回到頁首" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2012/11/06/core-image/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2012/11/06/core-image/&text=Core Image"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2012/11/06/core-image/&title=Core Image"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2012/11/06/core-image/&is_video=false&description=Core Image"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Core Image&body=Check out this article: https://lighter.github.io/2012/11/06/core-image/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2012/11/06/core-image/&title=Core Image"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2012/11/06/core-image/&title=Core Image"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2012/11/06/core-image/&title=Core Image"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2012/11/06/core-image/&title=Core Image"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2012/11/06/core-image/&name=Core Image&description=&lt;p&gt;&lt;code&gt;Core Image&lt;/code&gt;是一項Mac OS X的技術，利用機器的繪圖處理器來作影像相關特效。於2004年8月的世界開發者大會(WWDC)中展示。(引用自&lt;a href=&#34;http://zh.wikipedia.org/wiki/Core_Image&#34;&gt;維基百科Core Image&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;我們可以透過&lt;code&gt;Core Image&lt;/code&gt;的框架(framework)來調整圖片的顏色、亮度…等。而Core Image包含了很多的濾鏡的效果，這些都可以在Document中找到。&lt;/p&gt;
+&lt;p&gt;而&lt;code&gt;Core Image&lt;/code&gt;有幾個重要的類別&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;CIContext&lt;/code&gt;: 所有Core Image的處理都透過CIContext完成。這有點類似於Core Graphics或OpenGL的Context。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CIImage&lt;/code&gt;: 該類別可持有圖片檔案。它可透過UIImage、圖片檔案或者是像素檔案來建立。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CIFilter&lt;/code&gt;: 濾鏡類別擁有字典(dictionary)，可以指定濾鏡效果的，例如自然飽和度(vibrance)、色彩反轉(color inversion)、剪裁(cropping)…等。&lt;/li&gt;
+&lt;/ol&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2012/11/06/core-image/&t=Core Image"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Core Image
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">lighter</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2012-11-06T11:01:00.000Z" itemprop="datePublished">2012-11-06</time>
+        
+        (Updated: <time datetime="2012-11-06T11:01:00.000Z" itemprop="dateModified">2012-11-06</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/iPhone/" rel="tag">iPhone</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><code>Core Image</code>是一項Mac OS X的技術，利用機器的繪圖處理器來作影像相關特效。於2004年8月的世界開發者大會(WWDC)中展示。(引用自<a target="_blank" rel="noopener" href="http://zh.wikipedia.org/wiki/Core_Image">維基百科Core Image</a>)</p>
+<p>我們可以透過<code>Core Image</code>的框架(framework)來調整圖片的顏色、亮度…等。而Core Image包含了很多的濾鏡的效果，這些都可以在Document中找到。</p>
+<p>而<code>Core Image</code>有幾個重要的類別</p>
+<ol>
+<li><code>CIContext</code>: 所有Core Image的處理都透過CIContext完成。這有點類似於Core Graphics或OpenGL的Context。</li>
+<li><code>CIImage</code>: 該類別可持有圖片檔案。它可透過UIImage、圖片檔案或者是像素檔案來建立。</li>
+<li><code>CIFilter</code>: 濾鏡類別擁有字典(dictionary)，可以指定濾鏡效果的，例如自然飽和度(vibrance)、色彩反轉(color inversion)、剪裁(cropping)…等。</li>
+</ol>
+<span id="more"></span>
+
+<p><strong>Step 1. 加入<code>CoreImage.framework</code></strong></p>
+<p>加入CoreImage.framework，並且準備好一張圖片加入到專案中。</p>
+<img src="/images/CoreImage/1.png" class="">
+
+<p><strong>Step 2. 編輯<code>MainStoryboard.storyboard</code></strong></p>
+<p>加入</p>
+<ol>
+<li>UIImageView</li>
+<li>Round Rect Button</li>
+</ol>
+<img src="/images/CoreImage/2.png" class="">
+
+<p>這邊加入3個按鈕，分別用來呈現不同的效果。</p>
+<p><strong>Step 3. 編輯ViewController</strong></p>
+<p>首先編輯<code>ViewController.h</code>，程式碼如下：</p>
+<figure class="highlight objc"><figcaption><span>ViewController.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span></span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">CIContext</span> *context;</span><br><span class="line">    <span class="built_in">CIFilter</span> *filter;</span><br><span class="line">    <span class="built_in">CIImage</span> *inputImage;    <span class="comment">//輸入的圖片</span></span><br><span class="line">    <span class="built_in">CIImage</span> *outputImage;   <span class="comment">//輸出濾鏡效果的圖片</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UIImageView</span> *imageView;</span><br><span class="line">- (<span class="keyword">IBAction</span>)filter1:(<span class="type">id</span>)sender; <span class="comment">//濾鏡效果1</span></span><br><span class="line">- (<span class="keyword">IBAction</span>)filter2:(<span class="type">id</span>)sender; <span class="comment">//濾鏡效果2</span></span><br><span class="line">- (<span class="keyword">IBAction</span>)filter3:(<span class="type">id</span>)sender; <span class="comment">//濾鏡效果3</span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p><code>ViewController.m</code>的程式碼如下：</p>
+<p>首先在<code>viewDidLoad</code>方法指定圖片給<code>imageView</code>。</p>
+<figure class="highlight objc"><figcaption><span>ViewController.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></span><br><span class="line"><span class="keyword">@synthesize</span> imageView;</span><br><span class="line">- (<span class="type">void</span>)viewDidLoad</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="variable language_">super</span> viewDidLoad];</span><br><span class="line">    <span class="built_in">UIImage</span> *img = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@&quot;test.jpg&quot;</span>];</span><br><span class="line">    imageView.image = img;</span><br><span class="line">    inputImage = [[<span class="built_in">CIImage</span> alloc] initWithImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@&quot;test.jpg&quot;</span>]];</span><br><span class="line">&#125;</span><br><span class="line">. . . . . 略</span><br></pre></td></tr></table></figure>
+
+<p>接著開始撰寫濾鏡效果的按鈕方法，這邊只介紹一個，程式碼如下：</p>
+<figure class="highlight objc"><figcaption><span>ViewController.m</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)filter1:(<span class="type">id</span>)sender &#123;</span><br><span class="line">	<span class="comment">//1</span></span><br><span class="line">    inputImage = [[<span class="built_in">CIImage</span> alloc] initWithImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@&quot;test.jpg&quot;</span>]];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//2</span></span><br><span class="line">    context = [<span class="built_in">CIContext</span> contextWithOptions:<span class="literal">nil</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//3</span></span><br><span class="line">    filter = [<span class="built_in">CIFilter</span> filterWithName:<span class="string">@&quot;CIColorPosterize&quot;</span>];</span><br><span class="line">    [filter setValue:inputImage forKey:<span class="string">@&quot;inputImage&quot;</span>];</span><br><span class="line">    [filter setValue:[<span class="built_in">NSNumber</span> numberWithFloat:<span class="number">3.0</span>] forKey:<span class="string">@&quot;inputLevels&quot;</span>];</span><br><span class="line">	</span><br><span class="line">	 <span class="comment">//4</span></span><br><span class="line">    outputImage = [filter outputImage];</span><br><span class="line">    imageView.image = [<span class="built_in">UIImage</span> imageWithCGImage:[context createCGImage:outputImage fromRect:outputImage.extent]];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>指定輸入的圖片。</li>
+<li><code>CIContext</code>指定要使用CPU或是GPU來處理，這裡使用預設值就可以，所以指定為<code>nil</code>。</li>
+<li>設定濾鏡效果，後面會介紹如何知道有哪些濾鏡效果及參數的設定。</li>
+<li>透過<code>outputImage</code>這個方法可以取得濾鏡效果處理後的<code>CIImage</code>，最後將處理過後的圖片指定給<code>imageView</code>。</li>
+</ol>
+<p><strong>Step 4. 編譯專案</strong></p>
+<p>在一開始可以看到<code>UIImageView</code>的原始圖案，點下濾鏡效果按鈕後可以看到圖片改變了！！</p>
+<img src="/images/CoreImage/3.png" class="" title="216px">
+<img src="/images/CoreImage/4.png" class="" title="216px">
+
+<p>就這麼簡單吧！但是一開始困擾我的問題是，我怎麼知道CoreImage有提供哪些濾鏡效果呢？其實這在Document都有詳細的說明，但要如何尋找呢？下面的方法其實我也是看過人家影片教學，才知道有這樣的尋找方式！我覺得非常方便。</p>
+<p>首先開啟到<code>ViewController.m</code>，並找到<code>CIFilter</code>，為了強調要選取它，所以在此將它反白，不然將游標移到<code>CIFilter</code>上就可以了。接著選取到右上方的<code>Show Quick Help Inspector</code>，在下方可以看到<code>Core Image Filter Reference</code>，如下圖：</p>
+<img src="/images/CoreImage/5.png" class="">
+
+<p>點選<code>Core Image Filter Reference</code>後會跳出一個新的視窗，會顯示<code>Filter</code>效果有哪些，如下圖：</p>
+<img src="/images/CoreImage/6.png" class="">
+
+<p>接著先找尋到先前使用到的<code>CIColorPosterize</code>這個濾鏡效果，點選下去</p>
+<img src="/images/CoreImage/7.png" class="">
+
+<p>點選後會看到<code>CIColorPosterize</code>這個濾鏡效果的參數有哪些，這個效果的參數只有兩個，分別為<code>inputImage</code>與<code>inputLevels</code>，除了參數，下方也會有簡單的圖示呈現該濾鏡的效果如何，如下圖：</p>
+<img src="/images/CoreImage/8.png" class="">
+
+<p>在這邊可以看到這兩個參數跟<code>forKey</code>值很像，這邊的方式就是透過setValue指定參數的值，在指定<code>forKey</code>值來指設定參數，所以當濾鏡效果不同時，會有不一樣的<code>forKey</code>值，這都需要參考到Document的說明！</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[filter setValue:inputImage forKey:<span class="string">@&quot;inputImage&quot;</span>];</span><br><span class="line">[filter setValue:[<span class="built_in">NSNumber</span> numberWithFloat:<span class="number">3.0</span>] forKey:<span class="string">@&quot;inputLevels&quot;</span>];</span><br></pre></td></tr></table></figure>
+
+
+
+<p>#參考資料#</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="http://www.raywenderlich.com/5689/beginning-core-image-in-ios-5">Beginning Core Image in iOS 5 Tutorial</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.raywenderlich.com/22167/beginning-core-image-in-ios-6">Beginning Core Image in iOS 6</a></li>
+<li><a target="_blank" rel="noopener" href="http://itouchs.blogspot.tw/2011/12/filter4cam-core-image-tutorial.html">Filter4Cam 學習之 Core Image Tutorial</a></li>
+</ol>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>請開啟 JavaScript 功能來使用留言系統</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/learning/">學習中</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2012/11/06/core-image/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2012/11/06/core-image/&text=Core Image"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2012/11/06/core-image/&title=Core Image"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2012/11/06/core-image/&is_video=false&description=Core Image"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Core Image&body=Check out this article: https://lighter.github.io/2012/11/06/core-image/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2012/11/06/core-image/&title=Core Image"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2012/11/06/core-image/&title=Core Image"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2012/11/06/core-image/&title=Core Image"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2012/11/06/core-image/&title=Core Image"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2012/11/06/core-image/&name=Core Image&description=&lt;p&gt;&lt;code&gt;Core Image&lt;/code&gt;是一項Mac OS X的技術，利用機器的繪圖處理器來作影像相關特效。於2004年8月的世界開發者大會(WWDC)中展示。(引用自&lt;a href=&#34;http://zh.wikipedia.org/wiki/Core_Image&#34;&gt;維基百科Core Image&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;我們可以透過&lt;code&gt;Core Image&lt;/code&gt;的框架(framework)來調整圖片的顏色、亮度…等。而Core Image包含了很多的濾鏡的效果，這些都可以在Document中找到。&lt;/p&gt;
+&lt;p&gt;而&lt;code&gt;Core Image&lt;/code&gt;有幾個重要的類別&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;CIContext&lt;/code&gt;: 所有Core Image的處理都透過CIContext完成。這有點類似於Core Graphics或OpenGL的Context。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CIImage&lt;/code&gt;: 該類別可持有圖片檔案。它可透過UIImage、圖片檔案或者是像素檔案來建立。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CIFilter&lt;/code&gt;: 濾鏡類別擁有字典(dictionary)，可以指定濾鏡效果的，例如自然飽和度(vibrance)、色彩反轉(color inversion)、剪裁(cropping)…等。&lt;/li&gt;
+&lt;/ol&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2012/11/06/core-image/&t=Core Image"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <!-- <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2023
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'lighter/lighter.github.com';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'utteranc';
+      var utterances_theme = 'github-light';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

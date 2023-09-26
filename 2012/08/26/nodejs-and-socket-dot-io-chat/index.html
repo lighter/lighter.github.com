@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="有了簡單的聊天室的概念(Simple Chat With Socket.io)之後，我就在想，那同時有很多人時，要如何知道現在線上有誰呢？還有每次發言的人是誰呢？有了這些想法，那就開始繼續修改程式碼吧。 Client端我將程式碼拆解幾個部分來看，先從Client端來看，一開始是引入bootstrap、jQuery等基本的html宣告 index.html123456&lt;!DOCTYPE htm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJS and Socket.io chat">
+<meta property="og:url" content="https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:description" content="有了簡單的聊天室的概念(Simple Chat With Socket.io)之後，我就在想，那同時有很多人時，要如何知道現在線上有誰呢？還有每次發言的人是誰呢？有了這些想法，那就開始繼續修改程式碼吧。 Client端我將程式碼拆解幾個部分來看，先從Client端來看，一開始是引入bootstrap、jQuery等基本的html宣告 index.html123456&lt;!DOCTYPE htm">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2012-08-26T00:48:00.000Z">
+<meta property="article:modified_time" content="2012-08-26T00:48:00.000Z">
+<meta property="article:author" content="lighter">
+<meta property="article:tag" content="NodeJS">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>NodeJS and Socket.io chat</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2012/10/28/ios-with-dropbox/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2012/08/24/simple-chat-with-socket-dot-io/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="回到頁首" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&text=NodeJS and Socket.io chat"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&title=NodeJS and Socket.io chat"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&is_video=false&description=NodeJS and Socket.io chat"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NodeJS and Socket.io chat&body=Check out this article: https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&title=NodeJS and Socket.io chat"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&title=NodeJS and Socket.io chat"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&title=NodeJS and Socket.io chat"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&title=NodeJS and Socket.io chat"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&name=NodeJS and Socket.io chat&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&t=NodeJS and Socket.io chat"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Client%E7%AB%AF"><span class="toc-number">1.</span> <span class="toc-text">Client端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server%E7%AB%AF"><span class="toc-number">2.</span> <span class="toc-text">Server端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="toc-number">3.</span> <span class="toc-text">參考資料</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        NodeJS and Socket.io chat
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">lighter</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2012-08-26T00:48:00.000Z" itemprop="datePublished">2012-08-26</time>
+        
+        (Updated: <time datetime="2012-08-26T00:48:00.000Z" itemprop="dateModified">2012-08-26</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/NodeJS/" rel="tag">NodeJS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>有了簡單的聊天室的概念(<a target="_blank" rel="noopener" href="http://lighter.github.com/blog/2012/08/24/simple-chat-with-socket-dot-io/">Simple Chat With Socket.io</a>)之後，我就在想，那同時有很多人時，要如何知道現在線上有誰呢？還有每次發言的人是誰呢？有了這些想法，那就開始繼續修改程式碼吧。</p>
+<h2 id="Client端"><a href="#Client端" class="headerlink" title="Client端"></a>Client端</h2><p>我將程式碼拆解幾個部分來看，先從Client端來看，一開始是引入<code>bootstrap</code>、<code>jQuery</code>等基本的<code>html</code>宣告</p>
+<figure class="highlight html"><figcaption><span>index.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;http://current.bootstrapcdn.com/bootstrap-v204/css/bootstrap-combined.min.css&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&#x27;/socket.io/socket.io.js&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>再來就是<code>javascript</code>的部份，可看到<code>socket.on</code>監聽的是<code>connect</code>事件，當開啟網頁連現實，會呼應到Server端的<code>add_user</code>事件，並且執行<code>prompt()</code>。這邊暫且先不看到Server端，繼續往下看下去。</p>
+<figure class="highlight javascript"><figcaption><span>index.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> socket = io.<span class="title function_">connect</span>(<span class="string">&#x27;http://localhost:8080&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Part 1</span></span><br><span class="line"><span class="comment">//一連線時執行</span></span><br><span class="line">socket.<span class="title function_">on</span>(<span class="string">&#x27;connect&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  socket.<span class="title function_">emit</span>(<span class="string">&#x27;add_user&#x27;</span>, <span class="title function_">prompt</span>(<span class="string">&quot;What&#x27;s your name&quot;</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>當有位新的使用者加入時，目前線上所有使用者，勢必要更新，而使用者列表更新，需透過Server端告知Clint端要執行更新的動作因此在Client的程式碼如下：</p>
+<p>下面程式碼可看到<code>update_chat_content</code>如同之前的方式加入對話內容(<a target="_blank" rel="noopener" href="http://lighter.github.com/blog/2012/08/24/simple-chat-with-socket-dot-io/">Here</a>)；接著<code>update_user</code>一開始先清空使用者列表所有內容，使用<code>$.each</code>一一將使用者重新加入列表中。</p>
+<figure class="highlight javascript"><figcaption><span>index.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Part 2</span></span><br><span class="line"><span class="comment">//update_chat_content</span></span><br><span class="line">socket.<span class="title function_">on</span>(<span class="string">&#x27;update_chat_content&#x27;</span>, <span class="keyword">function</span>(<span class="params">user_name, data</span>)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//由Server端emit &#x27;update_chat_content&#x27; 更新談話內容</span></span><br><span class="line">  $(<span class="string">&#x27;#chat_content&#x27;</span>).<span class="title function_">append</span>(<span class="string">&#x27;&lt;div&gt;&#x27;</span> + user_name + <span class="string">&#x27;:&#x27;</span> + data + <span class="string">&#x27;&lt;/div&gt;&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//update_user</span></span><br><span class="line">socket.<span class="title function_">on</span>(<span class="string">&#x27;update_user&#x27;</span>, <span class="keyword">function</span>(<span class="params">data</span>)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//先清空所有使用名稱</span></span><br><span class="line">  $(<span class="string">&quot;#users&quot;</span>).<span class="title function_">empty</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">//將data取出，使用each的方法一個一個將使用者重新加入列表</span></span><br><span class="line">  $.<span class="title function_">each</span>(data, <span class="keyword">function</span>(<span class="params">key, value</span>)&#123;</span><br><span class="line">    $(<span class="string">&quot;#users&quot;</span>).<span class="title function_">append</span>(<span class="string">&#x27;&lt;div&gt;&#x27;</span> + value + <span class="string">&#x27;&lt;/div&gt;&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>最後則是發送對話按鈕的觸發事件以及HTML的部份。</p>
+<figure class="highlight javascript"><figcaption><span>index.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Part 3</span></span><br><span class="line">$(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  $(<span class="string">&quot;#send&quot;</span>).<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//取得input text欄位的值後，將欄位內容清除</span></span><br><span class="line">    <span class="keyword">var</span> message = $(<span class="string">&quot;#send_input&quot;</span>).<span class="title function_">val</span>();</span><br><span class="line">    $(<span class="string">&quot;#send_input&quot;</span>).<span class="title function_">val</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//呼叫Server端的emit &#x27;send_chat&#x27;</span></span><br><span class="line">    socket.<span class="title function_">emit</span>(<span class="string">&#x27;send_chat&#x27;</span>, message);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container-fluid&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row-fluid&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;span2&quot;</span> <span class="attr">id</span>=<span class="string">&quot;users&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="comment">&lt;!--Sidebar content--&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;span10&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="comment">&lt;!--Body content--&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;span12&quot;</span> <span class="attr">id</span>=<span class="string">&quot;chat_content&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;input-append&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;span2&quot;</span> <span class="attr">id</span>=<span class="string">&quot;send_input&quot;</span> <span class="attr">size</span>=<span class="string">&quot;16&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">id</span>=<span class="string">&quot;send&quot;</span>&gt;</span>Send!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Server端"><a href="#Server端" class="headerlink" title="Server端"></a>Server端</h2><p>Server端主要的情況有3個：</p>
+<p>1.當Client發送對話訓時</p>
+<p>2.當有新加入的使用者時</p>
+<p>3.當使用者關閉網頁時</p>
+<p>程式碼如下，當有新加入的使用者會呼叫Server端的<code>add_user</code>事件，Server端會將新加入的使用者加入到socket的session內，並呼叫Client端執行<code>update_chat_content</code>事件，並傳遞兩個參數，這是要用來讓Client端知道有新加入的使用者，例如當Tony加入時，在Client端頁面會顯示<code>SERVER:Tomy has connected</code>的訊息告知。其餘的就說明都寫在程式碼的註解上了，直接看程式碼可能會更清楚。</p>
+<figure class="highlight javascript"><figcaption><span>Server.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>),</span><br><span class="line">    fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>),</span><br><span class="line">    server,</span><br><span class="line">    io;</span><br><span class="line"></span><br><span class="line">server = http.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">req, res</span>)&#123;</span><br><span class="line">  fs.<span class="title function_">readFile</span>(__dirname + <span class="string">&#x27;/index.html&#x27;</span>, <span class="keyword">function</span>(<span class="params">err, data</span>)&#123;</span><br><span class="line">    res.<span class="title function_">writeHead</span>(<span class="number">200</span>, &#123;<span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text/html&#x27;</span>&#125;);</span><br><span class="line">    res.<span class="title function_">end</span>(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">8080</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用者名稱</span></span><br><span class="line"><span class="keyword">var</span> user_name = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">io = <span class="built_in">require</span>(<span class="string">&#x27;socket.io&#x27;</span>).<span class="title function_">listen</span>(server);</span><br><span class="line"></span><br><span class="line"><span class="comment">//連線時會執行的內容</span></span><br><span class="line">io.<span class="property">sockets</span>.<span class="title function_">on</span>(<span class="string">&#x27;connection&#x27;</span>, <span class="keyword">function</span>(<span class="params">socket</span>)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//當client端emit &#x27;send_chat&#x27; 時執行</span></span><br><span class="line">  socket.<span class="title function_">on</span>(<span class="string">&#x27;send_chat&#x27;</span>, <span class="keyword">function</span>(<span class="params">data</span>)&#123;</span><br><span class="line">    io.<span class="property">sockets</span>.<span class="title function_">emit</span>(<span class="string">&#x27;update_chat_content&#x27;</span>, socket.<span class="property">user_name</span>, data);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//當client端emit &#x27;add_user&#x27; 時執行</span></span><br><span class="line">  socket.<span class="title function_">on</span>(<span class="string">&#x27;add_user&#x27;</span>, <span class="keyword">function</span>(<span class="params">user_name</span>)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//儲存user_name到socket session</span></span><br><span class="line">    socket.<span class="property">user_name</span> = user_name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//加入user_name 到 user_name list</span></span><br><span class="line">    user_name[user_name] = user_name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//呼叫Client端的 update_chat事件</span></span><br><span class="line">    socket.<span class="title function_">emit</span>(<span class="string">&#x27;update_chat_content&#x27;</span>, <span class="string">&#x27;SERVER:&#x27;</span>, socket.<span class="property">user_name</span> + <span class="string">&#x27; has connected&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//呼叫所有Client端的 update_chat事件</span></span><br><span class="line">    socket.<span class="property">broadcast</span>.<span class="title function_">emit</span>(<span class="string">&#x27;update_chat_content&#x27;</span>, <span class="string">&#x27;SERVER:&#x27;</span>,user_name + <span class="string">&#x27; has connected&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//呼叫Client端的 update_user事件</span></span><br><span class="line">    io.<span class="property">sockets</span>.<span class="title function_">emit</span>(<span class="string">&#x27;update_user&#x27;</span>, user_name);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//當Client端斷線時執行</span></span><br><span class="line">  socket.<span class="title function_">on</span>(<span class="string">&#x27;disconnect&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//從user_name list中刪除使用者</span></span><br><span class="line">    <span class="keyword">delete</span> user_name[socket.<span class="property">user_name</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//呼叫Client端的 update_user事件更新使用者列表</span></span><br><span class="line">    io.<span class="property">sockets</span>.<span class="title function_">emit</span>(<span class="string">&#x27;update_user&#x27;</span>, user_name);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//廣播所有Client端的 update_chat_content事件，通知某某使用者離線</span></span><br><span class="line">    socket.<span class="property">broadcast</span>.<span class="title function_">emit</span>(<span class="string">&#x27;update_chat_content&#x27;</span>, <span class="string">&#x27;SERVER:&#x27;</span>, socket.<span class="property">user_name</span> + <span class="string">&#x27; has disconnected&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="http://psitsmike.com/2011/09/node-js-and-socket-io-chat-tutorial/">node.js and socket.io chat tutorial</a></p>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>請開啟 JavaScript 功能來使用留言系統</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/learning/">學習中</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Client%E7%AB%AF"><span class="toc-number">1.</span> <span class="toc-text">Client端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server%E7%AB%AF"><span class="toc-number">2.</span> <span class="toc-text">Server端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="toc-number">3.</span> <span class="toc-text">參考資料</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&text=NodeJS and Socket.io chat"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&title=NodeJS and Socket.io chat"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&is_video=false&description=NodeJS and Socket.io chat"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NodeJS and Socket.io chat&body=Check out this article: https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&title=NodeJS and Socket.io chat"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&title=NodeJS and Socket.io chat"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&title=NodeJS and Socket.io chat"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&title=NodeJS and Socket.io chat"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&name=NodeJS and Socket.io chat&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2012/08/26/nodejs-and-socket-dot-io-chat/&t=NodeJS and Socket.io chat"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <!-- <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2023
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'lighter/lighter.github.com';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'utteranc';
+      var utterances_theme = 'github-light';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

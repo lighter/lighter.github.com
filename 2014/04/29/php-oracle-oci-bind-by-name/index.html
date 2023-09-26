@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="原本使用Codeigniter的bind很簡單！ 123$bind &#x3D; array(&amp;#x27;:ID&amp;#x27; &#x3D;&gt; &amp;#x27;ABCDE12345&amp;#x27;);$sql &#x3D; &quot;SELECT * FROM &amp;#123;$this-&gt;db-&gt;dbprefix(&amp;#x27;TABLE&amp;#x27;)&amp;#125; WHERE ID &#x3D; :ID&quot;;$this-&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php oracle oci_bind_by_name">
+<meta property="og:url" content="https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:description" content="原本使用Codeigniter的bind很簡單！ 123$bind &#x3D; array(&amp;#x27;:ID&amp;#x27; &#x3D;&gt; &amp;#x27;ABCDE12345&amp;#x27;);$sql &#x3D; &quot;SELECT * FROM &amp;#123;$this-&gt;db-&gt;dbprefix(&amp;#x27;TABLE&amp;#x27;)&amp;#125; WHERE ID &#x3D; :ID&quot;;$this-&amp;">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2014-04-29T15:35:00.000Z">
+<meta property="article:modified_time" content="2014-04-29T15:35:00.000Z">
+<meta property="article:author" content="lighter">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="oracle">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>php oracle oci_bind_by_name</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2014/05/29/laravel-part-1/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2014/04/29/mongodb-note/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="回到頁首" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&text=php oracle oci_bind_by_name"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&title=php oracle oci_bind_by_name"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&is_video=false&description=php oracle oci_bind_by_name"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=php oracle oci_bind_by_name&body=Check out this article: https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&title=php oracle oci_bind_by_name"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&title=php oracle oci_bind_by_name"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&title=php oracle oci_bind_by_name"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&title=php oracle oci_bind_by_name"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&name=php oracle oci_bind_by_name&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&t=php oracle oci_bind_by_name"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%9C%E5%85%85-2014-x2F-05-x2F-18"><span class="toc-number">1.</span> <span class="toc-text">補充 2014&#x2F;05&#x2F;18</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        php oracle oci_bind_by_name
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">lighter</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2014-04-29T15:35:00.000Z" itemprop="datePublished">2014-04-29</time>
+        
+        (Updated: <time datetime="2014-04-29T15:35:00.000Z" itemprop="dateModified">2014-04-29</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/oracle/" rel="tag">oracle</a>, <a class="tag-link-link" href="/tags/php/" rel="tag">php</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>原本使用<code>Codeigniter</code>的<code>bind</code>很簡單！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$bind = array(&#x27;:ID&#x27; =&gt; &#x27;ABCDE12345&#x27;);</span><br><span class="line">$sql = &quot;SELECT * FROM &#123;$this-&gt;db-&gt;dbprefix(&#x27;TABLE&#x27;)&#125; WHERE ID = :ID&quot;;</span><br><span class="line">$this-&gt;db-&gt;query($sql, $bind);</span><br></pre></td></tr></table></figure>
+
+<p>但今天改用<code>php</code>的方法來<code>bind</code>，使用<code>oci_bind_by_name</code>這方法，但是原本參考<a target="_blank" rel="noopener" href="http://us2.php.net/manual/en/function.oci-bind-by-name.php">Document</a>很直覺就是帶參數進去，並沒想太多!</p>
+<p>但是發生了500 Error找了很久仔細看發現，其實是第三個參數的問題，在文件中第三個參數是使用Reference的方式，所以並不能使用字串，必須要在外面定義一個變數帶入。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 錯誤</span><br><span class="line">oci_bind_by_name($stid, &quot;:ID&quot;, &quot;ABCDE12345&quot;);</span><br><span class="line"></span><br><span class="line">// 正確</span><br><span class="line">$id = &quot;ABCDE12345&quot;;</span><br><span class="line">oci_bind_by_name($stid, &quot;:ID&quot;, $id);</span><br></pre></td></tr></table></figure>
+
+<h2 id="補充-2014-x2F-05-x2F-18"><a href="#補充-2014-x2F-05-x2F-18" class="headerlink" title="補充 2014&#x2F;05&#x2F;18"></a>補充 2014&#x2F;05&#x2F;18</h2><p>這也是學長發現的問題，在這邊記錄一下！</p>
+<p>就是在<code>foreach</code>中使用並不能直接使用<code>$value</code>…看下面的code好了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">foreach($array as $key =&gt; $value) &#123;</span><br><span class="line">    // 這邊的$value都只會抓到最後一個的值</span><br><span class="line">    // oci_bind_by_name($stid, &quot;:ID&quot;, $value); // 會有問題</span><br><span class="line"></span><br><span class="line">    // 如果要正確取得每次迴圈的值應該修改成如下</span><br><span class="line">    oci_bind_by_name($stid, &quot;:ID&quot;, $array[$key]); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>請開啟 JavaScript 功能來使用留言系統</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/learning/">學習中</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%9C%E5%85%85-2014-x2F-05-x2F-18"><span class="toc-number">1.</span> <span class="toc-text">補充 2014&#x2F;05&#x2F;18</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&text=php oracle oci_bind_by_name"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&title=php oracle oci_bind_by_name"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&is_video=false&description=php oracle oci_bind_by_name"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=php oracle oci_bind_by_name&body=Check out this article: https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&title=php oracle oci_bind_by_name"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&title=php oracle oci_bind_by_name"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&title=php oracle oci_bind_by_name"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&title=php oracle oci_bind_by_name"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&name=php oracle oci_bind_by_name&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2014/04/29/php-oracle-oci-bind-by-name/&t=php oracle oci_bind_by_name"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <!-- <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2023
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'lighter/lighter.github.com';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'utteranc';
+      var utterances_theme = 'github-light';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

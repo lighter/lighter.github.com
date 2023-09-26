@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="最近看了一下swift，順手記錄一下，一開始當然是最基本的語法囉，在新的xcode中出現了playground，這是一個很適合用來練習基本的語法，不用特地去建立一個大專案，也不用特地去編譯整個專案才能得到結果，這感覺跟其他語言在終端機下執行很像。以下就是簡單的記錄">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[筆記]swift part 1">
+<meta property="og:url" content="https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:description" content="最近看了一下swift，順手記錄一下，一開始當然是最基本的語法囉，在新的xcode中出現了playground，這是一個很適合用來練習基本的語法，不用特地去建立一個大專案，也不用特地去編譯整個專案才能得到結果，這感覺跟其他語言在終端機下執行很像。以下就是簡單的記錄">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-1.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-2.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-3.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-4.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-5.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-6.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-7.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-8.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-9.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-10.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-11.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-12.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-13.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-14.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-15.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-16.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-17.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-18.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-19.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/swift/swift-20.jpg">
+<meta property="article:published_time" content="2014-07-20T07:26:30.000Z">
+<meta property="article:modified_time" content="2014-07-20T07:26:30.000Z">
+<meta property="article:author" content="lighter">
+<meta property="article:tag" content="swift">
+<meta property="article:tag" content="iPhone">
+<meta property="article:tag" content="xcode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lighter.github.io/images/swift/swift-1.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>[筆記]swift part 1</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2014/07/23/bi-ji-swift-part-2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2014/06/27/bi-ji-an-zhuang-vagrant/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="回到頁首" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&text=[筆記]swift part 1"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&title=[筆記]swift part 1"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&is_video=false&description=[筆記]swift part 1"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[筆記]swift part 1&body=Check out this article: https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&title=[筆記]swift part 1"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&title=[筆記]swift part 1"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&title=[筆記]swift part 1"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&title=[筆記]swift part 1"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&name=[筆記]swift part 1&description=&lt;p&gt;最近看了一下&lt;code&gt;swift&lt;/code&gt;，順手記錄一下，一開始當然是最基本的語法囉，在新的&lt;code&gt;xcode&lt;/code&gt;中出現了&lt;code&gt;playground&lt;/code&gt;，這是一個很適合用來練習基本的語法，不用特地去建立一個大專案，也不用特地去編譯整個專案才能得到結果，這感覺跟其他語言在終端機下執行很像。以下就是簡單的記錄&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&t=[筆記]swift part 1"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#var-%E8%AE%8A%E6%95%B8"><span class="toc-number">1.</span> <span class="toc-text">var(變數)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#let-%E5%B8%B8%E6%95%B8"><span class="toc-number">2.</span> <span class="toc-text">let(常數)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for-%E5%9B%9E%E5%9C%88"><span class="toc-number">3.</span> <span class="toc-text">for(回圈)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#if-%E5%A6%82%E6%9E%9C%E2%80%A6"><span class="toc-number">4.</span> <span class="toc-text">if(如果…)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#switch-%E9%81%B8%E6%93%87"><span class="toc-number">5.</span> <span class="toc-text">switch(選擇)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fallthrough-%E8%B2%AB%E7%A9%BF"><span class="toc-number">6.</span> <span class="toc-text">Fallthrough(貫穿)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tuple-%E5%85%83%E7%B5%84%E3%80%81%E7%B5%84%E5%80%BC-use-with-Switch"><span class="toc-number">7.</span> <span class="toc-text">Tuple(元組、組值) use with Switch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Labeled-Statements-%E5%B8%B6%E6%A8%99%E7%B0%BD%E7%9A%84%E8%AA%9E%E5%8F%A5"><span class="toc-number">8.</span> <span class="toc-text">Labeled Statements(帶標簽的語句)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array-%E9%99%A3%E5%88%97"><span class="toc-number">9.</span> <span class="toc-text">Array(陣列)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dictionary-%E5%AD%97%E5%85%B8"><span class="toc-number">10.</span> <span class="toc-text">Dictionary(字典)</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [筆記]swift part 1
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">lighter</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2014-07-20T07:26:30.000Z" itemprop="datePublished">2014-07-20</time>
+        
+        (Updated: <time datetime="2014-07-20T07:26:30.000Z" itemprop="dateModified">2014-07-20</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/iPhone/" rel="tag">iPhone</a>, <a class="tag-link-link" href="/tags/swift/" rel="tag">swift</a>, <a class="tag-link-link" href="/tags/xcode/" rel="tag">xcode</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>最近看了一下<code>swift</code>，順手記錄一下，一開始當然是最基本的語法囉，在新的<code>xcode</code>中出現了<code>playground</code>，這是一個很適合用來練習基本的語法，不用特地去建立一個大專案，也不用特地去編譯整個專案才能得到結果，這感覺跟其他語言在終端機下執行很像。以下就是簡單的記錄</p>
+<span id="more"></span>
+
+<p>一開始建立好<code>playground</code>的檔案就可以看到他已經為你建立好基本的範例了！但這裡並不需要使用到<code>Cocoa</code>，因為基礎的語法練習似乎還不會用到內建的東西，所以其實可以把它刪除。</p>
+<img src="/images/swift/swift-1.jpg" class="">
+
+<h2 id="var-變數"><a href="#var-變數" class="headerlink" title="var(變數)"></a>var(變數)</h2><p>變數的定義格式如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var VAR_NAME:TYPE = ASSIGN_VALUE</span><br></pre></td></tr></table></figure>
+
+<p>一開始需要使用<code>var</code>來定義這是一個變數，至於變數的形態你可以自行定義或是交由編譯器來辨別，然後變數顧名思義就是會變得數，所以之後變數的直可以任意給予新的值。變數的值可以變，但變數的形態不能變，看到<code>str3</code>為<code>string</code>的形態，後面要assign一個數字就會出現錯誤。</p>
+<img src="/images/swift/swift-2.jpg" class="">
+
+<h2 id="let-常數"><a href="#let-常數" class="headerlink" title="let(常數)"></a>let(常數)</h2><p>常數的定義與變數不同，是使用<code>let</code>這個keyword，而且常數只能在一開始assign值，事後並不能更改他</p>
+<img src="/images/swift/swift-3.jpg" class="">
+
+<h2 id="for-回圈"><a href="#for-回圈" class="headerlink" title="for(回圈)"></a>for(回圈)</h2><p>下面這個範例很明顯要印出1到5的數字但不包含5(也就是1到4)，但這裡有個小小不一樣的地方，在之前的版本使用<code>1..5</code>就可以了，這根<code>ruby</code>很像，但是後來在beta3就不能使用了，要改用<code>..&lt;</code></p>
+<img src="/images/swift/swift-4.jpg" class="">
+
+<p>如果單存只是想要跑回圈並無任何變數可以將<code>i</code>取代為<code>_</code>(底線)</p>
+<img src="/images/swift/swift-5.jpg" class="">
+
+<p>現在要包含最後一個數字的範圍也要跑，可以改用<code>...</code>(三個點)</p>
+<img src="/images/swift/swift-6.jpg" class="">
+
+<p>如果不想遞增的跑回圈，例如基數偶數，可以改用下面這種方式來寫，這跟以前原本的<code>for</code>回圈一樣，差別就是不用小括號</p>
+<img src="/images/swift/swift-7.jpg" class="">
+
+<h2 id="if-如果…"><a href="#if-如果…" class="headerlink" title="if(如果…)"></a>if(如果…)</h2><p><code>if</code>，如果條件成立，就會進去執行，這很簡單啦！就不再費言了！</p>
+<img src="/images/swift/swift-8.jpg" class="">
+
+<p>我覺得比較特別也比較好的地方是這個！以往<code>1</code>也就是會被認作為<code>true</code>，所以不小心該變數的值就是<code>1</code>，那這樣判斷一定會通過，但是你並不是因為該變數為<code>1</code>就想讓它通過。但swift似乎不允許這樣，所以當你這樣定義的時候就會出現錯誤訊息，如下圖</p>
+<img src="/images/swift/swift-9.jpg" class="">
+
+<h2 id="switch-選擇"><a href="#switch-選擇" class="headerlink" title="switch(選擇)"></a>switch(選擇)</h2><p>這裡可以看到我將<code>money</code>變數定義為<code>3_000_000</code>，這個<code>_</code>底線，在swift終是被允許的，主要是讓數字容易閱讀。而swift裡的<code>switch case</code>內是不需要寫<code>break</code>的，它自行會為每個<code>case</code>做<code>break</code>。</p>
+<img src="/images/swift/swift-10.jpg" class="">
+
+<p>多條件的要執行同一個的情況呢？直接在<code>case</code>內定義多個條件，用逗點隔開，甚至你可以使用範圍的方式<code>..&lt;</code>，如下圖</p>
+<img src="/images/swift/swift-11.jpg" class="">
+
+<h2 id="Fallthrough-貫穿"><a href="#Fallthrough-貫穿" class="headerlink" title="Fallthrough(貫穿)"></a>Fallthrough(貫穿)</h2><p>如果你希望繼續往下執行下一個<code>case</code>，你可以使用<code>fallthrough</code>，就會繼續往下一個<code>case</code>執行，但下一個如果沒有<code>fallthrough</code>就會停止，也就是說他只會執行到下一個就停止，除非你每一個<code>case</code>內都有宣告</p>
+<img src="/images/swift/swift-12.jpg" class="">
+
+<h2 id="Tuple-元組、組值-use-with-Switch"><a href="#Tuple-元組、組值-use-with-Switch" class="headerlink" title="Tuple(元組、組值) use with Switch"></a>Tuple(元組、組值) use with Switch</h2><p>這給我的感覺有點像是陣列，但其實不是，我覺得這很好用，尤其是在回傳值得時候。下面這個範例結合<code>switch</code>來使用，這邊定義一個<code>tuple</code>的變數，裡面存放了兩個數字！很簡單吧</p>
+<img src="/images/swift/swift-13.jpg" class="">
+
+<p>也可以使用條<code>where</code>條件檢查</p>
+<img src="/images/swift/swift-14.jpg" class="">
+
+<h2 id="Labeled-Statements-帶標簽的語句"><a href="#Labeled-Statements-帶標簽的語句" class="headerlink" title="Labeled Statements(帶標簽的語句)"></a>Labeled Statements(帶標簽的語句)</h2><p>這個我覺得蠻有趣的！可以去控制區塊的回圈，直接看code可能比較清楚了</p>
+<img src="/images/swift/swift-15.jpg" class="">
+
+<h2 id="Array-陣列"><a href="#Array-陣列" class="headerlink" title="Array(陣列)"></a>Array(陣列)</h2><p>這邊我覺得比較不一樣的是，陣列可以用<code>+=</code>直接在陣列後面加上(也就是串聯起來)，其他都蠻好理解的！</p>
+<img src="/images/swift/swift-16.jpg" class="">
+
+<p>清空陣列</p>
+<img src="/images/swift/swift-17.jpg" class="">
+
+<p>重複建立同樣的值，如果要將兩個陣列串聯起來，一樣使用<code>+</code>號就可以，但需注意這兩個陣咧的形態必須都一樣，下列這個範例一個是<code>Int</code>另一個是<code>Double</code>那這樣就不能串聯起來了。</p>
+<img src="/images/swift/swift-18.jpg" class="">
+
+<h2 id="Dictionary-字典"><a href="#Dictionary-字典" class="headerlink" title="Dictionary(字典)"></a>Dictionary(字典)</h2><p>定義方式有兩種，如下圖</p>
+<img src="/images/swift/swift-19.jpg" class="">
+
+<p>字典的操作也很簡單</p>
+<img src="/images/swift/swift-20.jpg" class="">
+
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>請開啟 JavaScript 功能來使用留言系統</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/learning/">學習中</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#var-%E8%AE%8A%E6%95%B8"><span class="toc-number">1.</span> <span class="toc-text">var(變數)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#let-%E5%B8%B8%E6%95%B8"><span class="toc-number">2.</span> <span class="toc-text">let(常數)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for-%E5%9B%9E%E5%9C%88"><span class="toc-number">3.</span> <span class="toc-text">for(回圈)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#if-%E5%A6%82%E6%9E%9C%E2%80%A6"><span class="toc-number">4.</span> <span class="toc-text">if(如果…)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#switch-%E9%81%B8%E6%93%87"><span class="toc-number">5.</span> <span class="toc-text">switch(選擇)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fallthrough-%E8%B2%AB%E7%A9%BF"><span class="toc-number">6.</span> <span class="toc-text">Fallthrough(貫穿)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tuple-%E5%85%83%E7%B5%84%E3%80%81%E7%B5%84%E5%80%BC-use-with-Switch"><span class="toc-number">7.</span> <span class="toc-text">Tuple(元組、組值) use with Switch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Labeled-Statements-%E5%B8%B6%E6%A8%99%E7%B0%BD%E7%9A%84%E8%AA%9E%E5%8F%A5"><span class="toc-number">8.</span> <span class="toc-text">Labeled Statements(帶標簽的語句)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array-%E9%99%A3%E5%88%97"><span class="toc-number">9.</span> <span class="toc-text">Array(陣列)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dictionary-%E5%AD%97%E5%85%B8"><span class="toc-number">10.</span> <span class="toc-text">Dictionary(字典)</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&text=[筆記]swift part 1"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&title=[筆記]swift part 1"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&is_video=false&description=[筆記]swift part 1"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[筆記]swift part 1&body=Check out this article: https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&title=[筆記]swift part 1"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&title=[筆記]swift part 1"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&title=[筆記]swift part 1"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&title=[筆記]swift part 1"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&name=[筆記]swift part 1&description=&lt;p&gt;最近看了一下&lt;code&gt;swift&lt;/code&gt;，順手記錄一下，一開始當然是最基本的語法囉，在新的&lt;code&gt;xcode&lt;/code&gt;中出現了&lt;code&gt;playground&lt;/code&gt;，這是一個很適合用來練習基本的語法，不用特地去建立一個大專案，也不用特地去編譯整個專案才能得到結果，這感覺跟其他語言在終端機下執行很像。以下就是簡單的記錄&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2014/07/20/bi-ji-swift-part-1/&t=[筆記]swift part 1"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <!-- <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2023
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'lighter/lighter.github.com';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'utteranc';
+      var utterances_theme = 'github-light';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

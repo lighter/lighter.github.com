@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="這個章節就來介紹  帳號列表 建立帳號  這裡會介紹到如何select跟insert資料,以及URL的使用!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="laravel part 6">
+<meta property="og:url" content="https://lighter.github.io/2014/06/07/laravel-part-6/index.html">
+<meta property="og:site_name" content="I can&#39;t remember">
+<meta property="og:description" content="這個章節就來介紹  帳號列表 建立帳號  這裡會介紹到如何select跟insert資料,以及URL的使用!">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://lighter.github.io/images/laravel_sample/laravel-16.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/laravel_sample/laravel-17.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/laravel_sample/laravel-18.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/laravel_sample/laravel-19.jpg">
+<meta property="og:image" content="https://lighter.github.io/images/laravel_sample/laravel-20.jpg">
+<meta property="article:published_time" content="2014-06-06T16:58:18.000Z">
+<meta property="article:modified_time" content="2014-06-06T16:58:18.000Z">
+<meta property="article:author" content="lighter">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="laravel">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lighter.github.io/images/laravel_sample/laravel-16.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/null">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/null" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/null">
+        
+      
+    
+    <!-- title -->
+    <title>laravel part 6</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2014/06/09/laravel-part-7/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2014/06/04/laravel-part-5/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="回到頁首" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2014/06/07/laravel-part-6/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2014/06/07/laravel-part-6/&text=laravel part 6"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2014/06/07/laravel-part-6/&title=laravel part 6"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2014/06/07/laravel-part-6/&is_video=false&description=laravel part 6"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=laravel part 6&body=Check out this article: https://lighter.github.io/2014/06/07/laravel-part-6/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2014/06/07/laravel-part-6/&title=laravel part 6"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2014/06/07/laravel-part-6/&title=laravel part 6"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2014/06/07/laravel-part-6/&title=laravel part 6"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2014/06/07/laravel-part-6/&title=laravel part 6"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2014/06/07/laravel-part-6/&name=laravel part 6&description=&lt;p&gt;這個章節就來介紹&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;帳號列表&lt;/li&gt;
+&lt;li&gt;建立帳號&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;這裡會介紹到如何&lt;code&gt;select&lt;/code&gt;跟&lt;code&gt;insert&lt;/code&gt;資料,以及&lt;code&gt;URL&lt;/code&gt;的使用!&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2014/06/07/laravel-part-6/&t=laravel part 6"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B3%E8%99%9F%E5%88%97%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">帳號列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%B8%B3%E8%99%9F"><span class="toc-number">2.</span> <span class="toc-text">建立帳號</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        laravel part 6
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">lighter</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2014-06-06T16:58:18.000Z" itemprop="datePublished">2014-06-07</time>
+        
+        (Updated: <time datetime="2014-06-06T16:58:18.000Z" itemprop="dateModified">2014-06-07</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/laravel/" rel="tag">laravel</a>, <a class="tag-link-link" href="/tags/php/" rel="tag">php</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>這個章節就來介紹</p>
+<ol>
+<li>帳號列表</li>
+<li>建立帳號</li>
+</ol>
+<p>這裡會介紹到如何<code>select</code>跟<code>insert</code>資料,以及<code>URL</code>的使用!</p>
+<span id="more"></span>
+
+<h2 id="帳號列表"><a href="#帳號列表" class="headerlink" title="帳號列表"></a>帳號列表</h2><p>首先開啟<code>AccountController.php</code>,輸入以下的code:</p>
+<figure class="highlight php"><figcaption><span>AccountController.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="variable">$accounts</span> = <span class="title class_">User</span>::<span class="title function_ invoke__">all</span>();</span><br><span class="line">  <span class="variable">$view</span> = <span class="title class_">View</span>::<span class="title function_ invoke__">make</span>(<span class="string">&#x27;account.list&#x27;</span>)</span><br><span class="line">    -&gt;<span class="title function_ invoke__">with</span>(<span class="string">&#x27;accounts&#x27;</span>, <span class="variable">$accounts</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="variable">$view</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這裡可以看到撈取資料非常簡單!這裡使用的是<a target="_blank" rel="noopener" href="http://kejyun.github.io/Laravel-4-Documentation-Traditional-Chinese/docs/eloquent/#introduction">Eloquent ORM</a>的方式,相關介紹官方文件已經說得很清楚了,這邊就不再多贅述了.</p>
+<ol>
+<li>簡單的一行<code>User::all()</code>,比起以前自己要寫好<code>sql</code>語法,然後再使用<code>db</code>方法去query,相對之下這少了很多行code,但是我想…複雜的sql語法可能還是要自己寫;跟codeigniter相較之下我覺得這個更簡潔了…</li>
+<li>帶入查詢結果到<code>view</code>,有寫過codeigniter應該都不陌生..跟<code>$this-&gt;load-&gt;view(&#39;view&#39;, $data)</code>很相像.</li>
+</ol>
+<p>只是我覺得有點怪的是,這樣似乎資料就不再Model了,似乎已經在Controller就可以做掉這些,在codeigniter都會把這些sql的東西寫到特定的Model檔案,然後Controller去load這些Model,至於深入原因有時間再找找看資料好了.</p>
+<p>Note:如果你的code有錯誤,在網頁出現到下圖的錯誤訊息,但卻沒有顯示code的錯誤問題在哪</p>
+<img src="/images/laravel_sample/laravel-16.jpg" class="">
+
+<p>可以開啟<code>app/config/app.php</code>這支檔案,找到<code>debug</code>這個key值,並把它改為<code>true</code>,這樣就可以顯示錯誤訊息了:</p>
+<figure class="highlight php"><figcaption><span>app.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;debug&#x27;</span> =&gt; <span class="literal">true</span>,</span><br></pre></td></tr></table></figure>
+
+<p>這邊可以很明確的看到<code>$accounts = User:all();</code>少一個分號!</p>
+<img src="/images/laravel_sample/laravel-17.jpg" class="">
+
+<p>再來開啟<code>app/views/account/list.blade.php</code>輸入下面的code:</p>
+<script src="//gist.github.com/5abb468d5c547c1305e7.js?file=list.blade.php"></script>
+
+<blockquote>
+<p>下面數字列表請依照code上的註解數字.</p>
+</blockquote>
+<ol>
+<li>用來顯示<code>session</code>的訊息, 例如建立帳號時回到這頁要顯示建立成功的字樣,這在之後會用到.</li>
+<li>這裡使用’URL&#96;來建立連結, 前面網頁漏漏長的http也不用你寫了.</li>
+<li>這裡的<code>$accounts</code>跟controller內的key值是相對應的. 因為回傳的是多比陣列並且是依照資料表的column欄位名稱,所以後面都適用<code>$value-&gt;COLUMN_NAME</code>.</li>
+<li>這裡<code>Show</code>跟<code>Edit</code>都很單純用網址的方式就可以, 刪除就比較特別了, 因為Laravel是遵照<code>RESTful</code>, 一般的連結是發出<code>GET request</code>, 無法發出<code>Delete request</code>,所以需要借由<code>form</code>內的<code>button</code>來產生<code>Delete request</code>(參考<a target="_blank" rel="noopener" href="http://stackoverflow.com/a/19645142/685060">這篇</a>)</li>
+</ol>
+<p>如果都沒問題的話應該可以看到下面的畫面</p>
+<img src="/images/laravel_sample/laravel-18.jpg" class="">
+
+<h2 id="建立帳號"><a href="#建立帳號" class="headerlink" title="建立帳號"></a>建立帳號</h2><p>首先先來編輯建立帳號的畫面! 開啟<code>app/views/account/create.blade.php</code>, 輸入下面的code</p>
+<script src="//gist.github.com/aa6f3eb91ff6f2e0a03e.js?file=create.blade.php"></script>
+
+<p>這邊並沒有什麼太複雜的,大概依照註解的號碼解釋一下</p>
+<ol>
+<li>有錯誤訊息時,會使用<code>ul</code>的條列出你輸入的資料哪裡有問題.</li>
+<li>表單要送出的<code>url</code>路徑,可以直接指定<code>controller</code>,無需其他的參數.</li>
+<li>這邊我覺得好用的地方是<code>Input::old()</code>,取回就資料,以往我為了要保留住舊資料,所以就將<code>button</code>寫成<code>ajax</code>的方式送出資料.</li>
+<li>表單的送出按鈕.</li>
+</ol>
+<img src="/images/laravel_sample/laravel-19.jpg" class="">
+
+<p>接下來就是寫入資料庫的動作,開啟<code>app/controller/AccountController.php</code>,因為<code>laravel</code>是使用<code>RESTful</code>,所以預設會使用<code>store</code>這個function. code如下:</p>
+<script src="//gist.github.com/d28b28c4c16ccd04c40b.js?file=AccountController.php"></script>
+
+<ol>
+<li>驗證規則: 我個人覺得很方便,不然以往我都是使用<code>empty</code>等php的function一個一個條件檢查.而且連Email檢查也不用寫正規式檢查,可以看到密碼的部分<code>min:3</code>,最少為3個數字.</li>
+<li>返回舊資料: 這樣在返回建立帳號頁面時,也不會遺漏使用原本輸入的資料,就不用全部重新輸入了!</li>
+<li>建立帳號: 這邊也不用自己寫sql語法,整個很直覺,指定好sql欄位的值,最後<code>save</code>.</li>
+<li>返回建立成功訊息: 使用flash的session,至於在哪顯示?可以在<code>list.blade.php</code>中找到<code>@if (Session::has(&#39;message&#39;))</code>這區塊的code,就是用來顯示這邊的<code>message</code>.</li>
+</ol>
+<img src="/images/laravel_sample/laravel-20.jpg" class="">
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>請開啟 JavaScript 功能來使用留言系統</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/learning/">學習中</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B3%E8%99%9F%E5%88%97%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">帳號列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%B8%B3%E8%99%9F"><span class="toc-number">2.</span> <span class="toc-text">建立帳號</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lighter.github.io/2014/06/07/laravel-part-6/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lighter.github.io/2014/06/07/laravel-part-6/&text=laravel part 6"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lighter.github.io/2014/06/07/laravel-part-6/&title=laravel part 6"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lighter.github.io/2014/06/07/laravel-part-6/&is_video=false&description=laravel part 6"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=laravel part 6&body=Check out this article: https://lighter.github.io/2014/06/07/laravel-part-6/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lighter.github.io/2014/06/07/laravel-part-6/&title=laravel part 6"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lighter.github.io/2014/06/07/laravel-part-6/&title=laravel part 6"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lighter.github.io/2014/06/07/laravel-part-6/&title=laravel part 6"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lighter.github.io/2014/06/07/laravel-part-6/&title=laravel part 6"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lighter.github.io/2014/06/07/laravel-part-6/&name=laravel part 6&description=&lt;p&gt;這個章節就來介紹&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;帳號列表&lt;/li&gt;
+&lt;li&gt;建立帳號&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;這裡會介紹到如何&lt;code&gt;select&lt;/code&gt;跟&lt;code&gt;insert&lt;/code&gt;資料,以及&lt;code&gt;URL&lt;/code&gt;的使用!&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lighter.github.io/2014/06/07/laravel-part-6/&t=laravel part 6"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <!-- <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2023
+    lighter
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首頁</a></li><!--
+     --><!--
+       --><li><a href="/about/">關於</a></li><!--
+     --><!--
+       --><li><a href="/archives/">文章</a></li><!--
+     --><!--
+       --><li><a href="/learning/">學習中</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'lighter/lighter.github.com';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'utteranc';
+      var utterances_theme = 'github-light';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>
