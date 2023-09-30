@@ -13,6 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 開始時間 	| 結束時間 	| 名稱 	| 平台 | 狀態 	|
 |:--------:|:----------:|:------:|:------:|:----:|
+|2023/09/30||蒼藍鴿醫師的實用醫學百科｜疾病自救 x 飲食調理 一次教你|[pressplay](https://www.pressplay.cc/project/262654CBA654DA92BE46A4B09E390F2E/about#act=auto-follow)|reading|
 |2023/08/26|2023/09/06|找回美麗腰背線！筋肉媽媽的科學化核心肌群訓練|[Hahow](https://hahow.in/courses/628b1d45b38e8100072ca394/main?item=628dbdaaef00450006857d93)|done|
 |2023/07/02||大人的文法課|[word up](https://shop.wordup.com.tw/product/422)|reading|
 |2023/06/05|2023/08/06|Machine Learning A-Z™: AI, Python & R + ChatGPT Bonus [2023]|[Udemy](https://www.udemy.com/course/machinelearning/)|done|
