@@ -13,6 +13,8 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/10/15|隱市致富地圖：60億操盤手用一張圖，找到上漲超過30％的翻轉人生贏勢股|9786267123010|[pressplay](https://www.pressplay.cc/link/E95BB8DC6B)|
+|2023/10/15|你沒有學到的資產配置：巴菲特默默在做的事|9786263538870|[pressplay](https://www.pressplay.cc/link/4E4D3BCBBB)|
 |2023/10/12|持續買進：資料科學家的投資終極解答，存錢及致富的實證方法|9786267252710|[pressplay](https://www.pressplay.cc/link/62DA951546)|
 |2023/10/12|推力：每個人都可以影響別人、改善決策，做人生的選擇設計師|9786263531185|[pressplay](https://www.pressplay.cc/link/51FE6DD072)|
 |2023/10/12|惡血：矽谷獨角獸的醫療騙局！深藏血液裡的祕密、謊言與金錢|9789867778383|[pressplay](https://www.pressplay.cc/link/5D6E2B931E)|
