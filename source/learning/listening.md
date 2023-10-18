@@ -13,8 +13,9 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
-|2023/10/17|1週2食材，讓心不發炎的解憂飲食|9789869892018|[pressplay](https://www.pressplay.cc/link/3CC90E6FF0)|
-|2023/10/17|巴勒斯坦之殤：對抗帝國主義的百年反殖民戰爭|9789860767544|[pressplay](https://www.pressplay.cc/link/E18797ADB9)|
+|2023/10/17|八成是你想太多|9786263531802|[pressplay](https://www.pressplay.cc/link/9F98058559)|
+|2023/10/16|1週2食材，讓心不發炎的解憂飲食|9789869892018|[pressplay](https://www.pressplay.cc/link/3CC90E6FF0)|
+|2023/10/16|巴勒斯坦之殤：對抗帝國主義的百年反殖民戰爭|9789860767544|[pressplay](https://www.pressplay.cc/link/E18797ADB9)|
 |2023/10/15|隱市致富地圖：60億操盤手用一張圖，找到上漲超過30％的翻轉人生贏勢股|9786267123010|[pressplay](https://www.pressplay.cc/link/E95BB8DC6B)|
 |2023/10/15|你沒有學到的資產配置：巴菲特默默在做的事|9786263538870|[pressplay](https://www.pressplay.cc/link/4E4D3BCBBB)|
 |2023/10/12|持續買進：資料科學家的投資終極解答，存錢及致富的實證方法|9786267252710|[pressplay](https://www.pressplay.cc/link/62DA951546)|
