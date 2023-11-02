@@ -13,6 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/10/19|智慧型股票投資人|9789866320972|[pressplay](https://www.pressplay.cc/link/5F286F3E16)|
 |2023/10/17|八成是你想太多|9786263531802|[pressplay](https://www.pressplay.cc/link/9F98058559)|
 |2023/10/16|1週2食材，讓心不發炎的解憂飲食|9789869892018|[pressplay](https://www.pressplay.cc/link/3CC90E6FF0)|
 |2023/10/16|巴勒斯坦之殤：對抗帝國主義的百年反殖民戰爭|9789860767544|[pressplay](https://www.pressplay.cc/link/E18797ADB9)|
