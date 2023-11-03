@@ -13,6 +13,10 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/11/02|1天1行小日記，寫出超強行動力|9786263491045|[pressplay](https://www.pressplay.cc/link/D5C11254DC)|
+|2023/11/02|為什麼沒人告訴過我|9789573296935|[pressplay](https://www.pressplay.cc/link/7B2C930038)|
+|2023/11/02|小狗錢錢|9787521726473|[pressplay](https://www.pressplay.cc/link/92BFBEB6CE)
+|2023/11/02|南瓜計畫：狠心摘弱枝，才能比人茁壯的經營法則|9789862298343|[pressplay](https://www.pressplay.cc/link/1AFE8BF803)|
 |2023/10/19|智慧型股票投資人|9789866320972|[pressplay](https://www.pressplay.cc/link/5F286F3E16)|
 |2023/10/17|八成是你想太多|9786263531802|[pressplay](https://www.pressplay.cc/link/9F98058559)|
 |2023/10/16|1週2食材，讓心不發炎的解憂飲食|9789869892018|[pressplay](https://www.pressplay.cc/link/3CC90E6FF0)|
