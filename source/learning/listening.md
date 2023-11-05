@@ -13,6 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/11/05|複利領導：簡單的事重複做，就會有力量|9786263353220|[pressplay](https://www.pressplay.cc/link/60176460F1)|
 |2023/11/02|1天1行小日記，寫出超強行動力|9786263491045|[pressplay](https://www.pressplay.cc/link/D5C11254DC)|
 |2023/11/02|為什麼沒人告訴過我|9789573296935|[pressplay](https://www.pressplay.cc/link/7B2C930038)|
 |2023/11/02|小狗錢錢|9787521726473|[pressplay](https://www.pressplay.cc/link/92BFBEB6CE)
