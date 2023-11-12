@@ -13,6 +13,11 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/11/12|一流的人如何駕馭自我：管理熱情、引導熱情，激發出我們最好的一面|9786267079225|[pressplay](https://www.pressplay.cc/link/CBA93BA6A1)|
+|2023/11/12|**欲望分子多巴胺：帶來墮落與貪婪、同時激發創意和衝動的賀爾蒙，如何支配人類的情緒、行為及命運**|9786263152342|[pressplay](https://www.pressplay.cc/link/3CE732BFC7)|
+|2023/11/09|工作焦慮：這個世代的上班族七成心裡都有病，解決壓力與倦怠的8個方法|9789865063450|[pressplay](https://www.pressplay.cc/link/12CF948337)|
+|2023/11/09|大人的周末創業：讓經驗、人脈、興趣變現金的未來獲利術|9789579054652|[pressplay](https://www.pressplay.cc/link/F7957E5357)|
+|2023/11/09|令人腦洞大開的藝術思考法：活化創意，跳脫機械式思維，讓生活與工作升級|9786263353213|[pressplay](https://www.pressplay.cc/link/1EB9464E07)|
 |2023/11/05|複利領導：簡單的事重複做，就會有力量|9786263353220|[pressplay](https://www.pressplay.cc/link/60176460F1)|
 |2023/11/02|1天1行小日記，寫出超強行動力|9786263491045|[pressplay](https://www.pressplay.cc/link/D5C11254DC)|
 |2023/11/02|為什麼沒人告訴過我|9789573296935|[pressplay](https://www.pressplay.cc/link/7B2C930038)|
