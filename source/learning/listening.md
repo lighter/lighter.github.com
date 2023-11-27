@@ -13,6 +13,9 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/11/26|「紙1張」閱讀筆記法|9789862898062|[pressplay](https://www.pressplay.cc/link/72F4A65D00)|
+|2023/11/26|疫後大未來|9789573291114|[pressplay](https://www.pressplay.cc/link/984D955EF6)|
+|2023/11/26|知識複利筆記術：卡片盒筆記法的數位應用實戰指南|9786267336090|[pressplay](https://www.pressplay.cc/link/E1C9213755)|
 |2023/11/23|平衡心態：掌握成功的四腳桌法則，穩步累積你的財富、幸福與健康|9786267212073|[pressplay](https://www.pressplay.cc/link/1A47721544)|
 |2023/11/23|思考外包的陷阱：在「快答案」的世界，我們如何重建常識、擴充思維？|9789579689540|[pressplay](https://www.pressplay.cc/link/06E7E0D251)|
 |2023/11/19|卡內基快樂學：如何停止憂慮重新生活|9789869869379|[pressplay](https://www.pressplay.cc/link/2A1874F95D)|
