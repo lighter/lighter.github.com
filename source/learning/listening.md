@@ -13,6 +13,10 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/12/05|如何改變一個人：華頓商學院教你消除抗拒心理，從心擁抱改變|9789571390123|[pressplay](https://www.pressplay.cc/link/8EF1B4E7A8)|
+|2023/12/05|敏感度領導：疏離世代工作者必備的決勝關鍵|9786263539686|[pressplay](https://www.pressplay.cc/link/0597CC5701)|
+|2023/12/05|高趣商思維|9789865067779|[pressplay](https://www.pressplay.cc/link/B29574538B)|
+|2023/12/05|內省的技術|9786269615384|[pressplay](https://www.pressplay.cc/link/9C7A417CE5)|
 |2023/11/28|**誰偷走了你的專注力？：分心世代的12個課題，如何停止瞎忙，重拾心流、效率與創意**|9786269586547|[pressplay](https://www.pressplay.cc/link/BA525B0C8F)|
 |2023/11/28|**靜下來工作：一位禪師與Google團隊共同開發的七項覺知練習**|9789869820462|[pressplay](https://www.pressplay.cc/link/FEDB10D2FD)|
 |2023/11/26|「紙1張」閱讀筆記法|9789862898062|[pressplay](https://www.pressplay.cc/link/72F4A65D00)|
