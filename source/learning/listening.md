@@ -13,6 +13,9 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/12/07|如何成為不完美主義者：不完美才完整，從小目標到微習慣，持續向前的成功逆思維|9786267212103|[pressplay](https://www.pressplay.cc/link/ED7BA33F4F)|
+|2023/12/07|寫作的本事：無畏、熱情與想像力，英國寫作教母的創意指引與私房筆記|9786263740426|[pressplay](https://www.pressplay.cc/link/BBE1F419C4)|
+|2023/12/07|休婚：婚姻卡住了，我們決定讓關係休假，竟喚回重新幸福的可能|9789578950955|[pressplay](https://www.pressplay.cc/link/487D2C3491)|
 |2023/12/05|如何改變一個人：華頓商學院教你消除抗拒心理，從心擁抱改變|9789571390123|[pressplay](https://www.pressplay.cc/link/8EF1B4E7A8)|
 |2023/12/05|敏感度領導：疏離世代工作者必備的決勝關鍵|9786263539686|[pressplay](https://www.pressplay.cc/link/0597CC5701)|
 |2023/12/05|高趣商思維|9789865067779|[pressplay](https://www.pressplay.cc/link/B29574538B)|
