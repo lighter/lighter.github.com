@@ -13,6 +13,9 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/12/23|練好邏輯的第一堂課：教你看穿誰有偏見、誰在鬼扯，建立獨立思考力|9786267252529|[pressplay](https://www.pressplay.cc/link/3B68B7276A)|
+|2023/12/23|六頂思考帽|9786267252642|[pressplay](https://www.pressplay.cc/link/DC7B1B3A24)|
+|2023/12/23|家人使用說明書：腦科學專家寫給總是被家人一秒惹怒的你|9789573291107|[pressplay](https://www.pressplay.cc/link/FF5EAC72B0)|
 |2023/12/22|統計的假象：拆穿混淆的假設、揪出偏差的數據、識破扭曲的結論，耶魯大學最受歡迎的十八堂公開課（二版）|9786267261989|[pressplay](https://www.pressplay.cc/link/6D32FDB437)|
 |2023/12/22|敏捷思考的高績效工作術：在沒有答案的時代，繼續生存的職場五力|9786267195420|[pressplay](https://www.pressplay.cc/link/1D5FC53CC9)|
 |2023/12/22|令人大感意外的脂肪：為什麼奶油、肉類、乳酪應該是健康飲食|9789869268950|[pressplay](https://www.pressplay.cc/link/826F82F917)|
