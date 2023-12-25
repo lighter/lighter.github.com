@@ -13,6 +13,9 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/12/24|化解衝突的高效溝通|9789862896518|[pressplay](https://www.pressplay.cc/link/64D0341151)|
+|2023/12/24|心像練習：解鎖心流、超越天賦的致勝心理學|9789863414773|[pressplay](https://www.pressplay.cc/link/2407DA87B1)|
+|2023/12/24|最小阻力之路|9786267293034|[pressplay](https://www.pressplay.cc/link/8DBFEE9F94)|
 |2023/12/23|練好邏輯的第一堂課：教你看穿誰有偏見、誰在鬼扯，建立獨立思考力|9786267252529|[pressplay](https://www.pressplay.cc/link/3B68B7276A)|
 |2023/12/23|六頂思考帽|9786267252642|[pressplay](https://www.pressplay.cc/link/DC7B1B3A24)|
 |2023/12/23|家人使用說明書：腦科學專家寫給總是被家人一秒惹怒的你|9789573291107|[pressplay](https://www.pressplay.cc/link/FF5EAC72B0)|
