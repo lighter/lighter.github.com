@@ -13,6 +13,10 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/12/28|大人學選擇|9786263530577|[pressplay](https://www.pressplay.cc/link/31EFCBFDD1)|
+|2023/12/28|個人時代：不能只是去做，重點是你「想」怎麼做|9786267240540|[pressplay](https://www.pressplay.cc/link/48A0832BA7)|
+|2023/12/28|MBTI，你的職業性格是什麼？：發現自己的優勢，規劃最適生涯|9786267261675|[pressplay](https://www.pressplay.cc/link/EFC1F5BBD6)|
+|2023/12/28|跑者如何以身練心：第一本出自專業教練，專為跑者設計的「心智與心志」訓練策略|9786263611979|[pressplay](https://www.pressplay.cc/link/31E506B03B)|
 |2023/12/24|化解衝突的高效溝通|9789862896518|[pressplay](https://www.pressplay.cc/link/64D0341151)|
 |2023/12/24|心像練習：解鎖心流、超越天賦的致勝心理學|9789863414773|[pressplay](https://www.pressplay.cc/link/2407DA87B1)|
 |2023/12/24|最小阻力之路|9786267293034|[pressplay](https://www.pressplay.cc/link/8DBFEE9F94)|
