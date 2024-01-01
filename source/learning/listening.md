@@ -13,6 +13,9 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2023/12/31|找到人生中最重要的7個人|9789860626384|[pressplay](https://www.pressplay.cc/link/DA688929AA)|
+|2023/12/31|為什麼事情做不完，你還在滑手機？：心理諮商師教你，改善拖延，先從照顧情緒開始|9786263355781|[pressplay](https://www.pressplay.cc/link/E435F1D9E7)|
+|2023/12/31|超高效率！耳聽學習法：用「耳朵」讀書，紓解苦讀瓶頸，年閱讀量倍增|9786269688753|[pressplay](https://www.pressplay.cc/link/4D88401A60)|
 |2023/12/28|大人學選擇|9786263530577|[pressplay](https://www.pressplay.cc/link/31EFCBFDD1)|
 |2023/12/28|個人時代：不能只是去做，重點是你「想」怎麼做|9786267240540|[pressplay](https://www.pressplay.cc/link/48A0832BA7)|
 |2023/12/28|MBTI，你的職業性格是什麼？：發現自己的優勢，規劃最適生涯|9786267261675|[pressplay](https://www.pressplay.cc/link/EFC1F5BBD6)|
