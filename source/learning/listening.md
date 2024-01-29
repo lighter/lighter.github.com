@@ -13,6 +13,8 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/01/28|突破框架，你的內在無限大|9786263532045|[pressplay](https://www.pressplay.cc/link/56190E05A4)|
+|2024/01/28|做個有溫度的人|9786263355118|[pressplay](https://www.pressplay.cc/link/41FC2BC419)|
 |2024/01/23|一個經濟學家的AI觀點|9786267216514|[pressplay](https://www.pressplay.cc/link/787FEADB09)|
 |2024/01/22|**看不見的傷，最傷**|9786263187733|[pressplay](https://www.pressplay.cc/link/421B72148B)|
 |2024/01/22|**與焦慮和解**|9789863616467|[pressplay](https://www.pressplay.cc/link/AEAE07C3A7)|
