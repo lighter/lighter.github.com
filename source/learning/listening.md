@@ -13,6 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/01/30|成為有趣人的55條說話公式|9789573278849|[pressplay](https://www.pressplay.cc/link/CA9FE83E7B)|
 |2024/01/29|禮貌的力量|9786267212004|[pressplay](https://www.pressplay.cc/link/B22DAB9876)|
 |2024/01/29|如果內心是一個房間|9786267321096|[pressplay](https://www.pressplay.cc/link/2ADB8D1775)|
 |2024/01/28|突破框架，你的內在無限大|9786263532045|[pressplay](https://www.pressplay.cc/link/56190E05A4)|
