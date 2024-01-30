@@ -13,6 +13,8 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/01/29|禮貌的力量|9786267212004|[pressplay](https://www.pressplay.cc/link/B22DAB9876)|
+|2024/01/29|如果內心是一個房間|9786267321096|[pressplay](https://www.pressplay.cc/link/2ADB8D1775)|
 |2024/01/28|突破框架，你的內在無限大|9786263532045|[pressplay](https://www.pressplay.cc/link/56190E05A4)|
 |2024/01/28|做個有溫度的人|9786263355118|[pressplay](https://www.pressplay.cc/link/41FC2BC419)|
 |2024/01/23|一個經濟學家的AI觀點|9786267216514|[pressplay](https://www.pressplay.cc/link/787FEADB09)|
