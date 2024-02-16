@@ -13,6 +13,11 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/02/15|**你沒錯，為什麼要覺得抱歉**|9786263493704|[pressplay](https://www.pressplay.cc/link/AAD59AE3DF)|
+|2024/02/15|讀書變現的創作法則|9786267311837|[pressplay](https://www.pressplay.cc/link/E4DFBF8F74)|
+|2024/02/15|**最高快樂人生**|9789577415011|[pressplay](https://www.pressplay.cc/link/FC8E3A3C7C)|
+|2024/02/13|**與時間有約**|9786267173664|[pressplay](https://www.pressplay.cc/link/CAB6C11B47)|
+|2024/02/13|大格局大思維|9786263613362|[pressplay](https://www.pressplay.cc/link/53CAF75819)|
 |2024/01/30|成為有趣人的55條說話公式|9789573278849|[pressplay](https://www.pressplay.cc/link/CA9FE83E7B)|
 |2024/01/29|禮貌的力量|9786267212004|[pressplay](https://www.pressplay.cc/link/B22DAB9876)|
 |2024/01/29|如果內心是一個房間|9786267321096|[pressplay](https://www.pressplay.cc/link/2ADB8D1775)|
