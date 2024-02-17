@@ -13,6 +13,8 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/02/16|Google公關總監的職場慢爬成功學|9786263494596|[pressplay](https://www.pressplay.cc/link/29785F3076)|
+|2024/02/16|韌性：不確定時代的精進法則|9786263539389|[pressplay](https://www.pressplay.cc/link/A86B786CAF)|
 |2024/02/15|**你沒錯，為什麼要覺得抱歉**|9786263493704|[pressplay](https://www.pressplay.cc/link/AAD59AE3DF)|
 |2024/02/15|讀書變現的創作法則|9786267311837|[pressplay](https://www.pressplay.cc/link/E4DFBF8F74)|
 |2024/02/15|**最高快樂人生**|9789577415011|[pressplay](https://www.pressplay.cc/link/FC8E3A3C7C)|
