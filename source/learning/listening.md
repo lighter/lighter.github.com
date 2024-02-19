@@ -13,6 +13,8 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/02/18|理財新手的輕鬆財務課|9786267375112|[pressplay](https://www.pressplay.cc/link/4928A1F72B)|
+|2024/02/18|不窮不病不無聊：施昇輝的第三人生樂活提案|9789579054768|[pressplay](https://www.pressplay.cc/link/40121E020C)|
 |2024/02/16|Google公關總監的職場慢爬成功學|9786263494596|[pressplay](https://www.pressplay.cc/link/29785F3076)|
 |2024/02/16|韌性：不確定時代的精進法則|9786263539389|[pressplay](https://www.pressplay.cc/link/A86B786CAF)|
 |2024/02/15|**你沒錯，為什麼要覺得抱歉**|9786263493704|[pressplay](https://www.pressplay.cc/link/AAD59AE3DF)|
