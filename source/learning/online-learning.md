@@ -12,6 +12,7 @@ date: 2023-02-04 14:33:09
 ### 2024
 | 開始時間 	| 結束時間 	| 名稱 	| 平台 | 狀態 	|
 |:--------:|:----------:|:------:|:------:|:----:|
+|2024/03/02||卡片盒筆記實戰課｜靈感捕捉到高效產出的知識管理系統|[pressplay](https://www.pressplay.cc/project/148B74E70523C7A7E260484F9B6825CB/about#act=auto-follow)|reading|
 |2024/01/22||Go Bootcamp: Master Golang with 1000+ Exercises and Projects|[Udemy](https://www.udemy.com/course/learn-go-the-complete-bootcamp-course-golang/)|reading|
 
 ### 2023
