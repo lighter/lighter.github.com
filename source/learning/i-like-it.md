@@ -9,6 +9,10 @@ date: 2023-06-11 21:34:09
 
 # 2024
 
+## learning
+
+- [小心效率陷阱：為什麼你不需要"第二大腦"或者"個人知識庫"？](https://youtu.be/5kNCcpM61eo?si=H486-PWe1z9fKDHX) `#第二大腦`
+
 # 2023
 
 ## coding
