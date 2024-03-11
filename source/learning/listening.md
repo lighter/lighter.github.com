@@ -13,6 +13,9 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/03/11|我為何會這樣？——MBTI人格類型的16種性格密碼|9786263183056|[pressplay](https://www.pressplay.cc/link/197AC00B0A)|
+|2024/03/11|動能致富|9786263613249|[pressplay](https://www.pressplay.cc/link/FF89F99787)|
+|2024/03/11|累死你的不是工作，是工作方法|9789865536909|[pressplay](https://www.pressplay.cc/link/90D3749076)|
 |2024/02/25|在交易的路上，與自己相遇|9786267291320|[pressplay](https://www.pressplay.cc/link/3BD5FAB890)|
 |2024/02/18|理財新手的輕鬆財務課|9786267375112|[pressplay](https://www.pressplay.cc/link/4928A1F72B)|
 |2024/02/18|不窮不病不無聊：施昇輝的第三人生樂活提案|9789579054768|[pressplay](https://www.pressplay.cc/link/40121E020C)|
