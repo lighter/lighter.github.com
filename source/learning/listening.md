@@ -13,6 +13,11 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/03/16|就位|9789862357712|[pressplay](https://www.pressplay.cc/link/C1B4F90F20)|
+|2024/03/16|前公安搜查官首度現身教你識人術|9786267321041|[pressplay](https://www.pressplay.cc/link/30FB4C02D2)|
+|2024/03/16|麥肯錫經典工作術|9786263187276|[pressplay](https://www.pressplay.cc/link/B35C2D955D)|
+|2024/03/13|非理性繁榮：股市。瘋狂。警世預言家|9789869451956|[pressplay](https://www.pressplay.cc/link/A643B53776)|
+|2024/03/13|衝破慣性|9786263538498|[pressplay](https://www.pressplay.cc/link/888AB8289B)|
 |2024/03/11|我為何會這樣？——MBTI人格類型的16種性格密碼|9786263183056|[pressplay](https://www.pressplay.cc/link/197AC00B0A)|
 |2024/03/11|動能致富|9786263613249|[pressplay](https://www.pressplay.cc/link/FF89F99787)|
 |2024/03/11|累死你的不是工作，是工作方法|9789865536909|[pressplay](https://www.pressplay.cc/link/90D3749076)|
