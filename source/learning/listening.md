@@ -13,6 +13,9 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/03/29|頂尖領導者的行動清單|9786267321386|[pressplay](https://www.pressplay.cc/link/1C7DE0C2E7)|
+|2024/03/29|複利思維|9786267087138|[pressplay](https://www.pressplay.cc/link/DD385EBE0E)|
+|2024/03/29|低潮整理術|9786267238851|[pressplay](https://www.pressplay.cc/link/DEF9B47170)|
 |2024/03/16|就位|9789862357712|[pressplay](https://www.pressplay.cc/link/C1B4F90F20)|
 |2024/03/16|前公安搜查官首度現身教你識人術|9786267321041|[pressplay](https://www.pressplay.cc/link/30FB4C02D2)|
 |2024/03/16|麥肯錫經典工作術|9786263187276|[pressplay](https://www.pressplay.cc/link/B35C2D955D)|
