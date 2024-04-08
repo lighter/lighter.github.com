@@ -13,6 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/04/08|生理週期循環調理飲食法|9789863619123|[pressplay](https://www.pressplay.cc/link/2411EAA7D5)|
 |2024/04/07|預見未來自我|9786267366394|[pressplay](https://www.pressplay.cc/link/5F170C0F3C)|
 |2024/04/07|思維訓練與求知技術|9786263614192|[pressplay](https://www.pressplay.cc/link/1BCAB0F7CC)|
 |2024/04/07|知識煉金術|9786263741386|[pressplay](https://www.pressplay.cc/link/5A4431CD6C)|
