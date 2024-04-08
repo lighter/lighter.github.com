@@ -13,6 +13,14 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/04/07|預見未來自我|9786267366394|[pressplay](https://www.pressplay.cc/link/5F170C0F3C)|
+|2024/04/07|思維訓練與求知技術|9786263614192|[pressplay](https://www.pressplay.cc/link/1BCAB0F7CC)|
+|2024/04/07|知識煉金術|9786263741386|[pressplay](https://www.pressplay.cc/link/5A4431CD6C)|
+|2024/04/06|巴菲特寫給股東的信|9786263743816|[pressplay](https://www.pressplay.cc/link/7E254D2644)|
+|2024/04/06|Deep Work深度工作力|9789571394725|[pressplay](https://www.pressplay.cc/link/5204D456F9)|
+|2024/04/06|葛洛夫給經理人的第一課|9789573284925|[pressplay](https://www.pressplay.cc/link/D87273216C)|
+|2024/04/02|EQ|9789571365237|[pressplay](https://www.pressplay.cc/link/C1957108DB)|
+|2024/04/02|金字塔心智模式|9786263187368|[pressplay](https://www.pressplay.cc/link/6814041DD4)|
 |2024/03/29|頂尖領導者的行動清單|9786267321386|[pressplay](https://www.pressplay.cc/link/1C7DE0C2E7)|
 |2024/03/29|複利思維|9786267087138|[pressplay](https://www.pressplay.cc/link/DD385EBE0E)|
 |2024/03/29|低潮整理術|9786267238851|[pressplay](https://www.pressplay.cc/link/DEF9B47170)|
