@@ -13,6 +13,10 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/04/29|底層邏輯2|9786263742734|[pressplay](https://www.pressplay.cc/link/5FF0B7532B)|
+|2024/04/29|從加法開始的極簡生活|9789862899335|[pressplay](https://www.pressplay.cc/link/F2B4D1EF78)|
+|2024/04/29|解放大腦|9789864595563|[pressplay](https://www.pressplay.cc/link/FF65D0D467)|
+|2024/04/25|內在療癒原力|9786269601288|[pressplay](https://www.pressplay.cc/link/90D9B96610)|
 |2024/04/12|醒來！時間生物學教你得到優質生活與睡眠|9789864777181|[pressplay](https://www.pressplay.cc/link/96843729E0?oid=48AECDB6B2)|
 |2024/04/11|睡眠外科權威、長庚醫院李學禹醫師告訴您如何：熟睡迎接每一天！|9786267291313|[pressplay](https://www.pressplay.cc/link/BDFBE03EC1)|
 |2024/04/11|我們為何吃太多？全新的食慾科學與現代節食迷思|9789865524371|[pressplay](https://www.pressplay.cc/link/2AAF57DA0F)|
