@@ -13,6 +13,10 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/05/03|成功人士的用時智慧|9786263154001|[pressplay](https://www.pressplay.cc/link/7E9B9B2FB4)|
+|2024/05/03|聯準會到底在做什麼？|9786267366127|[pressplay](https://www.pressplay.cc/link/3F1E241B1E)|
+|2024/04/30|**在舒適圈自律**|9786267311561|[pressplay](https://www.pressplay.cc/link/46446CF3BC)|
+|2024/04/30|心理不舒服，身體就受苦|9786263538757|[pressplay](https://www.pressplay.cc/link/25E95446D8)|
 |2024/04/29|底層邏輯2|9786263742734|[pressplay](https://www.pressplay.cc/link/5FF0B7532B)|
 |2024/04/29|從加法開始的極簡生活|9789862899335|[pressplay](https://www.pressplay.cc/link/F2B4D1EF78)|
 |2024/04/29|解放大腦|9789864595563|[pressplay](https://www.pressplay.cc/link/FF65D0D467)|
