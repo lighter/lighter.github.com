@@ -13,6 +13,17 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/05/16|深度數位大掃除|9789571380551|[pressplay](https://www.pressplay.cc/link/BBEEB83862)|
+|2024/05/14|情緒寄生|9789573283713|[pressplay](https://www.pressplay.cc/link/43BCBB292B)|
+|2024/05/14|一流工作者都在用的待辦清單|9786267079959|[pressplay](https://www.pressplay.cc/link/1C157AE410)|
+|2024/05/11|散戶進化入門|9786269743902|[pressplay](https://www.pressplay.cc/link/21AC74821F)|
+|2024/05/09|有多痛，就有多值得：痛苦的價值及其如何為我們帶來快樂|9786263182288|[pressplay](https://www.pressplay.cc/link/060C198688)|
+|2024/05/09|多樣性：認識自己，接納別人，一場社會科學之旅|9789869526319|[pressplay](https://www.pressplay.cc/link/7D1777FF9B)|
+|2024/05/09|麥肯錫 X BCG 創造價值的問題解決力|9786263189690|[pressplay](https://www.pressplay.cc/link/F1D1EA01D5)|
+|2024/05/08|投資高手的獲利思維|9786267184325|[pressplay](https://www.pressplay.cc/link/FE2FB40585)|
+|2024/05/08|**菲式思考**|9786263187962|[pressplay](https://www.pressplay.cc/link/C823B716C1)|
+|2024/05/08|讓人一搜尋就找到你|9786263189591|[pressplay](https://www.pressplay.cc/link/44F16FF727)|
+|2024/05/08|憤怒經濟學|9786263184718|[pressplay](https://www.pressplay.cc/link/11F7AF9903)|
 |2024/05/03|成功人士的用時智慧|9786263154001|[pressplay](https://www.pressplay.cc/link/7E9B9B2FB4)|
 |2024/05/03|聯準會到底在做什麼？|9786267366127|[pressplay](https://www.pressplay.cc/link/3F1E241B1E)|
 |2024/04/30|**在舒適圈自律**|9786267311561|[pressplay](https://www.pressplay.cc/link/46446CF3BC)|
