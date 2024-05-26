@@ -13,6 +13,10 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/05/24|帶風向的3%法則|9786267216064|[pressplay](https://www.pressplay.cc/link/0121C40AAD)|
+|2024/05/24|思辨，從問對問題開始|9786267366325|[pressplay](https://www.pressplay.cc/link/AE11B69260)|
+|2024/05/24|當代財經大師的守錢致富課|9789860674996|[pressplay](https://www.pressplay.cc/link/374F9D76D3)|
+|2024/05/21|給存股新手的財富翻滾筆記|9786267046487|[pressplay](https://www.pressplay.cc/link/C91AC25E51)|
 |2024/05/16|深度數位大掃除|9789571380551|[pressplay](https://www.pressplay.cc/link/BBEEB83862)|
 |2024/05/14|情緒寄生|9789573283713|[pressplay](https://www.pressplay.cc/link/43BCBB292B)|
 |2024/05/14|一流工作者都在用的待辦清單|9786267079959|[pressplay](https://www.pressplay.cc/link/1C157AE410)|
