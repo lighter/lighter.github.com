@@ -13,6 +13,11 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/05/30|當代財經大師的獲利真相課|9786267321331|[pressplay](https://www.pressplay.cc/link/7F93D13247)|
+|2024/05/30|漫步華爾街的10條投資金律|9789869887809|[pressplay](https://www.pressplay.cc/link/130D23B872)|
+|2024|05/28|打破辦公空間的遊牧職場學|9786263495227|[pressplay](https://www.pressplay.cc/link/3E44586854)|
+|2024|05/28|走路，也是一種哲學|9786269645602|[pressplay](https://www.pressplay.cc/link/2F52909F8C)|
+|2024/05/26|**社會不平等**|9789571378749|[pressplay](https://www.pressplay.cc/link/BD2C5AE693)|
 |2024/05/24|**帶風向的3%法則**|9786267216064|[pressplay](https://www.pressplay.cc/link/0121C40AAD)|
 |2024/05/24|**思辨，從問對問題開始**|9786267366325|[pressplay](https://www.pressplay.cc/link/AE11B69260)|
 |2024/05/24|當代財經大師的守錢致富課|9789860674996|[pressplay](https://www.pressplay.cc/link/374F9D76D3)|
