@@ -13,6 +13,11 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/06/06|**懂學的人最後一個被淘汰**|9786267164655|[pressplay](https://www.pressplay.cc/link/87FF5F6736)|
+|2024/06/06|12週做完一年工作|9786263494862|[pressplay](https://www.pressplay.cc/link/4710FEFE8A)|
+|2024/06/06|**深度思考的技術**|9786263612358|[pressplay](https://www.pressplay.cc/link/93745DAE54)|
+|2024/06/03|每日只要30分鐘|9786263186002|[pressplay](https://www.pressplay.cc/link/6617BCBEE7)|
+|2024/06/03|**高成效習慣**|9786269596904|[pressplay](https://www.pressplay.cc/link/69E53CBEF7)|
 |2024/05/30|當代財經大師的獲利真相課|9786267321331|[pressplay](https://www.pressplay.cc/link/7F93D13247)|
 |2024/05/30|漫步華爾街的10條投資金律|9789869887809|[pressplay](https://www.pressplay.cc/link/130D23B872)|
 |2024/05/28|打破辦公空間的遊牧職場學|9786263495227|[pressplay](https://www.pressplay.cc/link/3E44586854)|
