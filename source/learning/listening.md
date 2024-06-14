@@ -13,6 +13,10 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/06/14|6個月學會任何一種外語|9786263491274|[pressplay](https://www.pressplay.cc/link/3A9FEB1B9C)|
+|2024/06/14|品味，從知識開始|9789571398921|[pressplay](https://www.pressplay.cc/link/AD365CAC58)|
+|2024/06/13|**價格烽火效應**|9789865480608|[pressplay](https://www.pressplay.cc/link/B4266E83D9)|
+|2024/06/13|**權力**|9786267012437|[pressplay](https://www.pressplay.cc/link/CBC4B19846)|
 |2024/06/06|**懂學的人最後一個被淘汰**|9786267164655|[pressplay](https://www.pressplay.cc/link/87FF5F6736)|
 |2024/06/06|12週做完一年工作|9786263494862|[pressplay](https://www.pressplay.cc/link/4710FEFE8A)|
 |2024/06/06|**深度思考的技術**|9786263612358|[pressplay](https://www.pressplay.cc/link/93745DAE54)|
