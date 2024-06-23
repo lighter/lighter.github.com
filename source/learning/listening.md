@@ -13,6 +13,8 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/06/18|**鬆弛感**|9786263748040|[pressplay](https://www.pressplay.cc/link/0263F5EF18)|
+|2024/06/18|**你不必走得快，但一定要走得遠**|9789864796120|[pressplay](https://www.pressplay.cc/link/1224DCD5E3)|
 |2024/06/14|6個月學會任何一種外語|9786263491274|[pressplay](https://www.pressplay.cc/link/3A9FEB1B9C)|
 |2024/06/14|品味，從知識開始|9789571398921|[pressplay](https://www.pressplay.cc/link/AD365CAC58)|
 |2024/06/13|**價格烽火效應**|9789865480608|[pressplay](https://www.pressplay.cc/link/B4266E83D9)|
