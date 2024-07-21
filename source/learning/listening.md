@@ -13,6 +13,17 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/07/18|不假裝，也能閃閃發光|9786267291818|[pressplay](https://www.pressplay.cc/link/D6E80C9F0E)|
+|2024/07/18|從說話洞察人心|9786263351790|[pressplay](https://www.pressplay.cc/link/12B7577778)|
+|2024/07/18|最高效益的時間管理|9786263747692|[pressplay](https://www.pressplay.cc/link/F215788282)|
+|2024/07/16|讓錢為你工作的自動理財法|9789865068080|[pressplay](https://www.pressplay.cc/link/43B4E26369)|
+|2024/07/16|**人生沒什麼不可放下**|9789865066444|[pressplay](https://www.pressplay.cc/link/3A1EE2BCEF)|
+|2024/06/30|發現我的多重職涯組合|9786267366448|[pressplay](https://www.pressplay.cc/link/A0F1CC18EA)|
+|2024/06/30|過載|9786267255247|[pressplay](https://www.pressplay.cc/link/DE2646AC97)|
+|2024/06/30|**一人創業**|9789573286400|[pressplay](https://www.pressplay.cc/link/2B9F63B2FB)|
+|2024/06/26|揭密保險|9786263187948|[pressplay](https://www.pressplay.cc/link/8BE6839017)|
+|2024/06/26|駕馭顯化的力量|9786263495968|[pressplay](https://www.pressplay.cc/link/8A19ADCC50)|
+|2024/06/26|一年就被挖角的工作技術|9579654085|[pressplay](https://www.pressplay.cc/link/D9FBD7373F)|
 |2024/06/18|**鬆弛感**|9786263748040|[pressplay](https://www.pressplay.cc/link/0263F5EF18)|
 |2024/06/18|**你不必走得快，但一定要走得遠**|9789864796120|[pressplay](https://www.pressplay.cc/link/1224DCD5E3)|
 |2024/06/14|6個月學會任何一種外語|9786263491274|[pressplay](https://www.pressplay.cc/link/3A9FEB1B9C)|
