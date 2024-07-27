@@ -13,6 +13,8 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/07/22|諾貝爾經濟學獎得主的獲利公式|9789869963619|[pressplay](https://www.pressplay.cc/link/316979DE75)|
+|2024/07/22|最高領導力|9786267382097|[pressplay](https://www.pressplay.cc/link/97F70E6D5F)|
 |2024/07/18|不假裝，也能閃閃發光|9786267291818|[pressplay](https://www.pressplay.cc/link/D6E80C9F0E)|
 |2024/07/18|從說話洞察人心|9786263351790|[pressplay](https://www.pressplay.cc/link/12B7577778)|
 |2024/07/18|最高效益的時間管理|9786263747692|[pressplay](https://www.pressplay.cc/link/F215788282)|
