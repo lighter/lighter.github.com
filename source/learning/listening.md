@@ -13,6 +13,14 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/08/25|股海老牛最新抱緊名單，贏過大盤20％|9786267377352|[pressplay](https://www.pressplay.cc/link/B9E7D72A51)|
+|2024/08/25|**經濟學，最強思考工具**|9786267366622|[pressplay](https://www.pressplay.cc/link/6753942876)|
+|2024/08/23|身體喜歡你這樣睡|9786263189201|[pressplay](https://www.pressplay.cc/link/DE2BC78813)|
+|2024/08/23|**創造思考的技術**|9786263188228|[pressplay](https://www.pressplay.cc/link/EFB052D4D3)|
+|2024/08/18|即興表達力|9786267382370|[pressplay](https://www.pressplay.cc/link/B73B1BBB73)|
+|2024/08/18|**看不見的更關鍵**|9786269579044|[pressplay](https://www.pressplay.cc/link/FE2D3CDBEE)|
+|2024/08/16|99%的人輸在不會表達|9789579164337|[pressplay](https://www.pressplay.cc/link/411109C7A1)|
+|2024/08/16|請你說話|9789860690538|[pressplay](https://www.pressplay.cc/link/1F0C2A316D)|
 |2024/07/22|諾貝爾經濟學獎得主的獲利公式|9789869963619|[pressplay](https://www.pressplay.cc/link/316979DE75)|
 |2024/07/22|最高領導力|9786267382097|[pressplay](https://www.pressplay.cc/link/97F70E6D5F)|
 |2024/07/18|不假裝，也能閃閃發光|9786267291818|[pressplay](https://www.pressplay.cc/link/D6E80C9F0E)|
