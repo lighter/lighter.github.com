@@ -13,6 +13,8 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/09/04|檯面下我是這樣投資|9786267079355|[pressplay](https://www.pressplay.cc/link/D81A67A1FE)|
+|2024/09/04|指數革命|9789869735025|[pressplay](https://www.pressplay.cc/link/73FCAD4FD3)|
 |2024/08/25|股海老牛最新抱緊名單，贏過大盤20％|9786267377352|[pressplay](https://www.pressplay.cc/link/B9E7D72A51)|
 |2024/08/25|**經濟學，最強思考工具**|9786267366622|[pressplay](https://www.pressplay.cc/link/6753942876)|
 |2024/08/23|身體喜歡你這樣睡|9786263189201|[pressplay](https://www.pressplay.cc/link/DE2BC78813)|
