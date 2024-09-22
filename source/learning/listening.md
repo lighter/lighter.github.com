@@ -13,6 +13,14 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
+|2024/09/20|可以生氣，但不要動不動就發脾氣|9786263616714|[pressplay](https://www.pressplay.cc/link/36D0476290)|
+|2024/09/20|高敏感卻不受傷的七日練習|9789578950375|[pressplay](https://www.pressplay.cc/link/ED7431F125)|
+|2024/09/16|經濟思想史的趣味|9789862626771|[pressplay](https://www.pressplay.cc/link/C7E39B3E28)|
+|2024/09/16|複雜問題簡單解決|9786267382592|[pressplay](https://www.pressplay.cc/link/CABDA4CD16)|
+|2024/09/16|**他的地板是你的天花板**|9786263183117|[pressplay](https://www.pressplay.cc/link/FA0D8A2EF4)|
+|2024/09/15|一流的貓系工作術|9786263143784|[pressplay](https://www.pressplay.cc/link/D15C5A87FC)|
+|2024/09/15|或許，你該勇於讓人失望|9786267313855|[pressplay](https://www.pressplay.cc/link/FC5278084C)|
+|2024/09/15|股魚教你一本搞懂ETF|9786269827206|[pressplay](https://www.pressplay.cc/link/A278440EC9)|
 |2024/09/04|檯面下我是這樣投資|9786267079355|[pressplay](https://www.pressplay.cc/link/D81A67A1FE)|
 |2024/09/04|指數革命|9789869735025|[pressplay](https://www.pressplay.cc/link/73FCAD4FD3)|
 |2024/08/25|股海老牛最新抱緊名單，贏過大盤20％|9786267377352|[pressplay](https://www.pressplay.cc/link/B9E7D72A51)|
