@@ -13,7 +13,7 @@ date: 2023-02-04 14:33:09
 
 | 時間 | 名稱 | ISBN | 平台 |
 |:----:|:----:|:---:|:----:|
-|2024/09/20|可以生氣，但不要動不動就發脾氣|9786263616714|[pressplay](https://www.pressplay.cc/link/36D0476290)|
+|2024/09/20|**可以生氣，但不要動不動就發脾氣**|9786263616714|[pressplay](https://www.pressplay.cc/link/36D0476290)|
 |2024/09/20|高敏感卻不受傷的七日練習|9789578950375|[pressplay](https://www.pressplay.cc/link/ED7431F125)|
 |2024/09/16|經濟思想史的趣味|9789862626771|[pressplay](https://www.pressplay.cc/link/C7E39B3E28)|
 |2024/09/16|複雜問題簡單解決|9786267382592|[pressplay](https://www.pressplay.cc/link/CABDA4CD16)|
