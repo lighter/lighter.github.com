@@ -7,6 +7,12 @@ date: 2023-06-11 21:34:09
 
 <div class='my-learning'>
 
+# 2026
+
+## life
+
+- [何謂放下？何謂提起？金剛經教我們的立世之道 ft. 王思迅｜Sherry's Notes 雪力的心理學筆記](https://www.youtube.com/watch?v=8-G6FtbuxLs) `#life`
+
 # 2024
 
 ## learning
