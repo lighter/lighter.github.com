@@ -12,6 +12,7 @@ date: 2023-02-04 14:33:09
 ### 2026
 | 開始時間 	| 結束時間 	| 名稱 	| 平台 | 狀態 	|
 |:--------:|:----------:|:------:|:------:|:----:|
+|2026/04/21||Master SQL Queries From Basic to Advanced|[roadmap.sh](https://roadmap.sh/courses/sql)|reading|
 |2026/02/06|2026/02/27|超實用買房秘技|[pressplay](https://www.pressplay.cc/project/A7E8408DA30A23D719B4F0B3B33B1820/about)|done|
 
 ### 2025
